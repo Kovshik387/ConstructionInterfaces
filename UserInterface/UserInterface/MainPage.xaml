@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UserInterface.MainPage">
+
+    <ScrollView>
+        <Grid RowDefinitions="40, *" Padding="5">
+            <Grid ColumnDefinitions="100, *, 80" Grid.Row="0">
+                <Label Text="Checked" Grid.Row="0" Grid.Column="0" Padding="10"/>
+                <Label Text="Article" Grid.Row="0" Grid.Column="1" Padding="10"/>
+                <Label Text="Price" Grid.Row="0" Grid.Column="2" Padding="10"/>
+            </Grid>
+            <CollectionView Grid.Row="1">
+                <CollectionView.ItemsSource>
+                    <!--<x:Array Type="{x:Type local:Person}">
+                        --><!--<local:Person Name="Tom" Age="38" Company="Microsoft"/>
+                        <local:Person Name="Sam" Age="25" Company="Google"/>
+                        <local:Person Name="Bob" Age="42" Company="JetBrains"/>
+                        <local:Person Name="Alice" Age="33" Company="Microsoft"/>
+                        <local:Person Name="Kate" Age="29" Company="Google"/>
+                        <local:Person Name="Amelia" Age="35" Company="JetBrains" />--><!--
+                    </x:Array>-->
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="Gray">
+                            <Grid ColumnDefinitions="100, *, 80"
+                        Grid.Row="1">
+                                <Label Text="{Binding Name}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="0"/>
+                                <Label Text="{Binding Age, StringFormat='Возраст: {0}'}" Grid.Column="1" />
+                                <Label Text="{Binding Company}" Grid.Column="2"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
