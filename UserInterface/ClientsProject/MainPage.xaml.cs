@@ -1,16 +1,32 @@
-﻿using ClientsProject.DAL.EF;
+﻿using ClientsProject.DAL.Entities;
+using ClientsProject.DAL.EF;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Scaffolding;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientsProject
 {
     public partial class MainPage : ContentPage
     {
-        private readonly ClientAccountingContext _contextDb;
-        public MainPage(ClientAccountingContext contextFactory)
+        private readonly IDbContextFactory<ClientAccountingContext> _factory;
+        public List<Client> Clients { get; set; }
+        public MainPage(IDbContextFactory<ClientAccountingContext> factory)
         {
-            InitializeComponent();
-            this._contextDb = contextFactory;
+            this._factory = factory;
+
+            this.InitializeComponent();
+            this.InitializeData();
+            
+            this.BindingContext = this;
+        }
+
+        private async void InitializeData()
+        {
+            using (var dbcontext = await this._factory.CreateDbContextAsync())
+            {
+                this.Clients = await dbcontext.Clients.ToListAsync();
+            }
+
         }
     }
 }

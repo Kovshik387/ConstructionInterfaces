@@ -1,10 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:ClientsProject.DAL.Entities;assembly=ClientsProject.DAL"
              x:Class="ClientsProject.MainPage">
-
+             
     <ScrollView>
-        <VerticalStackLayout
+
+        <Grid RowDefinitions="40, *"
+    Padding="5">
+            <Grid ColumnDefinitions="100, 150, 150"
+    Grid.Row="0">
+                <Label Text="Имя" Grid.Row="0" Grid.Column="0" Padding="10"/>
+                <Label Text="Фамилия" Grid.Row="0" Grid.Column="1" Padding="10"/>
+                <Label Text="Очество" Grid.Row="0" Grid.Column="2" Padding="10"/>
+            </Grid>
+            <CollectionView Grid.Row="1" ItemsSource="{}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="Gray">
+                            <Grid ColumnDefinitions="100, 150, 150"
+                        Grid.Row="1">
+                                <Label Text="{Binding Name}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="0"/>
+                                <Label Text="{Binding Surname}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="1" />
+                                <Label Text="{Binding Patronymic}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="2"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+
+        <!--<VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
@@ -27,16 +54,16 @@
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" 
-                x:Name="TestData"/>
+                x:Name="TestData"/>-->
 
-            <Button
+            <!--<Button
                 x:Name="CounterBtn"
                 Text="Click me"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" />-->
 
-        </VerticalStackLayout>
+        <!--</VerticalStackLayout>-->
     </ScrollView>
 
 </ContentPage>
