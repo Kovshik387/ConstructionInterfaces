@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ClientsProject.DAL.Interfaces;
+using ClientsProject.DAL.Services;
+using ClientsProject.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace ClientsProject
 {
@@ -14,12 +17,15 @@ namespace ClientsProject
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
-                .Services.AddTransient<MainPage>()
-                .AddDbContextFactory<ClientsProject.DAL.EF.ClientAccountingContext>();
+                .Services
+                .AddDbContextFactory<ClientsProject.DAL.EF.ClientAccountingContext>()
+                .AddSingleton<MainPage>()
+                .AddSingleton<ClientView>()
+                .AddSingleton<IClientService, ClientService>();
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+            #if DEBUG
+	            builder.Logging.AddDebug();
+            #endif
 
             return builder.Build();
         }
