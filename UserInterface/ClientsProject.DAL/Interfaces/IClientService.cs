@@ -9,6 +9,7 @@ namespace ClientsProject.DAL.Interfaces
 {
     public interface IClientService
     {
+        public void AddClient(Client client);
         public Task<List<Client>> GetClientAllAsync();
         public List<Client> GetClientAll();
         public Task<Client?> GetClientByIdAsync(int id);

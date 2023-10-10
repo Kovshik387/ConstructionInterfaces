@@ -1,5 +1,6 @@
 ﻿using ClientsProject.DAL.Interfaces;
 using ClientsProject.DAL.Services;
+using ClientsProject.Page;
 using ClientsProject.ViewModel;
 using Microsoft.Extensions.Logging;
 
@@ -20,7 +21,8 @@ namespace ClientsProject
                 .Services
                 .AddDbContextFactory<ClientsProject.DAL.EF.ClientAccountingContext>()
                 .AddSingleton<MainPage>()
-                .AddSingleton<ClientView>()
+                .AddSingleton<ListPage>()
+                .AddSingleton<ClientsView>()
                 .AddSingleton<IClientService, ClientService>();
 
             #if DEBUG

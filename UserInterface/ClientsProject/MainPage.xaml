@@ -1,32 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local ="clr-namespace:ClientsProject.DAL.Entities;assembly=ClientsProject.DAL"
+             x:Name="this"
+             
+             xmlns:temp="clr-namespace:ClientsProject.ViewModel"
              x:Class="ClientsProject.MainPage">
 
     <ScrollView>
-        <Grid RowDefinitions="40, *" Padding="5">
-            <Grid ColumnDefinitions="100, 150, 150, 150" Grid.Row="0">
-                <Label Text="Имя" Grid.Row="0" Grid.Column="0" Padding="10"/>
-                <Label Text="Фамилия" Grid.Row="0" Grid.Column="1" Padding="10"/>
-                <Label Text="Очество" Grid.Row="0" Grid.Column="2" Padding="10"/>
-                <Label Text="Действие" Grid.Row="0" Grid.Column="3" Padding="10"/>
-            </Grid>
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Clients}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Stroke="Gray">
-                            <Grid ColumnDefinitions="100, 150, 150, 150" Grid.Row="1">
-                                <Entry Text="{Binding Login}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="0"/>
-                                <Entry Text="{Binding Name}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="1" />
-                                <Entry Text="{Binding Surname}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="2"/>
-                                <Button Text="Изменить" WidthRequest="150" FontSize = "20" Margin="10" Grid.Column="3" Command="{Binding AddCommand}" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
+        <StackLayout>
+            <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="20" Text="Привет"></Label>
+            <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="200" Text="Список клиентов" Clicked="Button_Clicked" ></Button>
+        </StackLayout>        
     </ScrollView>
 
 </ContentPage>

@@ -2,13 +2,6 @@
 using ClientsProject.DAL.Entities;
 using ClientsProject.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Scaffolding;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClientsProject.DAL.Services
 {
@@ -33,6 +26,15 @@ namespace ClientsProject.DAL.Services
                 return await factory.Clients.ToListAsync();
         }
 
+        public void AddClient(Client client)
+        {
+            using (var factory = _databaseFactory.CreateDbContext())
+            {
+                factory.Clients.Add(client);
+                factory.SaveChanges();
+            }
+        }
+
         public void ChangeClient(Client client)
         {
             using (var factory = _databaseFactory.CreateDbContext())
@@ -40,7 +42,7 @@ namespace ClientsProject.DAL.Services
                 //    (id => id.IdClient == client.IdClient).ExecuteUpdate(p =>p.
                 //SetProperty(i => i.Surname, i => client.Surname));
         }
-
+        
         public void SaveChanges()
         {
             using (var factory = _databaseFactory.CreateDbContext())

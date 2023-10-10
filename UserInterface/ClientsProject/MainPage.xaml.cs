@@ -4,16 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using ClientsProject.DAL.Interfaces;
 using ClientsProject.ViewModel;
+using ClientsProject.Page;
 
 namespace ClientsProject
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage(ClientView clientView)
-        {   
+        private readonly ClientsView _clientView;
+        public MainPage(ClientsView client)
+        {
             this.InitializeComponent();
-
-            this.BindingContext = clientView;
+            this._clientView = client;
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+            => Navigation.PushAsync(new ListPage(_clientView));
     }
 }

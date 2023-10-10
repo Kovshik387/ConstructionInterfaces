@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientsProject.Page.ListPage"
+             Title="ListPage">
+
+    <ScrollView>
+        <Grid RowDefinitions="40, *" Padding="5">
+            <Grid ColumnDefinitions="100, 150, 150, 150" Grid.Row="0">
+                <Label Text="Логин" Grid.Row="0" Grid.Column="0" Padding="10"/>
+                <Label Text="Имя" Grid.Row="0" Grid.Column="1" Padding="10"/>
+                <Label Text="Фамилия" Grid.Row="0" Grid.Column="2" Padding="10"/>
+                <Label Text="Email" Grid.Row="0" Grid.Column="3" Padding="10"/>
+            </Grid>
+            <CollectionView SelectedItem="{Binding SelectedClient}" Grid.Row="1" ItemsSource="{Binding Clients}"  SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="Gray">
+                            <Grid ColumnDefinitions="100, 150, 150, 150*" Grid.Row="1">
+                                <Label Text="{Binding Login}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="0"/>
+                                <Label Text="{Binding Name}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="1" />
+                                <Label Text="{Binding Surname}" FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="2"/>
+                                <Label Text="{Binding Email}"  FontSize = "20"  TextColor = "#006064" Margin="10" Grid.Column="3"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>

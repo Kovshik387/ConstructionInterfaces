@@ -1,9 +1,11 @@
 ﻿using ClientsProject.DAL.Entities;
-using ClientsProject.DAL.Interfaces;
-using System.Collections.ObjectModel;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ClientsProject.ViewModel
 {
@@ -11,35 +13,9 @@ namespace ClientsProject.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly IClientService _clientService;
+        private Client _client;
 
-        public ObservableCollection<Client> Clients { get; set; } = new();
-        
-        public ICommand AddCommand { get; set; }
-
-        public ClientView(IClientService clientService)
-        {
-            this._clientService = clientService;
-            this.Clients = new ObservableCollection<Client>(_clientService.GetClientAll());
-
-            AddCommand = new Command(() =>
-            {
-                Clients.Add(new Client()
-                {
-                    Login = "XUESOS",
-                    Contact = "453543",
-                    Email = "fdsfsdfds",
-                    Name = "fdsfdsfsd",
-                    Password = "ffdsfsd",
-                    Patronymic = "System.Windows.Input",
-                    Rating = 5,
-                    Surname = "fdsfds"
-                });
-                clientService.SaveChanges();
-            });
-        }
-
-        public ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public ClientView(Client client) => (_client) = (client);
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
