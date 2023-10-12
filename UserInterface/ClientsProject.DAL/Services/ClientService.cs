@@ -14,6 +14,12 @@ namespace ClientsProject.DAL.Services
             _databaseFactory = databaseFactory;
         }
 
+        public Client GetReviews(Client client)
+        {
+            using (var factory = _databaseFactory.CreateDbContext())
+                return factory.Clients.Where(d_client => d_client == client).Include(r => r.Reviews).First();
+        }
+
         public async Task<Client?> GetClientByIdAsync(int id)
         {
             using (var factory = _databaseFactory.CreateDbContext())
@@ -34,11 +40,14 @@ namespace ClientsProject.DAL.Services
                 factory.SaveChanges();
             }
         }
-
         public void ChangeClient(Client client)
         {
             using (var factory = _databaseFactory.CreateDbContext())
+            {
                 factory.Clients.Update(client);
+                factory.SaveChanges();
+            }
+                
                 //    (id => id.IdClient == client.IdClient).ExecuteUpdate(p =>p.
                 //SetProperty(i => i.Surname, i => client.Surname));
         }
@@ -54,5 +63,6 @@ namespace ClientsProject.DAL.Services
             using (var factory = _databaseFactory.CreateDbContext())
                 return factory.Clients.ToList();
         }
+
     }
 }

@@ -1,6 +1,7 @@
-﻿using ClientsProject.DAL.Interfaces;
+﻿using ClientsProject.DAL.EF;
+using ClientsProject.DAL.Interfaces;
 using ClientsProject.DAL.Services;
-using ClientsProject.Page;
+using ClientsProject.Pages;
 using ClientsProject.ViewModel;
 using Microsoft.Extensions.Logging;
 
@@ -19,10 +20,13 @@ namespace ClientsProject
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
                 .Services
-                .AddDbContextFactory<ClientsProject.DAL.EF.ClientAccountingContext>()
+                .AddDbContextFactory<ClientAccountingContext>()
                 .AddSingleton<MainPage>()
+                .AddTransient<ClientPage>()
                 .AddSingleton<ListPage>()
                 .AddSingleton<ClientsView>()
+                .AddSingleton<App>()
+                .AddSingleton<ClientView>()
                 .AddSingleton<IClientService, ClientService>();
 
             #if DEBUG

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientsProject.Pages.ClientPage"
+             Title="ClientPage"
+             >
+    <!--<Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>-->
+
+
+
+    <VerticalStackLayout>
+        <Entry Text="{Binding Name}" FontSize="16"/>
+        <Entry Text="{Binding Password}" FontSize="16"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" Grid.Row="0" HeightRequest="600" WidthRequest="250">
+                <StackLayout>
+                    <Label FontSize="20" TextColor="BlanchedAlmond" Text="Клиент"/>
+                    <Entry Text="{Binding Login}" FontSize="16"/>
+                    <Entry Text="{Binding Password}" FontSize="16"/>
+                    <Entry Text="{Binding Name}" FontSize="16"/>
+                    <Entry Text="{Binding Surname}" FontSize="16"/>
+                    <Entry Text="{Binding Patronymic}" FontSize="16"/>
+                    <Entry Text="{Binding Contact}" FontSize="16"/>
+                    <Entry Text="{Binding Email}" FontSize="16"/>
+                    <Entry Text="{Binding Rating}" FontSize="16"/>
+                </StackLayout>
+
+            </StackLayout>
+
+            <ListView Grid.Column="1" Grid.Row="1" HeightRequest="500" WidthRequest="500" Background="red" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+        <Button Text="Save" Clicked="SavePerson"></Button>
+        
+    </VerticalStackLayout>
+</ContentPage>
