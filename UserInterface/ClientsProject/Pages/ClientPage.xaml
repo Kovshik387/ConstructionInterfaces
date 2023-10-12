@@ -50,8 +50,5 @@
             </ListView>
 
         </Grid>
-
-        <Button Text="Save" Clicked="SavePerson"></Button>
-        
     </VerticalStackLayout>
 </ContentPage>

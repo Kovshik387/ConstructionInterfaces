@@ -29,11 +29,10 @@ public partial class ListPage : ContentPage
             _ClientView.Client = current;
             await Navigation.PushAsync(new ClientPage(_ClientView));
         }
+        e = null;
     }
-
     protected internal void UpdateClients(Client client)
     {
-        var clients = _ClientsView.Clients;
         _ClientsView.Clients[_ClientsView.Clients.IndexOf(_ClientsView.Clients.First(id => id.IdClient == client.IdClient))] = client;
     }
 

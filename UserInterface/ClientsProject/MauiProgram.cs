@@ -21,13 +21,13 @@ namespace ClientsProject
                 })
                 .Services
                 .AddDbContextFactory<ClientAccountingContext>()
-                .AddSingleton<MainPage>()
+                .AddTransient<MainPage>()
                 .AddTransient<ClientPage>()
-                .AddSingleton<ListPage>()
-                .AddSingleton<ClientsView>()
-                .AddSingleton<App>()
-                .AddSingleton<ClientView>()
-                .AddSingleton<IClientService, ClientService>();
+                .AddTransient<ListPage>()
+                .AddTransient<ClientsView>()
+                .AddTransient<App>()
+                .AddTransient<ClientView>()
+                .AddTransient<IClientService, ClientService>();
 
             #if DEBUG
 	            builder.Logging.AddDebug();

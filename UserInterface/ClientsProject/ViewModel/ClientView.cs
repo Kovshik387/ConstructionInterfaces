@@ -109,7 +109,6 @@ namespace ClientsProject.ViewModel
                      
             }
         }
-        //public void RefreshData() => this. = new ObservableCollection<Client>(_clientService.GetClientAll());
         public ObservableCollection<Review> Reviews { get => new ObservableCollection<Review>(this.Client.Reviews);}
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
