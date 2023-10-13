@@ -19,7 +19,7 @@ namespace ClientsProject.ViewModel
 
         public Client Client { get; set; }
 
-        public ClientView(IClientService clientService) => _clientService = clientService;
+        public ClientView (IClientService clientService) => _clientService = clientService;
 
         public string Login
         {

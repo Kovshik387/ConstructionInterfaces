@@ -24,9 +24,9 @@ namespace ClientsProject
                 .AddTransient<MainPage>()
                 .AddTransient<ClientPage>()
                 .AddScoped<ListPage>()
-                .AddTransient<ClientsView>()
-                .AddTransient<App>()
                 .AddTransient<ClientView>()
+                .AddTransient<App>()
+                .AddTransient<ClientsView>()
                 .AddTransient<IClientService, ClientService>();
 
             #if DEBUG

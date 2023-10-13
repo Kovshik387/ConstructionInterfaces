@@ -18,6 +18,6 @@
                 </StackLayout>
             </Border>
         </StackLayout>
-        <Button Text="Создать" WidthRequest="500" HeightRequest="25" BackgroundColor="#2B0B98" Command=""></Button>
+        <Button Text="Создать" WidthRequest="500" HeightRequest="25" BackgroundColor="#2B0B98"></Button>
     </VerticalStackLayout>
 </ContentPage>

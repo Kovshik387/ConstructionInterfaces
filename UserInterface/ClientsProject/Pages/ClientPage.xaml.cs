@@ -8,14 +8,15 @@ namespace ClientsProject.Pages;
 
 public partial class ClientPage : ContentPage
 {
-    private ClientView _clintView;
+    private ClientView _clientView;
     private ClientsView _clientsView;
-    public ClientPage(ClientView clientView, ClientsView clientsView)
+    public ClientPage(ClientsView clientsView, ClientView clientView)
 	{
         InitializeComponent();
-        _clintView = clientView; _clientsView = clientsView;
+        _clientView = clientView;
+        _clientsView = clientsView;
         
-        this.BindingContext = _clintView;
+        this.BindingContext = _clientsView;
     }
     
     protected override bool OnBackButtonPressed()
@@ -26,7 +27,7 @@ public partial class ClientPage : ContentPage
 
             int pageCount = navPage.Navigation.NavigationStack.Count;
             if (navStack[pageCount - 2] is ListPage mainPage)
-                mainPage._ClientsView.UpdateClients(_clintView.Client);
+                mainPage._clientsView.UpdateClients(_clientView.Client);
         }
         return base.OnBackButtonPressed();
     }

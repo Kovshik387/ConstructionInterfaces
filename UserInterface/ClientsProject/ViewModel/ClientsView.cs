@@ -14,8 +14,6 @@ namespace ClientsProject.ViewModel
     public class ClientsView : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
-        
         private readonly IClientService _clientService;
         public ObservableCollection<Client> Clients {  get; set; }
         public ClientsView(IClientService clientService)

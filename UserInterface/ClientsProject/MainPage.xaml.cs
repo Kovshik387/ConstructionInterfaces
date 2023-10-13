@@ -18,6 +18,6 @@ namespace ClientsProject
             this.InitializeComponent();
             this._clientsView = clientsView; this._clientView = clientView;
         }
-        private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new ListPage(_clientsView,_clientView),true);
+        private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new ListPage(_clientsView, _clientView));
     }
 }
