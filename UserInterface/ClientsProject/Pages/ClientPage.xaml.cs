@@ -9,13 +9,15 @@ namespace ClientsProject.Pages;
 public partial class ClientPage : ContentPage
 {
     private ClientView _clintView;
-	public ClientPage(ClientView clientView)
+    private ClientsView _clientsView;
+    public ClientPage(ClientView clientView, ClientsView clientsView)
 	{
         InitializeComponent();
-        _clintView = clientView;
+        _clintView = clientView; _clientsView = clientsView;
+        
         this.BindingContext = _clintView;
     }
-
+    
     protected override bool OnBackButtonPressed()
     {
         if (Microsoft.Maui.Controls.Application.Current?.MainPage is NavigationPage navPage)
@@ -24,9 +26,7 @@ public partial class ClientPage : ContentPage
 
             int pageCount = navPage.Navigation.NavigationStack.Count;
             if (navStack[pageCount - 2] is ListPage mainPage)
-            {
                 mainPage._ClientsView.UpdateClients(_clintView.Client);
-            }
         }
         return base.OnBackButtonPressed();
     }

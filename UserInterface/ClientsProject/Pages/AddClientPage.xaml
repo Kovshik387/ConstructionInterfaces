@@ -4,10 +4,20 @@
              x:Class="ClientsProject.Pages.AddClientPage"
              Title="AddClientPage">
     <VerticalStackLayout>
-        <Label 
-            Text="ХУУУУУУУУУУУУУУЙ"
-            FontSize="50"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <StackLayout Margin="25" Background="White" HorizontalOptions="Center" VerticalOptions="Center">
+            <Border StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2" Stroke="#Black">
+                <StackLayout HeightRequest="390" WidthRequest="500" Padding="15">
+                    <Entry Placeholder="Имя"></Entry>
+                    <Entry Placeholder="Фамилия"></Entry>
+                    <Entry Placeholder="Отчество"></Entry>
+                    <Entry Placeholder="Логин"></Entry>
+                    <Entry Placeholder="Пароль"></Entry>
+                    <Entry Placeholder="Контактные данные"></Entry>
+                    <Entry Placeholder="Email"></Entry>
+                    <Entry Placeholder="Rating"></Entry>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+        <Button Text="Создать" WidthRequest="500" HeightRequest="25" BackgroundColor="#2B0B98" Command=""></Button>
     </VerticalStackLayout>
 </ContentPage>

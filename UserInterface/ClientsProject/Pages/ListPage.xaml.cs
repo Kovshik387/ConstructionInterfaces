@@ -27,14 +27,15 @@ public partial class ListPage : ContentPage
         if (e.CurrentSelection.FirstOrDefault() is Client current)
         {
             _ClientView.Client = current;
-            await Navigation.PushAsync(new ClientPage(_ClientView));
+            await Navigation.PushAsync(new ClientPage(_ClientView,_ClientsView));
         }
-        e = null;
     }
-    protected internal void UpdateClients(Client client)
+    protected override void OnBindingContextChanged()
     {
-        _ClientsView.Clients[_ClientsView.Clients.IndexOf(_ClientsView.Clients.First(id => id.IdClient == client.IdClient))] = client;
+        base.OnBindingContextChanged();
     }
-
-    private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new AddClientPage());
+    protected internal void AddClient(Client client) => _ClientsView.AddClient(client);
+    protected internal void UpdateClients(Client client) =>
+        _ClientsView.Clients[_ClientsView.Clients.IndexOf(_ClientsView.Clients.First(id => id.IdClient == client.IdClient))] = client;
+    private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new AddClientPage(_ClientView));
 }

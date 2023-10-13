@@ -47,9 +47,6 @@ namespace ClientsProject.DAL.Services
                 factory.Clients.Update(client);
                 factory.SaveChanges();
             }
-                
-                //    (id => id.IdClient == client.IdClient).ExecuteUpdate(p =>p.
-                //SetProperty(i => i.Surname, i => client.Surname));
         }
         
         public void SaveChanges()

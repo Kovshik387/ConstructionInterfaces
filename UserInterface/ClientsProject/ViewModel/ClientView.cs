@@ -1,5 +1,6 @@
 ﻿using ClientsProject.DAL.Entities;
 using ClientsProject.DAL.Interfaces;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ namespace ClientsProject.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly IClientService _clientService;
+
         public Client Client { get; set; }
 
         public ClientView(IClientService clientService) => _clientService = clientService;

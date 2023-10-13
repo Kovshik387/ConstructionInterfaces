@@ -23,7 +23,7 @@ namespace ClientsProject
                 .AddDbContextFactory<ClientAccountingContext>()
                 .AddTransient<MainPage>()
                 .AddTransient<ClientPage>()
-                .AddTransient<ListPage>()
+                .AddScoped<ListPage>()
                 .AddTransient<ClientsView>()
                 .AddTransient<App>()
                 .AddTransient<ClientView>()

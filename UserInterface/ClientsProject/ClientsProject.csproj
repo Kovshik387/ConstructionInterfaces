@@ -49,6 +49,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="ViewModelService\**" />
+	  <Compile Remove="ViewModelService\**" />
+	  <EmbeddedResource Remove="ViewModelService\**" />
+	  <MauiCss Remove="ViewModelService\**" />
+	  <MauiXaml Remove="ViewModelService\**" />
+	  <None Remove="ViewModelService\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
 	</ItemGroup>
@@ -76,10 +86,6 @@
 	  <MauiXaml Update="Pages\AddClientPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ViewModelService\" />
 	</ItemGroup>
 
 </Project>
