@@ -22,11 +22,11 @@ namespace ClientsProject
                 .Services
                 .AddDbContextFactory<ClientAccountingContext>()
                 .AddTransient<MainPage>()
-                .AddTransient<ClientPage>()
-                .AddScoped<ListPage>()
-                .AddTransient<ClientView>()
                 .AddTransient<App>()
+                .AddTransient<ClientView>()
                 .AddTransient<ClientsView>()
+                .AddScoped<ListPage>()
+                .AddTransient<ClientPage>()
                 .AddTransient<IClientService, ClientService>();
 
             #if DEBUG

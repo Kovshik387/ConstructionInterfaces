@@ -16,10 +16,20 @@ namespace ClientsProject.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly IClientService _clientService;
-
+        public ObservableCollection<Review> Reviews { get; set; }
         public Client Client { get; set; }
 
-        public ClientView (IClientService clientService) => _clientService = clientService;
+        public ClientView(IClientService clientService)
+        {
+            _clientService = clientService;
+            
+        }
+
+        public void GetReviews()
+        {
+            this.Client = _clientService.GetReviews(this.Client);
+            this.Reviews = new ObservableCollection<Review>(Client.Reviews);
+        }
 
         public string Login
         {
@@ -111,7 +121,6 @@ namespace ClientsProject.ViewModel
                      
             }
         }
-        public ObservableCollection<Review> Reviews { get => new ObservableCollection<Review>(this.Client.Reviews);}
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

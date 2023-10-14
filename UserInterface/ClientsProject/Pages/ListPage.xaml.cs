@@ -21,21 +21,19 @@ public partial class ListPage : ContentPage
         this._clientsView = clientsView; this._clientView = clientView;
         this.BindingContext = _clientsView;
     }
-
     private async void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is Client current)
         {
             _clientView.Client = current;
-            await Navigation.PushAsync(new ClientPage(_clientsView,_clientView));
+            await Navigation.PushAsync(new ClientPage(_clientView));
         }
     }
-    protected override void OnBindingContextChanged()
+
+    protected override void OnAppearing()
     {
-        base.OnBindingContextChanged();
+        var clients = _clientsView.GetAllClient();
+        this.collectionView.ItemsSource = clients;
     }
-    protected internal void AddClient(Client client) => _clientsView.AddClient(client);
-    protected internal void UpdateClients(Client client) =>
-        _clientsView.Clients[_clientsView.Clients.IndexOf(_clientsView.Clients.First(id => id.IdClient == client.IdClient))] = client;
     private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new AddClientPage(_clientView));
 }

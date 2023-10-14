@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.AddClientPage"
+             Title="AddClientPage">
+    <VerticalStackLayout>
+        <StackLayout Margin="25" Background="White" HorizontalOptions="Center" VerticalOptions="Center">
+            <Border StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2" Stroke="#Black">
+                <StackLayout HeightRequest="390" WidthRequest="500" Padding="15">
+                    <Entry Placeholder="Имя"></Entry>
+                    <Entry Placeholder="Фамилия"></Entry>
+                    <Entry Placeholder="Отчество"></Entry>
+                    <Entry Placeholder="Логин"></Entry>
+                    <Entry Placeholder="Пароль"></Entry>
+                    <Entry Placeholder="Контактные данные"></Entry>
+                    <Entry Placeholder="Email"></Entry>
+                    <Entry Placeholder="Rating"></Entry>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+        <Button Text="Создать" WidthRequest="500" HeightRequest="25" BackgroundColor="#2B0B98"></Button>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,12 +1,12 @@
-﻿namespace ClientsProject
+﻿namespace ClientTest
 {
     public partial class App : Application
     {
-        public App(MainPage main)
+        public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(main);
+            MainPage = new AppShell();
         }
     }
 }

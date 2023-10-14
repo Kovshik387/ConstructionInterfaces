@@ -4,16 +4,9 @@
              x:Class="ClientsProject.Pages.ClientPage"
              Title="ClientPage"
              >
-    <!--<Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
-    </Shell.BackButtonBehavior>-->
-
-
 
     <VerticalStackLayout>
-        <Entry Text="{Binding Name}" FontSize="16"/>
-        <Entry Text="{Binding Password}" FontSize="16"/>
-        <Grid>
+        <Grid Padding="20">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -23,31 +16,36 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Column="0" Grid.Row="0" HeightRequest="600" WidthRequest="250">
-                <StackLayout>
-                    <Label FontSize="20" TextColor="BlanchedAlmond" Text="Клиент"/>
-                    <Entry Text="{Binding Login}" FontSize="16"/>
-                    <Entry Text="{Binding Password}" FontSize="16"/>
-                    <Entry Text="{Binding Name}" FontSize="16"/>
-                    <Entry Text="{Binding Surname}" FontSize="16"/>
-                    <Entry Text="{Binding Patronymic}" FontSize="16"/>
-                    <Entry Text="{Binding Contact}" FontSize="16"/>
-                    <Entry Text="{Binding Email}" FontSize="16"/>
-                    <Entry Text="{Binding Rating}" FontSize="16"/>
-                </StackLayout>
+            <StackLayout Grid.Column="0" Grid.Row="0" HeightRequest="500"  WidthRequest="250">
+                <Border StrokeThickness="2">
+                    <StackLayout>
+                        <Label FontSize="20" TextColor="BlanchedAlmond" Text="Клиент"/>
+                        <Entry Text="{Binding Login}" FontSize="16"/>
+                        <Entry Text="{Binding Password}" FontSize="16"/>
+                        <Entry Text="{Binding Name}" FontSize="16"/>
+                        <Entry Text="{Binding Surname}" FontSize="16"/>
+                        <Entry Text="{Binding Patronymic}" FontSize="16"/>
+                        <Entry Text="{Binding Contact}" FontSize="16"/>
+                        <Entry Text="{Binding Email}" FontSize="16"/>
+                        <Entry Text="{Binding Rating}" FontSize="16"/>
+                    </StackLayout>
+                </Border>
 
             </StackLayout>
 
-            <ListView Grid.Column="1" Grid.Row="1" HeightRequest="500" WidthRequest="500" Background="red" >
-                <ListView.ItemTemplate>
+            <CollectionView x:Name="collectionView" Grid.Row="1" SelectionMode="Single">
+                <!--SelectionChanged="collectionViewSelected">-->
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                            </StackLayout>
-                        </ViewCell>
+                        <Border Stroke="Blue">
+                            <Grid ColumnDefinitions="100, 150, 150, 150*, 150*, 150*, 150*, 150*, 150*">
+                                <Label Text="{Binding Message}" FontSize = "20"  TextColor = "#006064" Margin="10"/>
+                                <Label Text="{Binding Date}" FontSize = "20"  TextColor = "#006064"/>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </Grid>
     </VerticalStackLayout>

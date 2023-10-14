@@ -29,7 +29,7 @@
                     <Label Text="Рейтинг" Grid.Row="0" Grid.Column="7" Padding="10"/>
                 </Grid>
 
-                <CollectionView x:Name="collectionView"  Grid.Row="1" ItemsSource="{Binding Clients}" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
+                <CollectionView x:Name="collectionView"  Grid.Row="1" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border Stroke="Gray">
@@ -53,3 +53,4 @@
         </StackLayout>
     </ScrollView>
 </ContentPage>
+

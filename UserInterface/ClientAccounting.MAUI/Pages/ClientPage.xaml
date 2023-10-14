@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.ClientPage"
+             Title="ClientPage"
+             >
+
+    <VerticalStackLayout>
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Stroke="Black" Grid.Column="0" Grid.Row="0" WidthRequest="550" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+                <StackLayout  BackgroundColor="{StaticResource Primary}" Padding="30"  WidthRequest="550" HeightRequest="600">
+                    <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="600" Padding="10">
+                        <StackLayout>
+                            <Label Text="Логин" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Login}" TextColor="AliceBlue" Placeholder="Логин" FontSize="16"/>
+                            </Border>
+                            <Label Text="Пароль" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Password}" TextColor="AliceBlue" Placeholder="Пароль" FontSize="16"/>
+                            </Border>
+                            <Label Text="Имя" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Name}" TextColor="AliceBlue" Placeholder="Имя" FontSize="16"/>
+                            </Border>
+                            <Label Text="Фамилия" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Surname}" TextColor="AliceBlue" Placeholder="Фамилия" FontSize="16"/>
+                            </Border>
+                            <Label Text="Отчество" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Patronymic}" TextColor="AliceBlue" Placeholder="Отчество" FontSize="16"/>
+                            </Border>
+                            <Label Text="Контактные" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Contact}" TextColor="AliceBlue" Placeholder="Контактные" FontSize="16"/>
+                            </Border>
+                            <Label Text="Почта" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Email}" TextColor="AliceBlue" Placeholder="Почта" FontSize="16"/>
+                            </Border>
+                            <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Rating}" TextColor="AliceBlue" Placeholder="Рейтинг" FontSize="16"/>
+                            </Border>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Border>
+
+            <CollectionView x:Name="collectionView" Grid.Column="1" Grid.Row="0" SelectionMode="Single" SelectionChanged="collectionViewSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Stroke="Blue">
+                            <Grid ColumnDefinitions="100, 150, 150, 150*, 150*, 150*, 150*, 150*, 150*">
+                                <Label Text="{Binding Message}" FontSize = "20"  TextColor = "#006064" Margin="10"/>
+                                <Label Text="{Binding Date}" FontSize = "20"  TextColor = "#006064"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

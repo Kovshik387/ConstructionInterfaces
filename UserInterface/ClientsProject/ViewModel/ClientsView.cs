@@ -23,12 +23,6 @@ namespace ClientsProject.ViewModel
             this.Clients = new ObservableCollection<Client>(_clientService.GetClientAll());
         }
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
-
-        protected internal void UpdateClients(Client client)
-        {
-            this.Clients[Clients.IndexOf(Clients.First(id => id.IdClient == client.IdClient))] = client;
-        }
-        protected internal void GetClientsAll() => this.Clients = new ObservableCollection<Client>(_clientService.GetClientAll());
         protected internal void AddClient(Client client) { this.Clients.Add(client);  this._clientService.AddClient(client); }
         protected internal ObservableCollection<Client> GetAllClient() => new ObservableCollection<Client>(_clientService.GetClientAll());
     }
