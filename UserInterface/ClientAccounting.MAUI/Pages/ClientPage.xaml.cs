@@ -23,6 +23,17 @@ public partial class ClientPage : ContentPage
         this.collectionView.ItemsSource = _clientView.Reviews; 
     }
 
+    protected override bool OnBackButtonPressed()
+    {
+        if (!this.EmailValidator.IsValid)
+        {
+            _clientView.SaveClient();
+            return base.OnBackButtonPressed();
+        }
+        DisplayAlert("уюуюую", "кнУ", "влн");
+        return base.OnBackButtonPressed();
+    }
+
     private async void collectionViewSelected(object sender, EventArgs e)
     {
 
