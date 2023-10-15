@@ -21,8 +21,9 @@ namespace ClientAccounting.MAUI.ViewModel
         public ClientView(IClientService clientService)
         {
             _clientService = clientService;
-            
         }
+
+        public void SaveClient() => _clientService.ChangeClient(this.Client);
 
         public void GetReviews()
         {
@@ -124,19 +125,19 @@ namespace ClientAccounting.MAUI.ViewModel
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-            _clientService.ChangeClient(new Client() 
-            {
-                IdClient = this.Client.IdClient,
-                Name = this.Name,
-                Login = this.Login,
-                Password = this.Password,
-                Patronymic = this.Patronymic,
-                Surname = this.Surname,
-                Reviews = this.Reviews,
-                Contact = this.Contact,
-                Email = this.Email,
-                Rating = this.Rating
-            });
+            //_clientService.ChangeClient(new Client() 
+            //{
+            //    IdClient = this.Client.IdClient,
+            //    Name = this.Name,
+            //    Login = this.Login,
+            //    Password = this.Password,
+            //    Patronymic = this.Patronymic,
+            //    Surname = this.Surname,
+            //    Reviews = this.Reviews,
+            //    Contact = this.Contact,
+            //    Email = this.Email,
+            //    Rating = this.Rating
+            //});
 
         }
     }

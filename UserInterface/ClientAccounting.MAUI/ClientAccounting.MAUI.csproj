@@ -1,10 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
-		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<TargetFrameworks>net7.0-maccatalyst</TargetFrameworks>
+		
 		<OutputType>Exe</OutputType>
 		<RootNamespace>ClientAccounting.MAUI</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -30,6 +28,10 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -49,41 +51,38 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+		<PackageReference Include="FluentValidation" Version="11.7.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Plugin.ValidationRules" Version="1.5.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ClientsProject.DAL\ClientsProject.DAL.csproj" />
+		<ProjectReference Include="..\ClientsProject.DAL\ClientsProject.DAL.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\AddClientPage.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\ClientPage.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\ListPage.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\MainPage.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
+		<Compile Update="Pages\AddClientPage.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\ClientPage.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\ListPage.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AddClientPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\ClientPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\ListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\MainPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="Pages\AddClientPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\ClientPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\ListPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 </Project>

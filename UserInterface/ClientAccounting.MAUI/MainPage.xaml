@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.MainPage">
     <ScrollView>
-        <StackLayout>
-            <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="20" Text="Привет"></Label>
-            <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="200" Text="Список клиентов" Clicked="Button_Clicked" ></Button>
-        </StackLayout>
+        <FlexLayout Wrap="Wrap" Direction="Row" HorizontalOptions="Center" VerticalOptions="Center">
+            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Padding="5" HeightRequest="250" WidthRequest="200">
+                <StackLayout>
+                    <!--<Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="20" Text="Клиенты"/>-->
+                    <Image Source="clients_logo.png"/>
+                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список клиентов" Clicked="Button_Clicked"/>
+                </StackLayout>
+            </Border>
+        </FlexLayout>
     </ScrollView>
 </ContentPage>

@@ -2,6 +2,7 @@
 using ClientsProject.DAL.Entities;
 using ClientsProject.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 
 namespace ClientsProject.DAL.Services
 {
@@ -12,6 +13,14 @@ namespace ClientsProject.DAL.Services
         public ClientService(IDbContextFactory<ClientAccountingContext> databaseFactory)
         {
             _databaseFactory = databaseFactory;
+        }
+
+        public ObservableCollection<Client> GetSearchedClients(string query)
+        {
+            using (var factory = _databaseFactory.CreateDbContext())
+            {
+                return new ObservableCollection<Client>(factory.Clients.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name,$"%{query}%")).ToList());
+            }
         }
 
         public Client GetReviews(Client client)
