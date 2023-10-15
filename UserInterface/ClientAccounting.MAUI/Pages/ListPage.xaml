@@ -14,9 +14,12 @@
                 Opacity="0.5"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ScrollView>
         <StackLayout>
+        <SearchBar x:Name="searchBar" TextChanged="searchBar_TextChanged" Placeholder="Поиск"
+                   SearchCommand="{Binding PerformSearch}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
             <Grid RowDefinitions="40, *" Padding="5">
                 <Grid ColumnDefinitions="100, 150, 150*, 150*, 150*, 150*, 150*, 150*" Grid.Row="0">
                     <Label Text="Логин" Grid.Row="0" Grid.Column="0" Padding="10"/>
@@ -28,7 +31,7 @@
                     <Label Text="Рейтинг" Grid.Row="0" Grid.Column="7" Padding="10"/>
                 </Grid>
 
-                <CollectionView x:Name="collectionView"  Grid.Row="1" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
+                <CollectionView x:Name="collectionView" ItemsSource="{Binding Clients}"  Grid.Row="1" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border Stroke="Gray">

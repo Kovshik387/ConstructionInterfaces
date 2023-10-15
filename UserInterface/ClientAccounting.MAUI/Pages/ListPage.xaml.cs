@@ -22,11 +22,19 @@ public partial class ListPage : ContentPage
             await Navigation.PushAsync(new ClientPage(_clientView));
         }
     }
-
     protected override void OnAppearing()
     {
-        var clients = _clientsView.GetAllClient();
-        this.collectionView.ItemsSource = clients;
+        _clientsView.GetAllClient();
+        this.collectionView.ItemsSource = _clientsView.Clients;
+        this.searchBar.Text = string.Empty;
     }
     private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new AddClientPage(_clientView));
+
+    private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (e.NewTextValue.Equals("")) _clientsView.GetAllClient();
+        else _clientsView.GetSearched(e.NewTextValue);
+
+        this.collectionView.ItemsSource = _clientsView.Clients;
+    }
 }
