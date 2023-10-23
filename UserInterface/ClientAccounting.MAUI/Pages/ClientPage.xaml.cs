@@ -20,22 +20,17 @@ public partial class ClientPage : ContentPage
     {
         base.OnAppearing();
         _clientView.GetReviews();
-        this.collectionView.ItemsSource = _clientView.Reviews; 
+        this.collectionView.ItemsSource = _clientView.Reviews;
+        this.collectionViewOrder.ItemsSource = _clientView.Order;
     }
 
     protected override bool OnBackButtonPressed()
     {
-        if (!this.EmailValidator.IsValid)
+        if (this.validEmail.IsNotValid)
         {
-            _clientView.SaveClient();
-            return base.OnBackButtonPressed();
+            DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");
         }
-        DisplayAlert("ХАХАХА", "ЛОх", "ЧМО");
         return base.OnBackButtonPressed();
     }
 
-    private async void collectionViewSelected(object sender, EventArgs e)
-    {
-
-    }
 }

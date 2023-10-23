@@ -23,5 +23,7 @@ public partial class Client
 
     public int? Rating { get; set; }
 
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 }

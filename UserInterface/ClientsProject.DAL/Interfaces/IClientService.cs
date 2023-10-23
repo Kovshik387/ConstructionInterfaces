@@ -12,7 +12,7 @@ namespace ClientsProject.DAL.Interfaces
     {
         public void AddClient(Client client);
         public void ChangeClient(Client client);
-        public Client GetReviews(Client client);
+        public Client GetInfo(Client client);
         public Task<List<Client>> GetClientAllAsync();
         public List<Client> GetClientAll();
         public ObservableCollection<Client> GetSearchedClients(string query);

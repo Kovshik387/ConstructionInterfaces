@@ -19,14 +19,15 @@ namespace ClientsProject.DAL.Services
         {
             using (var factory = _databaseFactory.CreateDbContext())
             {
-                return new ObservableCollection<Client>(factory.Clients.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name,$"%{query}%")).ToList());
+                return new ObservableCollection<Client>(factory.Clients.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name, $"%{query}%")).ToList());
             }
         }
 
-        public Client GetReviews(Client client)
+        public Client GetInfo(Client client)
         {
             using (var factory = _databaseFactory.CreateDbContext())
-                return factory.Clients.Where(d_client => d_client == client).Include(r => r.Reviews).First();
+                return factory.Clients.Where(d_client => d_client == client).Include(r => r.Reviews).
+                    ThenInclude(p => p.IdProductNavigation).Include(o => o.Orders).ThenInclude(p => p.IdProductNavigation).First();
         }
 
         public async Task<Client?> GetClientByIdAsync(int id)
@@ -57,7 +58,7 @@ namespace ClientsProject.DAL.Services
                 factory.SaveChanges();
             }
         }
-        
+
         public void SaveChanges()
         {
             using (var factory = _databaseFactory.CreateDbContext())

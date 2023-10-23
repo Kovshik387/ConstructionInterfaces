@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace ClientAccounting.MAUI.ViewModel
 {
-    public class ClientsView : INotifyPropertyChanged
+    public class ClientsView
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly IClientService _clientService;

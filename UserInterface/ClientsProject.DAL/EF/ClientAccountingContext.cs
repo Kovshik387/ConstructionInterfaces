@@ -25,6 +25,7 @@ public partial class ClientAccountingContext : DbContext
     public virtual DbSet<Review> Reviews { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ClientAccounting;Username=postgres;Password=123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -64,10 +65,11 @@ public partial class ClientAccountingContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("orders");
+            entity.HasKey(e => e.Idorder).HasName("orders_pkey");
 
+            entity.ToTable("orders");
+
+            entity.Property(e => e.Idorder).HasColumnName("idorder");
             entity.Property(e => e.Count).HasColumnName("count");
             entity.Property(e => e.Daterelease).HasColumnName("daterelease");
             entity.Property(e => e.IdClient).HasColumnName("id_client");
@@ -76,12 +78,12 @@ public partial class ClientAccountingContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("name");
 
-            entity.HasOne(d => d.IdClientNavigation).WithMany()
+            entity.HasOne(d => d.IdClientNavigation).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.IdClient)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("orders_id_client_fkey");
 
-            entity.HasOne(d => d.IdProductNavigation).WithMany()
+            entity.HasOne(d => d.IdProductNavigation).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.IdProduct)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("orders_id_product_fkey");

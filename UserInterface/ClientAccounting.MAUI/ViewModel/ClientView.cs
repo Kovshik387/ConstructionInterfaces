@@ -1,5 +1,7 @@
 ﻿using ClientsProject.DAL.Entities;
 using ClientsProject.DAL.Interfaces;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,14 +10,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClientAccounting.MAUI.ViewModel
 {
-    public class ClientView : INotifyPropertyChanged
+    public partial class ClientView : ObservableValidator, INotifyPropertyChanged 
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly IClientService _clientService;
         public ObservableCollection<Review> Reviews { get; set; }
+        public ObservableCollection<Order> Order { get; set; }
         public Client Client { get; set; }
 
         public ClientView(IClientService clientService)
@@ -27,7 +32,8 @@ namespace ClientAccounting.MAUI.ViewModel
 
         public void GetReviews()
         {
-            this.Client = _clientService.GetReviews(this.Client);
+            this.Client = _clientService.GetInfo(this.Client);
+            this.Order = new ObservableCollection<Order>(Client.Orders);
             this.Reviews = new ObservableCollection<Review>(Client.Reviews);
         }
 
@@ -37,8 +43,10 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Login != value)
                 {
-                    this.Client.Login = value;
+                    if (string.IsNullOrEmpty(value))
+                        return;                
                     
+                    this.Client.Login = value;
                     OnPropertyChanged();
                 }
             }
@@ -49,6 +57,9 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Password != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                        return;
+
                     this.Client.Password = value;
                     OnPropertyChanged();
                 }
@@ -62,6 +73,9 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Name != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                        return;
+
                     this.Client.Name = value; 
                     OnPropertyChanged();
                 }
@@ -73,6 +87,9 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Surname != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                        return;
+
                     this.Client.Surname = value;
                     OnPropertyChanged();
                 }
@@ -84,6 +101,9 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Patronymic != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                        return;
+
                     this.Client.Patronymic = value;
                     OnPropertyChanged();
                 }
@@ -96,6 +116,9 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Contact != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                        return;
+
                     this.Client.Contact = value;
                     OnPropertyChanged();
                 }
@@ -106,6 +129,9 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Email != value)
                 {
+                    if (string.IsNullOrEmpty(value))
+                        return;
+
                     this.Client.Email = value;
                     OnPropertyChanged();
                 }
@@ -115,6 +141,9 @@ namespace ClientAccounting.MAUI.ViewModel
             {
                 if (this.Client.Rating != value)
                 {
+                    if (value == null || value > 5)
+                        return;
+
                     this.Client.Rating = value;
                     OnPropertyChanged();
                 }
@@ -122,9 +151,23 @@ namespace ClientAccounting.MAUI.ViewModel
             }
         }
 
+        //[RelayCommand]
+        //void Validate()
+        //{
+        //    ValidateAllProperties();
+
+        //    if (HasErrors)
+        //        Error = string.Join(Environment.NewLine, GetErrors().Select(e => e.ErrorMessage));
+        //    else
+        //        Error = String.Empty;
+
+        //    IsTextValid = (GetErrors().ToDictionary(k => k.MemberNames.First(), v => v.ErrorMessage) ?? new Dictionary<string, string?>()).TryGetValue(nameof(Text), out var error);
+        //}
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
+            ValidateAllProperties();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            SaveClient();
             //_clientService.ChangeClient(new Client() 
             //{
             //    IdClient = this.Client.IdClient,
