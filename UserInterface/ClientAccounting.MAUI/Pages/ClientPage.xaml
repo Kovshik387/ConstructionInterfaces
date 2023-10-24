@@ -16,17 +16,15 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <!--<FlexLayout Direction="Row" JustifyContent="SpaceAround">--> 
-            <HorizontalStackLayout Padding="40" Spacing="60">
-            
-                <Border x:Name="UserView" Stroke="Black" WidthRequest="550" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+        <HorizontalStackLayout Padding="40" Spacing="60">
+            <Border x:Name="UserView" Stroke="Black" WidthRequest="550" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
                     <StackLayout  BackgroundColor="{StaticResource Primary}" WidthRequest="550" HeightRequest="600">
                         <Label Text="Клиент" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                         <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="600" Padding="10">
                             <StackLayout>
                                 <Label Text="Логин" TextColor="AliceBlue" FontSize="16" />
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                    <Entry Text="{Binding Login}" TextColor="AliceBlue" Placeholder="Логин" FontSize="16">
+                                    <Entry Text="{Binding Login}"  Placeholder="Логин" FontSize="16">
                                         <Entry.Behaviors>
                                             <toolkit:TextValidationBehavior 
                                                 InvalidStyle="{StaticResource InvalidEntryStyle}"
@@ -41,14 +39,14 @@
                                 </Border>
                                 <Label Text="Пароль" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                    <Entry Text="{Binding Password}" TextColor="AliceBlue" Placeholder="Пароль" FontSize="16">
+                                    <Entry Text="{Binding Password}" Placeholder="Пароль" FontSize="16">
                                         <Entry.Behaviors>
                                             <toolkit:TextValidationBehavior 
                                                 InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                 ValidStyle="{StaticResource ValidEntryStyle}"
                                                 Flags="ValidateOnValueChanged"
                                                 MinimumLength="1"
-                                                MaximumLength="30"
+                                                MaximumLength="20"
                                                 x:Name="ValidPassword"
                                                 />
                                         </Entry.Behaviors>
@@ -56,78 +54,78 @@
                                 </Border>
                                 <Label Text="Имя" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Name}" TextColor="AliceBlue" Placeholder="Имя" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
-                                            InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                            ValidStyle="{StaticResource ValidEntryStyle}"
-                                            Flags="ValidateOnValueChanged"
-                                            MinimumLength="1"
-                                            MaximumLength="20"
-                                            x:Name="ValidName"
-                                            />
-                                    </Entry.Behaviors>
-                                </Entry>
+                                    <Entry Text="{Binding Name}" Placeholder="Имя" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                Flags="ValidateOnValueChanged"
+                                                MinimumLength="1"
+                                                MaximumLength="15"
+                                                x:Name="ValidName"
+                                                />
+                                        </Entry.Behaviors>
+                                    </Entry>
                                 </Border>
                                 <Label Text="Фамилия" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Surname}" TextColor="AliceBlue" Placeholder="Фамилия" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
-                                            InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                            ValidStyle="{StaticResource ValidEntryStyle}"
-                                            Flags="ValidateOnValueChanged"
-                                            MinimumLength="1"
-                                            MaximumLength="20"
-                                            x:Name="ValidSurname"
-                                            />
-                                    </Entry.Behaviors>
-                                </Entry>
+                                    <Entry Text="{Binding Surname}" Placeholder="Фамилия" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                Flags="ValidateOnValueChanged"
+                                                MinimumLength="1"
+                                                MaximumLength="15"
+                                                x:Name="ValidSurname"
+                                                />
+                                        </Entry.Behaviors>
+                                    </Entry>
                                 </Border>
                                 <Label Text="Отчество" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Patronymic}" TextColor="AliceBlue" Placeholder="Отчество" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
-                                            InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                            ValidStyle="{StaticResource ValidEntryStyle}"
-                                            Flags="ValidateOnValueChanged"
-                                            MinimumLength="1"
-                                            MaximumLength="10"
-                                            x:Name="ValidPatr"
-                                            />
-                                    </Entry.Behaviors>
-                                </Entry>
+                                    <Entry Text="{Binding Patronymic}"  Placeholder="Отчество" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                Flags="ValidateOnValueChanged"
+                                                MinimumLength="1"
+                                                MaximumLength="15"
+                                                x:Name="ValidPatr"
+                                                />
+                                        </Entry.Behaviors>
+                                    </Entry>
                                 </Border>
                                 <Label Text="Контактные" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Contact}" TextColor="AliceBlue" Placeholder="Контактные" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
-                                            InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                            ValidStyle="{StaticResource ValidEntryStyle}"
-                                            Flags="ValidateOnValueChanged"
-                                            MinimumLength="1"
-                                            MaximumLength="10"
-                                            x:Name="ValidContact"
-                                            />
-                                    </Entry.Behaviors>
-                                </Entry>
+                                    <Entry MaxLength="13" Text="{Binding Contact}" Placeholder="Контактные" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                Flags="ValidateOnValueChanged"
+                                                MinimumLength="1"
+                                                MaximumLength="12"
+                                                x:Name="ValidContact"
+                                                />
+                                        </Entry.Behaviors>
+                                    </Entry>
                             </Border>
                                 <Label Text="Почта" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Email}" Placeholder="Почта" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
+                                    <Entry Text="{Binding Email}" Placeholder="Почта" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:EmailValidationBehavior
                                             InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                            ValidStyle="{StaticResource ValidEntryStyle}"
-                                            Flags="ValidateOnValueChanged"
-                                            MinimumLength="1"
-                                            MaximumLength="10"
-                                            x:Name="validEmail"
-                                            />
-                                    </Entry.Behaviors>
-                                </Entry>
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                Flags="ValidateOnValueChanged"
+                                                MinimumLength="1"
+                                                MaximumLength="20"
+                                                x:Name="validEmail"
+                                                />
+                                        </Entry.Behaviors>
+                                    </Entry>
                             </Border>
                                 <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">

@@ -1,8 +1,4 @@
-using ClientsProject.DAL.Entities;
-using ClientsProject.DAL.Interfaces;
 using ClientAccounting.MAUI.ViewModel;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 
 namespace ClientAccounting.MAUI.Pages;
 
@@ -26,7 +22,8 @@ public partial class ClientPage : ContentPage
 
     protected override bool OnBackButtonPressed()
     {
-        if (this.validEmail.IsNotValid)
+        if (this.validEmail.IsNotValid || this.ValidContact.IsNotValid || this.ValidLogin.IsNotValid ||
+            this.ValidName.IsNotValid || this.ValidPatr.IsNotValid || this.ValidSurname.IsNotValid || ValidPassword.IsNotValid)
         {
             DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");
         }

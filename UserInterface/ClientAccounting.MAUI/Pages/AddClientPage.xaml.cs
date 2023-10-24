@@ -22,8 +22,7 @@ public partial class AddClientPage : ContentPage
             IReadOnlyList<Microsoft.Maui.Controls.Page> navStack = navPage.Navigation.NavigationStack;
 
             int pageCount = navPage.Navigation.NavigationStack.Count;
-            if (navStack[pageCount - 2] is ListPage mainPage)
-                mainPage._clientsView.AddClient(_clientView.Client);
+            if (navStack[pageCount - 2] is ListPage mainPage) mainPage._clientsView.AddClient(_clientView.Client);
         }
         return base.OnBackButtonPressed();
     }
