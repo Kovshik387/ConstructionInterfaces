@@ -20,7 +20,89 @@
         <SearchBar x:Name="searchBar" TextChanged="searchBar_TextChanged" Placeholder="Поиск"
                    SearchCommand="{Binding PerformSearch}"
                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-            <Grid RowDefinitions="40, *" Padding="5">
+
+            <ScrollView Margin="10" Grid.Row="1">
+                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="Start" AlignContent="Center">
+                    <CollectionView x:Name="collectionView" ItemsSource="{Binding Clients}" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="20" HorizontalItemSpacing="20"/>
+                        </CollectionView.ItemsLayout>
+                            
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 20,20,20,20" Stroke="Black" Padding="20">
+                                    <StackLayout>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Логин: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Login}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Имя: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Name}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Фамилия: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Surname}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Отчество: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Patronymic}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Контакт: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Patronymic}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Почта: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Email}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Рейтинг: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Rating}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <!--<Label Text="{Binding Login}" />-->
+                                        <!--<Label Text="{Binding Name}" FontSize = "20"  TextColor = "#006064" Margin="10"/>
+                                        <Label Text="{Binding Surname}" FontSize = "20"  TextColor = "#006064" Margin="10"/>
+                                        <Label Text="{Binding Patronymic}"  FontSize = "20"  TextColor = "#006064" Margin="10"/>
+                                        <Label Text="{Binding Contact}"  FontSize = "20"  TextColor = "#006064" Margin="10"/>
+                                        <Label Text="{Binding Email}"  FontSize = "20"  TextColor = "#006064" Margin="10"/>
+                                        <Label Text="{Binding Rating}"  FontSize = "20"  TextColor = "#006064" Margin="10"/>-->
+                                    </StackLayout>
+                                </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                </FlexLayout>
+            </ScrollView>
+            <!--<Grid RowDefinitions="40, *" Padding="5">
                 <Grid ColumnDefinitions="100, 150, 150*, 150*, 150*, 150*, 150*, 150*" Grid.Row="0">
                     <Label Text="Логин" Grid.Row="0" Grid.Column="0" Padding="10"/>
                     <Label Text="Имя" Grid.Row="0" Grid.Column="2" Padding="10"/>
@@ -29,9 +111,9 @@
                     <Label Text="Контактные" Grid.Row="0" Grid.Column="5" Padding="10"/>
                     <Label Text="Почта" Grid.Row="0" Grid.Column="6" Padding="10"/>
                     <Label Text="Рейтинг" Grid.Row="0" Grid.Column="7" Padding="10"/>
-                </Grid>
+                </Grid>-->
 
-                <CollectionView x:Name="collectionView" ItemsSource="{Binding Clients}"  Grid.Row="1" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
+                <!--<CollectionView x:Name="collectionView" ItemsSource="{Binding Clients}"  Grid.Row="1" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border Stroke="Gray">
@@ -47,9 +129,9 @@
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>
+                </CollectionView>-->
             
-            </Grid>
+            <!--</Grid>-->
 
             <Button Text="+" FontSize="30" Shadow="{StaticResource CommonShadow}" CornerRadius="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" Margin="20"/>
         </StackLayout>
