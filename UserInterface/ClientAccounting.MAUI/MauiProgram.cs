@@ -29,6 +29,7 @@ namespace ClientAccounting.MAUI
                 .AddTransient<ClientsView>()
                 .AddScoped<ListPage>()
                 .AddTransient<ClientPage>()
+                .AddTransient<AddClientView>()
                 .AddTransient<IClientService, ClientService>();
 
             builder.UseMauiApp<App>().UseMauiCommunityToolkit();

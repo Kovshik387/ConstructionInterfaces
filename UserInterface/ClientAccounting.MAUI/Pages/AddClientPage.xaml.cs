@@ -1,29 +1,28 @@
 using ClientAccounting.MAUI.ViewModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using ClientsProject.DAL.Entities;
 
 namespace ClientAccounting.MAUI.Pages;
 
 public partial class AddClientPage : ContentPage
 {
-	private ICommand AddClient { get; }
+	private readonly AddClientView _addClientView;
 
-	private readonly ClientView _clientView;
+    private Client client;
 
-	public AddClientPage(ClientView clientView)
+	public AddClientPage(AddClientView addClientView)
 	{
 		InitializeComponent();
-		_clientView = clientView;
+		_addClientView = addClientView;
+        this.BindingContext = _addClientView;
 	}
 
-    protected override bool OnBackButtonPressed()
+    private void Button_Clicked(object sender, EventArgs e)
     {
-        if (Microsoft.Maui.Controls.Application.Current?.MainPage is NavigationPage navPage)
-        {
-            IReadOnlyList<Microsoft.Maui.Controls.Page> navStack = navPage.Navigation.NavigationStack;
-
-            int pageCount = navPage.Navigation.NavigationStack.Count;
-            if (navStack[pageCount - 2] is ListPage mainPage) mainPage._clientsView.AddClient(_clientView.Client);
-        }
-        return base.OnBackButtonPressed();
-    }
+        _addClientView.AddClientAsync();
+        Navigation.PopAsync();
+    }   
 }

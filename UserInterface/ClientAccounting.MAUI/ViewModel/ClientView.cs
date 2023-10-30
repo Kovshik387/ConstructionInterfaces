@@ -25,7 +25,7 @@ namespace ClientAccounting.MAUI.ViewModel
         private readonly IClientService _clientService;
         public ObservableCollection<Review> Reviews { get; set; }
         public ObservableCollection<Order> Order { get; set; }
-        public Client Client { get; set; }
+        public Client Client { get; set; } = new();
 
         public ClientView(IClientService clientService)
         {
@@ -33,6 +33,7 @@ namespace ClientAccounting.MAUI.ViewModel
         }
 
         public void SaveClient() => _clientService.ChangeClient(this.Client);
+        public void AddClient(Client client) => _clientService.AddClient(client);
 
         public void GetReviews()
         {

@@ -7,12 +7,14 @@ public partial class ListPage : ContentPage
 {
     public ClientsView _clientsView;
     private ClientView _clientView;
-    public ListPage(ClientsView clientsView, ClientView clientView)
+    private AddClientView _addClientView;
+    public ListPage(ClientsView clientsView, ClientView clientView, AddClientView addClientView)
     {
         InitializeComponent();
 
         this._clientsView = clientsView; this._clientView = clientView;
         this.BindingContext = _clientsView;
+        _addClientView = addClientView;
     }
     private async void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -28,8 +30,7 @@ public partial class ListPage : ContentPage
         this.collectionView.ItemsSource = _clientsView.Clients;
         this.searchBar.Text = string.Empty;
     }
-    private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new AddClientPage(_clientView));
-
+    private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new AddClientPage(_addClientView));
     private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         if (e.NewTextValue.Equals("")) _clientsView.GetAllClient();

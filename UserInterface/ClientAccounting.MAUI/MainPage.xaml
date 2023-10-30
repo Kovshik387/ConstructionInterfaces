@@ -7,7 +7,7 @@
             <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Padding="5" HeightRequest="250" WidthRequest="200">
                 <StackLayout>
                     <!--<Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="20" Text="Клиенты"/>-->
-                    <Image Source="clients_logo.png"/>
+                    <Image Source="client.gif"/>
                     <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список клиентов" Clicked="Button_Clicked"/>
                 </StackLayout>
             </Border>

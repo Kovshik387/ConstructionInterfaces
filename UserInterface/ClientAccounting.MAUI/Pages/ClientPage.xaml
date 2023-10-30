@@ -16,9 +16,10 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <HorizontalStackLayout Padding="40" Spacing="60">
-            <Border x:Name="UserView" Stroke="Black" WidthRequest="550" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
-                    <StackLayout  BackgroundColor="{StaticResource Primary}" WidthRequest="550" HeightRequest="600">
+        <Grid>
+            <HorizontalStackLayout Padding="40" Spacing="60">
+            <Border x:Name="UserView" Stroke="Black" WidthRequest="500" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+                    <StackLayout  BackgroundColor="{StaticResource Primary}" WidthRequest="500" HeightRequest="600">
                         <Label Text="Клиент" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                         <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="600" Padding="10">
                             <StackLayout>
@@ -160,7 +161,7 @@
                 </ScrollView>
             </Border>
 
-            <Border x:Name="ReviewView" Stroke="Black" WidthRequest="650" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+            <Border x:Name="ReviewView" Stroke="Black" WidthRequest="500" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
                     <ScrollView>
                         <StackLayout>
                             <Label Text="Отзывы" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
@@ -187,5 +188,6 @@
 
         </HorizontalStackLayout>
         <!--</FlexLayout>-->
+        </Grid>
     </ScrollView>
 </ContentPage>

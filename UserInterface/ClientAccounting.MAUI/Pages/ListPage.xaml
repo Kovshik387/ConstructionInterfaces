@@ -48,6 +48,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+            
             </Grid>
 
             <Button Text="+" FontSize="30" Shadow="{StaticResource CommonShadow}" CornerRadius="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" Margin="20"/>
