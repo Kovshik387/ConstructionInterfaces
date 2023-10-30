@@ -16,5 +16,8 @@ namespace ClientAccounting.MAUI
         }
         private void Button_Clicked(object sender, EventArgs e) =>
            Navigation.PushAsync(new ListPage(_clientsView, _clientView,_addClientView));
+
+        private void AddClient_Clicked(object sender, EventArgs e)  =>
+            Navigation.PushAsync(new AddClientPage(_addClientView));
     }
 }
