@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.ProductPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="ProductPage">
+
+    <ScrollView>
+        <Grid>
+            <HorizontalStackLayout Padding="40" Spacing="60">
+                <Border x:Name="UserView" Stroke="Black" WidthRequest="500" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2">
+                    <StackLayout WidthRequest="500" HeightRequest="600">
+                        <Label Text="Продукт" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="600" Padding="10">
+                            <StackLayout>
+                                <Label Text="Название" TextColor="AliceBlue" FontSize="16" />
+                                <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry Text="{Binding Name}" Placeholder="Название" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
+                                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                            ValidStyle="{StaticResource ValidEntryStyle}"
+                                            Flags="ValidateOnValueChanged"
+                                            MinimumLength="1"
+                                            MaximumLength="20"
+                                            x:Name="ValidName"
+                                            />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+
+                                <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry Text="{Binding Count}" Placeholder="Количество" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
+                                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                            ValidStyle="{StaticResource ValidEntryStyle}"
+                                            Flags="ValidateOnValueChanged"
+                                            MinimumLength="1"
+                                            MaximumLength="20"
+                                            x:Name="ValidCount"
+                                            />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Border>
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

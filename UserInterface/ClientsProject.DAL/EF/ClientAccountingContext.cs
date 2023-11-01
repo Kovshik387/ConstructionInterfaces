@@ -25,7 +25,6 @@ public partial class ClientAccountingContext : DbContext
     public virtual DbSet<Review> Reviews { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ClientAccounting;Username=postgres;Password=123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -101,6 +100,7 @@ public partial class ClientAccountingContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(40)
                 .HasColumnName("name");
+            entity.Property(e => e.Photo).HasColumnName("photo");
         });
 
         modelBuilder.Entity<Review>(entity =>

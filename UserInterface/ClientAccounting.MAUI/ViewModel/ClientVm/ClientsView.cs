@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace ClientAccounting.MAUI.ViewModel
+namespace ClientAccounting.MAUI.ViewModel.ClientVm
 {
     public class ClientsView
     {
@@ -17,12 +17,12 @@ namespace ClientAccounting.MAUI.ViewModel
         public ObservableCollection<Client> Clients { get; set; } = new ObservableCollection<Client>();
         public ClientsView(IClientService clientService)
         {
-            this._clientService = clientService;
+            _clientService = clientService;
 
-            this.Clients = new ObservableCollection<Client>(_clientService.GetClientAll());
+            Clients = new ObservableCollection<Client>(_clientService.GetClientAll());
         }
 
-        public ICommand PerformSearch => new Command<string>((string query) =>
+        public ICommand PerformSearch => new Command<string>((query) =>
         {
             Clients = _clientService.GetSearchedClients(query);
         });
@@ -32,7 +32,7 @@ namespace ClientAccounting.MAUI.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         protected internal void GetSearched(string query) => Clients = _clientService.GetSearchedClients(query);
-        protected internal void AddClient(Client client) { this.Clients.Add(client);  this._clientService.AddClient(client); }
-        protected internal void GetAllClient() => Clients= new ObservableCollection<Client>(_clientService.GetClientAll());
+        protected internal void AddClient(Client client) { Clients.Add(client); _clientService.AddClient(client); }
+        protected internal void GetAllClient() => Clients = new ObservableCollection<Client>(_clientService.GetClientAll());
     }
 }

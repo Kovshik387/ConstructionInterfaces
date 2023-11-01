@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.ProductListPage"
+             Title="ProductListPage">
+
+    <ScrollView>
+        <StackLayout>
+            <SearchBar x:Name="searchBar" TextChanged="searchBar_TextChanged" Placeholder="Поиск"/>
+
+            <ScrollView Margin="10" Grid.Row="1">
+                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="Center" AlignContent="Center">
+                    <CollectionView x:Name="collectionView" ItemsSource="{Binding Products}" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="20" HorizontalItemSpacing="20"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 20,20,20,20" Stroke="Black" Margin="20" >
+                                    <StackLayout>
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Название: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Name}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Количество: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Count}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Фамилия: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Daterelease}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <!--<Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Отчество: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Photo}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>-->
+                                        
+                                    </StackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </FlexLayout>
+            </ScrollView>
+
+            <!--<Button Text="+" FontSize="30" Shadow="{StaticResource CommonShadow}" CornerRadius="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" Margin="20"/>-->
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

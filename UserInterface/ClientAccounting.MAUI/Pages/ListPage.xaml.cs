@@ -1,5 +1,5 @@
 using ClientsProject.DAL.Entities;
-using ClientAccounting.MAUI.ViewModel;
+using ClientAccounting.MAUI.ViewModel.ClientVm;
 
 namespace ClientAccounting.MAUI.Pages;
 
@@ -12,9 +12,8 @@ public partial class ListPage : ContentPage
     {
         InitializeComponent();
 
-        this._clientsView = clientsView; this._clientView = clientView;
+        this._clientsView = clientsView; this._clientView = clientView; this._addClientView = addClientView;
         this.BindingContext = _clientsView;
-        _addClientView = addClientView;
     }
     private async void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {

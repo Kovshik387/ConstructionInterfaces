@@ -1,15 +1,10 @@
 ﻿using ClientsProject.DAL.Entities;
 using ClientsProject.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ClientAccounting.MAUI.ViewModel
+namespace ClientAccounting.MAUI.ViewModel.ClientVm
 {
     public class AddClientView : INotifyPropertyChanged
     {
@@ -19,37 +14,37 @@ namespace ClientAccounting.MAUI.ViewModel
 
         private Client client = new();
 
-        public AddClientView(IClientService clientService) =>  this._clientService = clientService;
+        public AddClientView(IClientService clientService) => _clientService = clientService;
 
-        public void AddClientAsync() => _clientService.AddClient(this.client);
+        public void AddClientAsync() => _clientService.AddClient(client);
 
         [Required]
         [MinLength(1)]
         [MaxLength(20)]
         public string Login
         {
-            get => this.client.Login; set
+            get => client.Login; set
             {
-                if (this.client.Login != value)
+                if (client.Login != value)
                 {
                     if (string.IsNullOrEmpty(value))
                         return;
 
-                    this.client.Login = value;
+                    client.Login = value;
                     OnPropertyChanged();
                 }
             }
         }
         public string Password
         {
-            get => this.client.Password; set
+            get => client.Password; set
             {
-                if (this.client.Password != value && value.Length <= 20)
+                if (client.Password != value && value.Length <= 20)
                 {
                     if (string.IsNullOrEmpty(value))
                         return;
 
-                    this.client.Password = value;
+                    client.Password = value;
                     OnPropertyChanged();
                 }
 
@@ -57,29 +52,29 @@ namespace ClientAccounting.MAUI.ViewModel
         }
         public string Name
         {
-            get => this.client.Name;
+            get => client.Name;
             set
             {
-                if (this.client.Name != value && value.Length <= 20)
+                if (client.Name != value && value.Length <= 20)
                 {
                     if (string.IsNullOrEmpty(value) || value.Length >= 20)
                         return;
 
-                    this.client.Name = value;
+                    client.Name = value;
                     OnPropertyChanged();
                 }
             }
         }
         public string Surname
         {
-            get => this.client.Surname; set
+            get => client.Surname; set
             {
-                if (this.client.Surname != value && value.Length <= 20)
+                if (client.Surname != value && value.Length <= 20)
                 {
                     if (string.IsNullOrEmpty(value) || value.Length >= 20)
                         return;
 
-                    this.client.Surname = value;
+                    client.Surname = value;
                     OnPropertyChanged();
                 }
             }
@@ -87,13 +82,13 @@ namespace ClientAccounting.MAUI.ViewModel
 
         public string Patronymic
         {
-            get => this.client.Patronymic; set
+            get => client.Patronymic; set
             {
-                if (this.client.Patronymic != value && value.Length <= 20)
+                if (client.Patronymic != value && value.Length <= 20)
                 {
                     if (string.IsNullOrEmpty(value)) return;
 
-                    this.client.Patronymic = value;
+                    client.Patronymic = value;
                     OnPropertyChanged();
                 }
 
@@ -101,14 +96,14 @@ namespace ClientAccounting.MAUI.ViewModel
         }
         public string Contact
         {
-            get => this.client.Contact; set
+            get => client.Contact; set
             {
-                if (this.client.Contact != value && value.Length <= 12)
+                if (client.Contact != value && value.Length <= 12)
                 {
                     if (string.IsNullOrEmpty(value))
                         return;
 
-                    this.client.Contact = value;
+                    client.Contact = value;
                     OnPropertyChanged();
                 }
 
@@ -116,29 +111,29 @@ namespace ClientAccounting.MAUI.ViewModel
         }
         public string Email
         {
-            get => this.client.Email; set
+            get => client.Email; set
             {
-                if (this.client.Email != value && value.Length <= 20)
+                if (client.Email != value && value.Length <= 20)
                 {
                     if (string.IsNullOrEmpty(value))
                         return;
 
-                    this.client.Email = value;
+                    client.Email = value;
                     OnPropertyChanged();
                 }
             }
         }
-        
+
         public int? Rating
         {
-            get => this.client.Rating; set
+            get => client.Rating; set
             {
-                if (this.client.Rating != value)
+                if (client.Rating != value)
                 {
                     if (value == null || value > 5)
                         return;
 
-                    this.client.Rating = value;
+                    client.Rating = value;
                     OnPropertyChanged();
                 }
 

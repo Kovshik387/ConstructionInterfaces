@@ -1,5 +1,6 @@
 ﻿using ClientAccounting.MAUI.Pages;
-using ClientAccounting.MAUI.ViewModel;
+using ClientAccounting.MAUI.ViewModel.ClientVm;
+using ClientAccounting.MAUI.ViewModel.ProductVm;
 using ClientsProject.DAL.EF;
 using ClientsProject.DAL.Interfaces;
 using ClientsProject.DAL.Services;
@@ -25,12 +26,22 @@ namespace ClientAccounting.MAUI
                 .AddDbContextFactory<ClientAccountingContext>()
                 .AddTransient<MainPage>()
                 .AddTransient<App>()
+
                 .AddTransient<ClientView>()
                 .AddTransient<ClientsView>()
-                .AddScoped<ListPage>()
-                .AddTransient<ClientPage>()
                 .AddTransient<AddClientView>()
-                .AddTransient<IClientService, ClientService>();
+
+                .AddTransient<ClientPage>()
+                .AddScoped<ListPage>()
+
+                .AddTransient<ProductView>()
+                .AddTransient<ProductsView>()
+
+                .AddTransient<ProductPage>()
+                .AddTransient<ProductListPage>()
+                
+                .AddTransient<IClientService, ClientService>()
+                .AddTransient<IProductService,ProductService>();
 
             builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 

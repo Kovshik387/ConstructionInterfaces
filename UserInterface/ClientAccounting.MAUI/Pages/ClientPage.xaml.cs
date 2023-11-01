@@ -1,4 +1,4 @@
-using ClientAccounting.MAUI.ViewModel;
+using ClientAccounting.MAUI.ViewModel.ClientVm;
 
 namespace ClientAccounting.MAUI.Pages;
 
