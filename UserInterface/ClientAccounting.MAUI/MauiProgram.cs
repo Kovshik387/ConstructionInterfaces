@@ -37,8 +37,8 @@ namespace ClientAccounting.MAUI
                 .AddTransient<ProductView>()
                 .AddTransient<ProductsView>()
 
-                .AddTransient<ProductPage>()
                 .AddTransient<ProductListPage>()
+                .AddTransient<ProductPage>()
                 
                 .AddTransient<IClientService, ClientService>()
                 .AddTransient<IProductService,ProductService>();

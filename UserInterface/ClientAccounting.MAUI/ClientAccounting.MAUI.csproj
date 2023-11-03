@@ -63,34 +63,34 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Pages\AddClientPage.xaml.cs">
+		<Compile Update="Pages\Client\AddClientPage.xaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>
-		<Compile Update="Pages\ClientPage.xaml.cs">
+		<Compile Update="Pages\Client\ClientPage.xaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>
-		<Compile Update="Pages\ListPage.xaml.cs">
+		<Compile Update="Pages\Client\ListPage.xaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiXaml Update="Pages\AddClientPage.xaml">
+		<MauiXaml Update="Pages\Client\AddClientPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Pages\AddProductPage.xaml">
+		<MauiXaml Update="Pages\Product\AddProductPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Pages\ClientPage.xaml">
+		<MauiXaml Update="Pages\Client\ClientPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Pages\ListPage.xaml">
+		<MauiXaml Update="Pages\Client\ListPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Pages\ProductListPage.xaml">
+		<MauiXaml Update="Pages\Product\ProductListPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Pages\ProductPage.xaml">
+		<MauiXaml Update="Pages\Product\ProductPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>

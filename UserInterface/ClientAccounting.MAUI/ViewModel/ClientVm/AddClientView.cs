@@ -16,7 +16,11 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
 
         public AddClientView(IClientService clientService) => _clientService = clientService;
 
-        public void AddClientAsync() => _clientService.AddClient(client);
+        public void AddClientAsync()
+        {
+            _clientService.AddClient(client);
+            client = new();
+        }
 
         [Required]
         [MinLength(1)]

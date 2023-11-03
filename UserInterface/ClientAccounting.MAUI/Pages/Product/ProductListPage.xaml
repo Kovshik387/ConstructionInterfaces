@@ -46,15 +46,6 @@
                                             </Label.FormattedText>
                                         </Label>
 
-                                        <!--<Label FontSize = "20"  TextColor = "#006064"  Margin="10">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="Отчество: " FontAttributes="Bold" TextColor="Black"/>
-                                                    <Span Text="{Binding Photo}"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>-->
-                                        
                                     </StackLayout>
                                 </Border>
                             </DataTemplate>
@@ -62,10 +53,9 @@
                     </CollectionView>
                 </FlexLayout>
             </ScrollView>
-
-            <!--<Button Text="+" FontSize="30" Shadow="{StaticResource CommonShadow}" CornerRadius="50" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" Margin="20"/>-->
-
+            
         </StackLayout>
+        
     </ScrollView>
 
 </ContentPage>

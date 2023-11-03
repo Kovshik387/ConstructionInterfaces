@@ -4,16 +4,14 @@ using ClientsProject.DAL.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClientAccounting.MAUI.ViewModel.ProductVm
 {
     public class ProductsView
     {
         private readonly IProductService _productService;
-        public ObservableCollection<Product> Products { get; private set; }
+        [AllowNull] public ObservableCollection<Product> Products { get; private set; }
         public ProductsView(IProductService productService)
         {
             _productService = productService; 

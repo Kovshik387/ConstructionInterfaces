@@ -19,9 +19,10 @@ public partial class AddClientPage : ContentPage
         this.BindingContext = _addClientView;
 	}
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
         _addClientView.AddClientAsync();
-        Navigation.PopAsync();
+
+        await Navigation.PopAsync();
     }   
 }
