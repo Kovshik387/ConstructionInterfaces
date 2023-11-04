@@ -2,11 +2,80 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.Pages.AddProductPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="AddProductPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <Border Margin="30" x:Name="UserView" Stroke="Black" WidthRequest="550" HeightRequest="670" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+            <StackLayout  BackgroundColor="{StaticResource Primary}" WidthRequest="550" HeightRequest="670">
+                <Label Text="Добавление товара" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="670" Padding="10">
+                    <StackLayout>
+                        
+                        <Label Text="Наименование" TextColor="AliceBlue" FontSize="16" />
+                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                            <Entry Text="{Binding Name}"  Placeholder="Логин" FontSize="16">
+                                <Entry.Behaviors>
+                                    <toolkit:TextValidationBehavior 
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    ValidStyle="{StaticResource ValidEntryStyle}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumLength="1"
+                                    MaximumLength="20"
+                                    x:Name="ValidName"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </Border>
+                        
+                        <Label Text="Количество" TextColor="AliceBlue" FontSize="16"/>
+                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                            <Entry Text="{Binding Count}" Placeholder="Количество" FontSize="16">
+                                <Entry.Behaviors>
+                                    <toolkit:TextValidationBehavior 
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    ValidStyle="{StaticResource ValidEntryStyle}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumLength="1"
+                                    MaximumLength="20"
+                                    x:Name="ValidCount"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </Border>
+
+                        <Label Text="Дата выпуска" TextColor="AliceBlue" FontSize="16"/>
+                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                            <DatePicker Format="d" Date="{Binding Daterelease}" DateSelected="DatePicker_DateSelected" TextColor="AliceBlue"/>
+                        </Border>
+                        
+                        <Label></Label>
+                        <Button Text="Добавить фото" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="Button_Clicked"/>
+                        <Label></Label>
+                        
+                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                            <Image x:Name="image_product" Source="product_blank.png"/>
+                        </Border>
+
+                        <Label></Label>
+
+                        <Button Text="Создать" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="ButtonAdd_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Border>
+
+
+
+        <!--<Button Text="Выбрать фотогографию" Clicked="FilePeek_Clicked"/>-->
+    
+    </ScrollView>
 </ContentPage>

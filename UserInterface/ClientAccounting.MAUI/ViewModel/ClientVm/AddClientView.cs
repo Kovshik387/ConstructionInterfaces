@@ -13,7 +13,6 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
         private readonly IClientService _clientService;
 
         private Client client = new();
-
         public AddClientView(IClientService clientService) => _clientService = clientService;
 
         public void AddClientAsync()
@@ -110,7 +109,6 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
                     client.Contact = value;
                     OnPropertyChanged();
                 }
-
             }
         }
         public string Email
@@ -140,7 +138,6 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
                     client.Rating = value;
                     OnPropertyChanged();
                 }
-
             }
         }
 

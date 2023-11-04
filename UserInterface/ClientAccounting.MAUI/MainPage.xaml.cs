@@ -14,11 +14,12 @@ namespace ClientAccounting.MAUI
         private readonly ProductView _productView;
         private readonly AddProductView _addProductView;
 
-        public MainPage(ClientsView clientsView, ClientView clientView, AddClientView addClientView, ProductsView productsView, ProductView productView)
+        public MainPage(ClientsView clientsView, ClientView clientView, AddClientView addClientView,
+            ProductsView productsView, ProductView productView, AddProductView addProductView)
         {
             this.InitializeComponent();
             this._clientsView = clientsView; this._clientView = clientView; this._addClientView = addClientView;
-            this._productsView = productsView; this._productView = productView;
+            this._productsView = productsView; this._productView = productView; this._addProductView = addProductView;
         }
 
         private void Button_Clicked(object sender, EventArgs e) =>

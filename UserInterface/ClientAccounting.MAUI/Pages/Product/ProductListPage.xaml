@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ClientAccounting.MAUI.Pages.ProductListPage"
              Title="ProductListPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>    
 
     <ScrollView>
         <StackLayout>
@@ -40,11 +47,15 @@
                                         <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Фамилия: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="Дата выпуска: " FontAttributes="Bold" TextColor="Black"/>
                                                     <Span Text="{Binding Daterelease}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
+
+                                        <Border Stroke="Black">
+                                            <Image Source="{Binding Photo, Mode=OneWay, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+                                        </Border>
 
                                     </StackLayout>
                                 </Border>
