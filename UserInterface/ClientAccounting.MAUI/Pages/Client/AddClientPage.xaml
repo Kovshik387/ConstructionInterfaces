@@ -129,14 +129,14 @@
                         <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                             <Entry Text="{Binding Rating}" Keyboard="Numeric" Placeholder="Рейтинг" MaxLength="1" FontSize="16">
                                 <Entry.Behaviors>
-                                    <toolkit:EmailValidationBehavior
-                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                    ValidStyle="{StaticResource ValidEntryStyle}"
-                                    Flags="ValidateOnValueChanged"
-                                    RegexPattern="|[0-5]|"
-                                    MinimumLength="0"
-                                    MaximumLength="1"
-                                    />
+                                    <toolkit:TextValidationBehavior 
+                                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                        Flags="ValidateOnValueChanged"
+                                        RegexPattern="[0-5]"
+                                        MinimumLength="1"
+                                        MaximumLength="1"
+                                        x:Name="ValidRating"/>
                                 </Entry.Behaviors>
                             </Entry>
                         </Border>

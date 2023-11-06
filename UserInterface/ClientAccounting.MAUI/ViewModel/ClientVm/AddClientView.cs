@@ -12,13 +12,19 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
 
         private readonly IClientService _clientService;
 
-        private Client client = new();
+        public Client client = new();
         public AddClientView(IClientService clientService) => _clientService = clientService;
+
+        public void ResetClient()
+        {
+            client.Login = ""; client.Rating = 0; client.Contact = ""; client.Name = "";
+            client.Email = ""; client.Password = ""; client.Patronymic = ""; client.Surname = "";
+        }
 
         public void AddClientAsync()
         {
             _clientService.AddClient(client);
-            client = new();
+            ResetClient();
         }
 
         [Required]
@@ -38,6 +44,7 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
                 }
             }
         }
+
         public string Password
         {
             get => client.Password; set
@@ -53,6 +60,7 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
 
             }
         }
+
         public string Name
         {
             get => client.Name;
@@ -97,6 +105,7 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
 
             }
         }
+
         public string Contact
         {
             get => client.Contact; set
@@ -111,6 +120,7 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
                 }
             }
         }
+
         public string Email
         {
             get => client.Email; set

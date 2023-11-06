@@ -22,11 +22,15 @@ public partial class ClientPage : ContentPage
 
     protected override bool OnBackButtonPressed()
     {
-        if (this.validEmail.IsNotValid || this.ValidContact.IsNotValid || this.ValidLogin.IsNotValid ||
+        if (this.validEmail.IsNotValid || this.ValidContact.IsNotValid || this.ValidLogin.IsNotValid || this.ValidRating.IsNotValid ||
             this.ValidName.IsNotValid || this.ValidPatr.IsNotValid || this.ValidSurname.IsNotValid || ValidPassword.IsNotValid)
         {
             DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");
+            return base.OnBackButtonPressed();
         }
+
+        this._clientView.SaveClient();
+
         return base.OnBackButtonPressed();
     }
 

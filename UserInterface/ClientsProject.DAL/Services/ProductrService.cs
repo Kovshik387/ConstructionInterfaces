@@ -35,6 +35,14 @@ namespace ClientsProject.DAL.Services
             }
         }
 
+        public List<Product> GetProducts()
+        {
+            using (var factory = _factory.CreateDbContext())
+            {
+                return factory.Products.ToList();
+            }
+        }
+
         public async Task<List<Product>> GetProductsAsync()
         {
             using (var factory = await _factory.CreateDbContextAsync())

@@ -130,7 +130,18 @@
                             </Border>
                                 <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                    <Entry Text="{Binding Rating}" TextColor="AliceBlue" Placeholder="Рейтинг" FontSize="16"/>
+                                    <Entry Text="{Binding Rating}" TextColor="AliceBlue" Placeholder="Рейтинг" FontSize="16">
+                                        <Entry.Behaviors>
+                                        <toolkit:TextValidationBehavior 
+                                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                            ValidStyle="{StaticResource ValidEntryStyle}"
+                                            Flags="ValidateOnValueChanged"
+                                            RegexPattern="[0-5]"
+                                            MinimumLength="1"
+                                            MaximumLength="1"
+                                            x:Name="ValidRating"/>
+                                        </Entry.Behaviors>
+                                    </Entry>
                                 </Border>
                             </StackLayout>
                         </StackLayout>

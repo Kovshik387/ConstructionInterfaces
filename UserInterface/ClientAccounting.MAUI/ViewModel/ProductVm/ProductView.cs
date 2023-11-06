@@ -15,7 +15,6 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
     public class ProductView : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
         public Product Product { get; set; }
 
         private readonly IProductService _productService;
@@ -90,7 +89,6 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-            ChangeProduct();
         }
     }
 }

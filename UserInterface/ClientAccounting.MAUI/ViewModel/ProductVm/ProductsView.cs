@@ -19,5 +19,6 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
         }
         protected internal async void GetSearched(string query) => Products = new ObservableCollection<Product>(await _productService.GetProductsByQuery(query));
         protected internal async void GetProductsAsync() => Products = new ObservableCollection<Product>(await _productService.GetProductsAsync());
+        protected internal void GetProducts() => Products = new ObservableCollection<Product>(_productService.GetProducts());
     }
 }

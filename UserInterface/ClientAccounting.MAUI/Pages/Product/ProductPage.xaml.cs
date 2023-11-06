@@ -9,7 +9,21 @@ public partial class ProductPage : ContentPage
 	public ProductPage(ProductView productView)
 	{
 		InitializeComponent();
-		_productVm = productView;
+
+		this._productVm = productView;
 		this.BindingContext = _productVm;
 	}
+
+    protected override bool OnBackButtonPressed()
+    {
+        if (this.ValidName.IsNotValid || this.ValidCount.IsNotValid)
+        {
+            DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");
+            return base.OnBackButtonPressed();
+        }
+
+        _productVm.ChangeProduct();
+
+        return base.OnBackButtonPressed();
+    }
 }

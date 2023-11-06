@@ -20,8 +20,17 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
         public AddProductView(IProductService productService)
         {
             this._productService = productService;
-
         }
+
+        public void ResetProduct()
+        {
+            this.Product.Photo = null;
+            this.Product.Count = 0;
+            this.Product.Name = null;
+            this.DateRelease = DateOnly.FromDateTime(DateTime.Now);
+        }
+
+        public void SetDefaultProduct() => Product = new Product();
 
         public string Name
         {
@@ -42,9 +51,9 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
         {
             get => Product.Count; set
             {
-                if (Product.Count != value)
+                if (Product.Count != value )
                 {
-                    if (value is null)
+                    if (value is null || value < 1)
                         return;
 
                     Product.Count = value;
@@ -82,12 +91,11 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
             }
         }
 
-        public void ChangeProduct() => this._productService.ChangeProductAsync(Product);
+        public void AddProductAsync() => this._productService.AddProductAsync(Product);
         
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-            ChangeProduct();
         }
     }
 }

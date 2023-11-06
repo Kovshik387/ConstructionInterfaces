@@ -56,6 +56,7 @@
 		<PackageReference Include="FluentValidation" Version="11.7.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Plugin.ValidationRules" Version="1.5.0.1" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="23.1.43" />
 	</ItemGroup>
 
 	<ItemGroup>

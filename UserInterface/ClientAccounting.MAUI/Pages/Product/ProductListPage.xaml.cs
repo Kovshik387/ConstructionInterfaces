@@ -1,5 +1,6 @@
 using ClientAccounting.MAUI.ViewModel.ProductVm;
 using ClientsProject.DAL.Entities;
+using System.Globalization;
 
 namespace ClientAccounting.MAUI.Pages;
 
@@ -10,22 +11,22 @@ public partial class ProductListPage : ContentPage
 	public ProductListPage(ProductsView productsView, ProductView productView)
 	{
 		InitializeComponent();
+
         _productsVm = productsView; _productVm = productView;
 		this.BindingContext = _productsVm;
 	}
 
-    private async void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is Product current)
-        {
-            _productVm.Product = current;
-            await Navigation.PushAsync(new ProductPage(_productVm));
-        }
+        if (e.CurrentSelection.FirstOrDefault() is not Product current) return;
+        
+        _productVm.Product = current;
+        await Navigation.PushAsync(new ProductPage(_productVm));
     }
 
-    private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (e.NewTextValue.Equals("")) _productsVm.GetProductsAsync();
+        if (e.NewTextValue.Equals("")) _productsVm.GetProducts();
         else _productsVm.GetSearched(e.NewTextValue);
 
         this.collectionView.ItemsSource = _productsVm.Products;
@@ -33,7 +34,7 @@ public partial class ProductListPage : ContentPage
 
     protected override void OnAppearing()
     {
-		_productsVm.GetProductsAsync();
+        _productsVm.GetProducts();
         this.collectionView.ItemsSource = _productsVm.Products;
         base.OnAppearing();
     }

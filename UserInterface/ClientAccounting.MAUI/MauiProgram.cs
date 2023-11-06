@@ -6,7 +6,7 @@ using ClientsProject.DAL.Interfaces;
 using ClientsProject.DAL.Services;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-
+using Syncfusion.Maui.Core.Hosting;
 
 namespace ClientAccounting.MAUI
 {
@@ -17,6 +17,7 @@ namespace ClientAccounting.MAUI
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -34,8 +35,8 @@ namespace ClientAccounting.MAUI
                 .AddTransient<ClientPage>()
                 .AddScoped<ListPage>()
 
-                .AddTransient<ProductView>()
                 .AddTransient<ProductsView>()
+                .AddTransient<ProductView>()
                 .AddTransient<AddProductView>()
 
                 .AddTransient<ProductListPage>()

@@ -2,26 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:ClientAccounting.MAUI.Converters"
              x:Class="ClientAccounting.MAUI.Pages.ProductListPage"
              Title="ProductListPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+            <local:BytesToImageConverter x:Key="BytesToImage"/>
         </ResourceDictionary>
     </ContentPage.Resources>    
 
     <ScrollView>
         <StackLayout>
-            <SearchBar x:Name="searchBar" TextChanged="searchBar_TextChanged" Placeholder="Поиск"/>
+            <SearchBar x:Name="searchBar" TextChanged="SearchBar_TextChanged" Placeholder="Поиск"/>
+
+            <Image x:Name="test"/>
 
             <ScrollView Margin="10" Grid.Row="1">
                 <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="Center" AlignContent="Center">
-                    <CollectionView x:Name="collectionView" ItemsSource="{Binding Products}" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
+                    <CollectionView x:Name="collectionView" ItemsSource="{Binding Products}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="20" HorizontalItemSpacing="20"/>
                         </CollectionView.ItemsLayout>
-
+                        
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Border StrokeShape="RoundRectangle 20,20,20,20" Stroke="Black" Margin="20" >
@@ -53,10 +57,10 @@
                                             </Label.FormattedText>
                                         </Label>
 
-                                        <Border Stroke="Black">
-                                            <Image Source="{Binding Photo, Mode=OneWay, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+                                        <Border Margin="5" HorizontalOptions="Start" HeightRequest="150" WidthRequest="150" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
+                                            <Image Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
                                         </Border>
-
+                                        
                                     </StackLayout>
                                 </Border>
                             </DataTemplate>

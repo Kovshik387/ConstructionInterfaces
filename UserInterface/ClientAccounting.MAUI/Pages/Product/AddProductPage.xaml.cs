@@ -28,7 +28,7 @@ public partial class AddProductPage : ContentPage
 
                     this._addProductView.Photo = bytes;
                     
-                    MemoryStream memory = new MemoryStream(bytes);   
+                    MemoryStream memory = new(bytes);   
 
                     this.image_product.Source = ImageSource.FromStream(() => (Stream)memory);
                     var image = ImageSource.FromStream(() => stream);
@@ -41,9 +41,31 @@ public partial class AddProductPage : ContentPage
         }
     }
 
-    private void ButtonAdd_Clicked(Object sender, EventArgs e)
+    protected override void OnAppearing()
     {
+        _addProductView.Product = new();
+        this._addProductView.DateRelease = DateOnly.FromDateTime(DateTime.Now);
+        base.OnAppearing();
+    }
 
+    private async void ButtonAdd_Clicked(Object sender, EventArgs e)
+    {
+        if (this.ValidName.IsNotValid || this.ValidCount.IsNotValid)
+        {
+            await DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");
+            return;
+        }
+
+        _addProductView.AddProductAsync();
+        _addProductView.ResetProduct();
+        await Navigation.PopAsync();
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        _addProductView.ResetProduct();
+
+        return base.OnBackButtonPressed();
     }
 
     private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
