@@ -25,7 +25,7 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
         public void ResetProduct()
         {
             this.Product.Photo = null;
-            this.Product.Count = 0;
+            this.Product.Count = null;
             this.Product.Name = null;
             this.DateRelease = DateOnly.FromDateTime(DateTime.Now);
         }
@@ -57,6 +57,30 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
                         return;
 
                     Product.Count = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int Price
+        {
+            get => Product.Price; set
+            {
+                if (value > 0 || Product.Price != value)
+                {
+                    Product.Price = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string Branch
+        {
+            get => Product.Branch; set
+            {
+                if (Product.Branch != value && value is not null && value.Length > 1 && value.Length < 20)
+                {
+                    Product.Branch = value;
                     OnPropertyChanged();
                 }
             }

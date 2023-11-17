@@ -1,13 +1,12 @@
+using ClientAccounting.MAUI.Pages.Product;
 using ClientAccounting.MAUI.ViewModel.ProductVm;
-using ClientsProject.DAL.Entities;
-using System.Globalization;
-
 namespace ClientAccounting.MAUI.Pages;
 
 public partial class ProductListPage : ContentPage
 {
 	private readonly ProductsView _productsVm;
     private readonly ProductView _productVm;
+
 	public ProductListPage(ProductsView productsView, ProductView productView)
 	{
 		InitializeComponent();
@@ -18,10 +17,15 @@ public partial class ProductListPage : ContentPage
 
     private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is not Product current) return;
+        if (e.CurrentSelection.FirstOrDefault() is not ClientsProject.DAL.Entities.Product current) return;
         
         _productVm.Product = current;
-        await Navigation.PushAsync(new ProductPage(_productVm));
+
+        var test = await SecureStorage.GetAsync("id_user");
+
+        if (await SecureStorage.GetAsync("role") == "user")
+            await Navigation.PushAsync(new ProductUserPage(_productVm));
+        else await Navigation.PushAsync(new ProductPage(_productVm));
     }
 
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)

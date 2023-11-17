@@ -7,9 +7,9 @@ public partial class Review
 {
     public int IdReview { get; set; }
 
-    public int Rating { get; set; }
+    public int Rating { get; set; } = 0;
 
-    public string? Message { get; set; }
+    public string Message { get; set; } = null!;
 
     public DateOnly Date { get; set; }
 

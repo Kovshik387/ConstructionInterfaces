@@ -28,6 +28,7 @@ public partial class AddClientPage : ContentPage
     {
         this._addClientView.ResetClient();
         this._addClientView.client = new();
+        this._addClientView.client.Type = "user";
         base.OnAppearing();
     }
 

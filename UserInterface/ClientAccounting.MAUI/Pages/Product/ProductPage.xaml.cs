@@ -12,11 +12,11 @@ public partial class ProductPage : ContentPage
 
 		this._productVm = productView;
 		this.BindingContext = _productVm;
-	}
-
+	    
+    }
     protected override bool OnBackButtonPressed()
     {
-        if (this.ValidName.IsNotValid || this.ValidCount.IsNotValid)
+        if (this.ValidName.IsNotValid || this.ValidCount.IsNotValid || this.ValidPrice.IsNotValid || this.ValidBranch.IsNotValid)
         {
             DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");
             return base.OnBackButtonPressed();

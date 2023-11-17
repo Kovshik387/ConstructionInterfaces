@@ -18,9 +18,10 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
         public Product Product { get; set; }
 
         private readonly IProductService _productService;
-        public ProductView(IProductService productService)
+        private readonly IUserService _userService;
+        public ProductView(IProductService productService, IUserService userService)
         {
-            this._productService = productService;
+            this._productService = productService; this._userService = userService;
         }
 
         public string Name
@@ -53,6 +54,18 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
             }
         }
 
+        public int Price
+        {
+            get => Product.Price; set
+            {
+                if (Product.Price != value && Product.Price > 0)
+                {
+                    Product.Price = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public DateOnly? DateRelease
         {
             get => Product.Daterelease; set
@@ -63,6 +76,16 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
                         return;
 
                     Product.Daterelease = value;
+                }
+            }
+        }
+        public string Branch
+        {
+            get => Product.Branch; set
+            {
+                if (Product.Branch != value && value is not null && value.Length > 1 && value.Length < 20)
+                {
+                    Product.Branch = value;
                     OnPropertyChanged();
                 }
             }
@@ -82,6 +105,19 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
                     OnPropertyChanged();
                 }
             }
+        }
+
+        public async Task<bool> Purchase()
+        {
+            if (this.Count <= 0) return false;
+
+            var user_id = int.Parse(await SecureStorage.Default.GetAsync("id_user"));
+
+            this.Count -= 1; await _productService.ChangeProductAsync(Product);
+
+            await _userService.PurchaseByIdAsync(user_id, this.Product.IdProduct);
+            
+            return true;
         }
 
         public void ChangeProduct() => this._productService.ChangeProductAsync(Product);

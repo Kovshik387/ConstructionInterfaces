@@ -127,6 +127,7 @@ public partial class ClientAccountingContext : DbContext
                 .HasConstraintName("review_id_product_fkey");
         });
 
+
         OnModelCreatingPartial(modelBuilder);
     }
 

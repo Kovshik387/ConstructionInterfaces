@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.User.PurchasesPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:local="clr-namespace:ClientAccounting.MAUI.Converters"
-             x:Class="ClientAccounting.MAUI.Pages.ProductListPage"
-             Title="ProductListPage">
+             Title="PurchasesPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
-            <local:BytesToImageConverter x:Key="BytesToImage"/>
         </ResourceDictionary>
-    </ContentPage.Resources>    
+    </ContentPage.Resources>
 
     <ScrollView>
         <StackLayout>
-            <SearchBar x:Name="searchBar" TextChanged="SearchBar_TextChanged" Placeholder="Поиск"/>
             <ScrollView Margin="10">
                 <FlexLayout  Direction="Column" JustifyContent="Center" AlignContent="Center">
                     <CollectionView x:Name="collectionView" ItemsSource="{Binding Products}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="20" HorizontalItemSpacing="20"/>
                         </CollectionView.ItemsLayout>
-                        
+
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Border HeightRequest="250" StrokeShape="RoundRectangle 20,20,20,20" Stroke="Black" Margin="20" >
@@ -95,9 +92,9 @@
                     </CollectionView>
                 </FlexLayout>
             </ScrollView>
-            
+
         </StackLayout>
-        
+
     </ScrollView>
 
 </ContentPage>

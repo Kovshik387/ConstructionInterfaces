@@ -45,15 +45,15 @@ public partial class AddProductPage : ContentPage
     {
         _addProductView.Product = new();
         this._addProductView.DateRelease = DateOnly.FromDateTime(DateTime.Now);
+        this._addProductView.Price = 0;
         base.OnAppearing();
     }
 
     private async void ButtonAdd_Clicked(Object sender, EventArgs e)
     {
-        if (this.ValidName.IsNotValid || this.ValidCount.IsNotValid)
+        if (this.ValidName.IsNotValid || this.ValidCount.IsNotValid || this.ValidPrice.IsNotValid || this.ValidBranch.IsNotValid)
         {
-            await DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");
-            return;
+            await DisplayAlert("Ошибка", "Данные не были сохранены", "Ок"); return;
         }
 
         _addProductView.AddProductAsync();
@@ -63,9 +63,7 @@ public partial class AddProductPage : ContentPage
 
     protected override bool OnBackButtonPressed()
     {
-        _addProductView.ResetProduct();
-
-        return base.OnBackButtonPressed();
+        _addProductView.ResetProduct(); return base.OnBackButtonPressed();
     }
 
     private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)

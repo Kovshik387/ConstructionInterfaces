@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.Hub.UserMenuPage"
+             Title="UserMenuPage">
+    <ScrollView>
+        <FlexLayout Wrap="Wrap" Direction="Row" HorizontalOptions="Center" VerticalOptions="Center">
+            
+            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+                <StackLayout>
+                    <Image Source="product.png" HeightRequest="200"/>
+                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список товаров" Clicked="Products_Clicked"/>
+                </StackLayout>
+            </Border>
+
+            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+                <StackLayout>
+                    <Image Source="purchases.png" HeightRequest="200"/>
+                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Акция дня" Clicked="Purchase_Clicked"/>
+                </StackLayout>
+            </Border>
+            
+            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+                <StackLayout>
+                    <Image Source="purchasesproduct.png" HeightRequest="200"/>
+                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Покупки" Clicked="Purchases_Clicked"/>
+                </StackLayout>
+            </Border>
+
+        </FlexLayout>
+    </ScrollView>
+</ContentPage>

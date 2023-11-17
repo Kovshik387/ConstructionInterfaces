@@ -3,6 +3,7 @@ using ClientsProject.DAL.Entities;
 using ClientsProject.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ClientsProject.DAL.Services
 {
@@ -19,7 +20,15 @@ namespace ClientsProject.DAL.Services
         {
             using (var factory = _databaseFactory.CreateDbContext())
             {
-                return new ObservableCollection<Client>(factory.Clients.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name, $"%{query}%")).ToList());
+                return new ObservableCollection<Client>(factory.Clients.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name, $"%{query}%") && name.Type != "admin").ToList());
+            }
+        }
+
+        public Client? GetByLogin(string login, string paswword) 
+        {
+            using (var factory = _databaseFactory.CreateDbContext())
+            {
+                return factory.Clients.Where(c => c.Login == login && c.Password == paswword).FirstOrDefault();
             }
         }
 
@@ -39,7 +48,7 @@ namespace ClientsProject.DAL.Services
         public async Task<List<Client>> GetClientAllAsync()
         {
             using (var factory = _databaseFactory.CreateDbContext())
-                return await factory.Clients.ToListAsync();
+                return await factory.Clients.Where(t => t.Type != "admin").ToListAsync();
         }
 
         public void AddClient(Client client)
@@ -68,7 +77,7 @@ namespace ClientsProject.DAL.Services
         public List<Client> GetClientAll()
         {
             using (var factory = _databaseFactory.CreateDbContext())
-                return factory.Clients.ToList();
+                return factory.Clients.Where(t => t.Type != "admin").ToList();
         }
 
     }

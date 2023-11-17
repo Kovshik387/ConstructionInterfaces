@@ -14,6 +14,7 @@ namespace ClientsProject.DAL.Interfaces
         public void ChangeClient(Client client);
         public Client GetInfo(Client client);
         public Task<List<Client>> GetClientAllAsync();
+        public Client? GetByLogin(string login, string paswword);
         public List<Client> GetClientAll();
         public ObservableCollection<Client> GetSearchedClients(string query);
         public Task<Client?> GetClientByIdAsync(int id);

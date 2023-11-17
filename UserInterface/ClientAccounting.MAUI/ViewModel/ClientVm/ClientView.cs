@@ -27,17 +27,14 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
         public ObservableCollection<Order> Order { get; set; }
         public Client Client { get; set; } = new();
 
-        public ClientView(IClientService clientService)
-        {
-            _clientService = clientService;
-        }
+        public ClientView(IClientService clientService) => _clientService = clientService;
 
         public void SaveClient() => _clientService.ChangeClient(Client);
         public void AddClient(Client client) => _clientService.AddClient(client);
 
         public void GetReviews()
         {
-            Client = _clientService.GetInfo(Client);
+            Client = _clientService.GetInfo(Client); 
             Order = new ObservableCollection<Order>(Client.Orders);
             Reviews = new ObservableCollection<Review>(Client.Reviews);
         }

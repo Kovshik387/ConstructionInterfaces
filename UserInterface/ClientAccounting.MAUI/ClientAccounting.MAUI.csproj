@@ -73,11 +73,23 @@
 		<Compile Update="Pages\Client\ListPage.xaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>
+		<Compile Update="Pages\Hub\AccountingMenuPage.xaml.cs">
+		  <DependentUpon>AccountingMenuPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\User\StarProductPage.xaml.cs">
+		  <DependentUpon>StarProductPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<MauiXaml Update="Pages\Client\AddClientPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\Hub\AccountingMenuPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\Hub\UserMenuPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Pages\Product\AddProductPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
@@ -92,6 +104,18 @@
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Pages\Product\ProductPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\Product\ProductUserPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\User\PurchaseProductPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\User\PurchasesPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\User\StarProductPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>

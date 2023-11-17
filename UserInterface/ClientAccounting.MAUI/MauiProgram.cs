@@ -1,6 +1,11 @@
 ﻿using ClientAccounting.MAUI.Pages;
+using ClientAccounting.MAUI.Pages.Hub;
+using ClientAccounting.MAUI.Pages.User;
+using ClientAccounting.MAUI.ViewModel.AuthorizationVm;
 using ClientAccounting.MAUI.ViewModel.ClientVm;
 using ClientAccounting.MAUI.ViewModel.ProductVm;
+using ClientAccounting.MAUI.ViewModel.ReviewVm;
+using ClientAccounting.MAUI.ViewModel.UserVm;
 using ClientsProject.DAL.EF;
 using ClientsProject.DAL.Interfaces;
 using ClientsProject.DAL.Services;
@@ -35,16 +40,34 @@ namespace ClientAccounting.MAUI
                 .AddTransient<ClientPage>()
                 .AddScoped<ListPage>()
 
+                .AddTransient<AccountingMenuPage>()
+                .AddTransient<AuthorizationView>()
+
+                .AddTransient<UserMenuPage>()
+
                 .AddTransient<ProductsView>()
                 .AddTransient<ProductView>()
                 .AddTransient<AddProductView>()
+
+                .AddTransient<UserPurchaseView>()
+                .AddTransient<ReviewView>()
+
+                .AddTransient<StarProductView>()
 
                 .AddTransient<ProductListPage>()
                 .AddTransient<ProductPage>()
                 .AddTransient<AddProductPage>()
 
+                .AddTransient<StarProductPage>()
+
+                .AddTransient<PurchasesPage>()
+                .AddTransient<PurchaseProductPage>()
+
+                .AddTransient<IReviewService,ReviewService>()
+                .AddTransient<IUserService,UserService>()
                 .AddTransient<IClientService, ClientService>()
                 .AddTransient<IProductService,ProductService>();
+                
 
             builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 

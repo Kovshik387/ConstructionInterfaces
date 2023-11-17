@@ -125,6 +125,7 @@
                                 </Entry.Behaviors>
                             </Entry>
                         </Border>
+                        
                         <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
                         <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                             <Entry Text="{Binding Rating}" Keyboard="Numeric" Placeholder="Рейтинг" MaxLength="1" FontSize="16">

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.User.PurchaseProductPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="PurchaseProductPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid>
+            <HorizontalStackLayout Padding="40" Spacing="60">
+
+                <Border Stroke="Black" WidthRequest="650" HeightRequest="400" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2" Background="{StaticResource Primary}">
+                    <Grid VerticalOptions="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <HorizontalStackLayout>
+
+                            <Border Grid.Column="0" Grid.Row="0" Margin="5" WidthRequest="300" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
+                                <Image Aspect="AspectFill" Source="{Binding Item1.Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+                            </Border>
+
+                            <StackLayout Grid.Column="1" Grid.Row="0" WidthRequest="300"  >
+                                <Label Text="Продукт" TextColor="AliceBlue" TextDecorations="Underline" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Start" HorizontalOptions="Center"/>
+                                <Label Text="{Binding Item1.DateRelease}" TextColor="AliceBlue" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                                <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10" WidthRequest="300">
+                                    <Label Text="Название" FontSize="16" TextColor="AliceBlue" />
+
+                                    <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="35">
+                                        <Label Padding="5" Text="{Binding Item1.Name}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
+                                    </Border>
+
+                                    <Label Text="Количество" FontSize="16" TextColor="AliceBlue" />
+
+                                    <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="35">
+                                        <Label Padding="5" Text="{Binding Item1.Count}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
+                                    </Border>
+
+                                    <Label Text="Цена" FontSize="16" TextColor="AliceBlue"/>
+
+                                    <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="35">
+                                        <Label Padding="5" Text="{Binding Item1.Price}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
+                                    </Border>
+
+                                    <Label Text="Филиал" FontSize="16" TextColor="AliceBlue"/>
+                                    <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="35">
+                                        <Label Padding="5" Text="{Binding Item1.Branch}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
+                                    </Border>
+
+                                </StackLayout>
+                            </StackLayout>
+
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="ReviewView" Stroke="Black" WidthRequest="500" HeightRequest="400" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+                    <ScrollView>
+                        <StackLayout Margin="5">
+                            <Label Text="Отзыв" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+
+                            <Editor  HeightRequest="200" Text="{Binding Item2.Message}" FontSize = "20" TextColor = "AliceBlue"/>
+
+                            <Label Text="Оценка" FontSize = "20" TextColor = "AliceBlue"/>
+
+                            <HorizontalStackLayout>
+                                <Entry HorizontalOptions="Start" WidthRequest="100" MaxLength="1" Text="{Binding Item2.Rating}" FontSize = "20" TextColor = "AliceBlue" />
+                                <Button HorizontalOptions="End" WidthRequest="200" x:Name="ButtonReview" Text="Оставить отзыв" Clicked="Review_Click"/>
+                            </HorizontalStackLayout>
+                            
+                            <Label/>
+                        </StackLayout>
+                    </ScrollView>
+                </Border>
+            </HorizontalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

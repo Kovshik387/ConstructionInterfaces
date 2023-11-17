@@ -3,6 +3,7 @@ using System;
 using ClientsProject.DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ClientsProject.DAL.Migrations
 {
     [DbContext(typeof(ClientAccountingContext))]
-    partial class ClientAccountingContextModelSnapshot : ModelSnapshot
+    [Migration("20231110221125_Price")]
+    partial class Price
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,10 +140,6 @@ namespace ClientsProject.DAL.Migrations
                         .HasColumnName("id_product");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdProduct"));
-
-                    b.Property<string>("Branch")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<int?>("Count")
                         .HasColumnType("integer")

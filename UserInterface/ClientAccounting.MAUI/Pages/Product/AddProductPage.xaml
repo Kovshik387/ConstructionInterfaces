@@ -16,69 +16,97 @@
 
     <ScrollView>
 
-        <Border Margin="30" x:Name="UserView" Stroke="Black" WidthRequest="550" HeightRequest="800" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+        <Border Margin="30" x:Name="UserView" Stroke="Black" WidthRequest="550" HeightRequest="850" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
             <StackLayout  BackgroundColor="{StaticResource Primary}" >
                 <StackLayout>
-                <Label Text="Добавление товара" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                    <Label Text="Добавление товара" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                     <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="800" Padding="10">
-                    <StackLayout>
-                        
-                        <!--<Label Text="Наименование" TextColor="AliceBlue" FontSize="16" />-->
-                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                            <Entry Text="{Binding Name}" TextColor="AliceBlue" Placeholder="Наименование" FontSize="16">
-                                <Entry.Behaviors>
-                                    <toolkit:TextValidationBehavior 
+                        <StackLayout>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Name}" TextColor="AliceBlue" Placeholder="Наименование" FontSize="16">
+                                    <Entry.Behaviors>
+                                        <toolkit:TextValidationBehavior 
                                     InvalidStyle="{StaticResource InvalidEntryStyle}"
                                     ValidStyle="{StaticResource ValidEntryStyle}"
                                     Flags="ValidateOnValueChanged"
                                     MinimumLength="1"
                                     MaximumLength="20"
                                     x:Name="ValidName"/>
-                                </Entry.Behaviors>
-                            </Entry>
-                        </Border>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
                             <Label/>
-                            <!--<Label Text="Количество" TextColor="AliceBlue" FontSize="16"/>-->
-                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                            <Entry Text="{Binding Count}" Placeholder="Количество" TextColor="AliceBlue" FontSize="16">
+
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Count}" Placeholder="Количество" FontSize="16">
                                     <Entry.Behaviors>
                                         <toolkit:TextValidationBehavior 
                                         InvalidStyle="{StaticResource InvalidEntryStyle}"
                                         ValidStyle="{StaticResource ValidEntryStyle}"
                                         Flags="ValidateOnValueChanged"
-                                        RegexPattern="[0-9]"
+                                        RegexPattern="^[0-9]*$"
                                         MinimumLength="1"
                                         MaximumLength="20"
                                         x:Name="ValidCount"/>
                                     </Entry.Behaviors>
-                            </Entry>
-                        </Border>
+                                </Entry>
+                            </Border>
 
-                        <Label Text="Дата выпуска" TextColor="AliceBlue" FontSize="16"/>
-                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                            <DatePicker Format="d" Date="{Binding Daterelease}" DateSelected="DatePicker_DateSelected" TextColor="AliceBlue"/>
-                        </Border>
-                        
-                        <Label></Label>
-                        <Button Text="Добавить фото" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="Button_Clicked"/>
-                        <Label></Label>
-                        
-                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                            <Image x:Name="image_product" Source="product_blank.png" />
-                        </Border>
+                            <Label/>
 
-                        <Label></Label>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Price}" Placeholder="Цена" FontSize="16">
+                                    <Entry.Behaviors>
+                                        <toolkit:TextValidationBehavior
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    ValidStyle="{StaticResource ValidEntryStyle}"
+                                    Flags="ValidateOnValueChanged"
+                                    RegexPattern="^[0-9]*$"
+                                    MinimumLength="1"
+                                    MaximumLength="20"
+                                    x:Name="ValidPrice"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
 
-                        <Button Text="Создать" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="ButtonAdd_Clicked"/>
+                            <Label/>
+
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Branch}" Placeholder="Филиал" FontSize="16">
+                                    <Entry.Behaviors>
+                                        <toolkit:TextValidationBehavior
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    ValidStyle="{StaticResource ValidEntryStyle}"
+                                    Flags="ValidateOnValueChanged"
+                                    MinimumLength="1"
+                                    MaximumLength="20"
+                                    x:Name="ValidBranch"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
+
+                            <Label/>
+                            <Label Text="Дата выпуска" TextColor="AliceBlue" FontSize="16"/>
+
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <DatePicker Format="d" Date="{Binding Daterelease}" DateSelected="DatePicker_DateSelected" TextColor="AliceBlue"/>
+                            </Border>
+
+                            <Label></Label>
+                            <Button Text="Добавить фото" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="Button_Clicked"/>
+                            <Label></Label>
+
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Image x:Name="image_product" Source="product_blank.png" />
+                            </Border>
+
+                            <Label></Label>
+
+                            <Button Text="Создать" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="ButtonAdd_Clicked"/>
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
                 </StackLayout>
             </StackLayout>
         </Border>
-
-
-
-        <!--<Button Text="Выбрать фотогографию" Clicked="FilePeek_Clicked"/>-->
-    
     </ScrollView>
 </ContentPage>

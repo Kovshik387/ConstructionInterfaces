@@ -32,11 +32,11 @@
                 </Grid.RowDefinitions>
                 <HorizontalStackLayout>
 
-                    <Border Grid.Column="0" Grid.Row="0" Margin="5"  WidthRequest="300" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
-                        <Image Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+                    <Border Grid.Column="0" Grid.Row="0" Margin="5" WidthRequest="300" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
+                        <Image Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
                     </Border>
 
-                    <StackLayout Grid.Column="1" Grid.Row="0" WidthRequest="300">
+                    <StackLayout Grid.Column="1" Grid.Row="0" WidthRequest="300"  >
                         <Label Text="Продукт" TextColor="AliceBlue" TextDecorations="Underline" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Start" HorizontalOptions="Center"/>
                         <Label Text="{Binding DateRelease}" TextColor="AliceBlue" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                         <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10" WidthRequest="300">
@@ -66,11 +66,44 @@
                                             InvalidStyle="{StaticResource InvalidEntryStyle}"
                                             ValidStyle="{StaticResource ValidEntryStyle}"
                                             Flags="ValidateOnValueChanged"
-                                            RegexPattern="[0-5]"
+                                            RegexPattern="^[0-9]*$"
                                             MinimumLength="1"
                                             MaximumLength="1"
                                             x:Name="ValidCount"
                                         />
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
+
+                            <Label Text="Цена" FontSize="16" TextColor="AliceBlue"/>
+
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Price}" Placeholder="Цена" FontSize="16">
+                                    <Entry.Behaviors>
+                                        <toolkit:TextValidationBehavior 
+                                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                    ValidStyle="{StaticResource ValidEntryStyle}"
+                                    Flags="ValidateOnValueChanged"
+                                    RegexPattern="^[0-9]*$"
+                                    MinimumLength="1"
+                                    MaximumLength="20"
+                                    x:Name="ValidPrice"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Border>
+
+                            <Label Text="Филиал" FontSize="16" TextColor="AliceBlue"/>
+                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                <Entry Text="{Binding Branch}" Placeholder="Филиал" FontSize="16">
+                                    <Entry.Behaviors>
+                                        <toolkit:TextValidationBehavior 
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                Flags="ValidateOnValueChanged"
+                                                MinimumLength="1"
+                                                MaximumLength="20"
+                                                x:Name="ValidBranch"
+                                                />
                                     </Entry.Behaviors>
                                 </Entry>
                             </Border>

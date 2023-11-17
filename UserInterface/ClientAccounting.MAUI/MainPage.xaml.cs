@@ -1,4 +1,6 @@
 ﻿using ClientAccounting.MAUI.Pages;
+using ClientAccounting.MAUI.Pages.Hub;
+using ClientAccounting.MAUI.ViewModel.AuthorizationVm;
 using ClientAccounting.MAUI.ViewModel.ClientVm;
 using ClientAccounting.MAUI.ViewModel.ProductVm;
 
@@ -6,32 +8,37 @@ namespace ClientAccounting.MAUI
 {
     public partial class MainPage : ContentPage
     {
-        private readonly ClientsView _clientsView;
-        private readonly ClientView _clientView;
-        private readonly AddClientView _addClientView;
+        private readonly AuthorizationView _authorizationView;
 
-        private readonly ProductsView _productsView;
-        private readonly ProductView _productView;
-        private readonly AddProductView _addProductView;
-
-        public MainPage(ClientsView clientsView, ClientView clientView, AddClientView addClientView,
-            ProductsView productsView, ProductView productView, AddProductView addProductView)
+        public MainPage(AuthorizationView authorizationView)
         {
             this.InitializeComponent();
-            this._clientsView = clientsView; this._clientView = clientView; this._addClientView = addClientView;
-            this._productsView = productsView; this._productView = productView; this._addProductView = addProductView;
+            this._authorizationView = authorizationView; this.BindingContext = _authorizationView;
         }
 
-        private void Button_Clicked(object sender, EventArgs e) =>
-           Navigation.PushAsync(new ListPage(_clientsView, _clientView,_addClientView));
+        private void Button_Clicked(object sender, EventArgs e) => 
+            this.PasswordEntry.IsPassword = this.PasswordEntry.IsPassword == false ?  true : false;
 
-        private void AddClient_Clicked(object sender, EventArgs e)  =>
-            Navigation.PushAsync(new AddClientPage(_addClientView));
+        private async void Authorization_Click(Object sender, EventArgs e)
+        {
+            var client = _authorizationView.Authorize(_authorizationView.Login, _authorizationView.Password);
 
-        private void Product_Clicked(object sender, EventArgs e) =>
-            Navigation.PushAsync(new ProductListPage(_productsView, _productView));
+            if (client is null)
+            {
+                await DisplayAlert("Ошибка", "Данного пользователя не существует", "Ок"); return;
+            }
 
-        private void AddProduct_Clicked(object sender, EventArgs e) =>
-            Navigation.PushAsync(new AddProductPage(_addProductView));
+            if (client.Type.Equals("admin"))
+            {
+                await SecureStorage.Default.SetAsync("role", client.Type);
+                await Shell.Current.GoToAsync("accountinghub", true);
+            }
+            else if (client.Type.Equals("user"))
+            {
+                await SecureStorage.Default.SetAsync("id_user", client.IdClient.ToString());
+                await SecureStorage.Default.SetAsync("role", client.Type);
+                await Shell.Current.GoToAsync("user", true);
+            }
+        }
     }
 }

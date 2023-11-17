@@ -3,31 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.MainPage">
     <ScrollView>
-        <FlexLayout Wrap="Wrap" Direction="Row" HorizontalOptions="Center" VerticalOptions="Center">
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
-                <StackLayout>
-                    <Image Source="clients_new.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список клиентов" Clicked="Button_Clicked"/>
-                </StackLayout>
-            </Border>
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
-                <StackLayout>
-                    <Image Source="add_client.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Добавить клиента" Clicked="AddClient_Clicked"/>
-                </StackLayout>
-            </Border>
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
-                <StackLayout>
-                    <Image Source="product.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список продуктов" Clicked="Product_Clicked"/>
-                </StackLayout>
-            </Border>
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
-                <StackLayout>
-                    <Image Source="add_product.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Добавить продукт" Clicked="AddProduct_Clicked"/>
-                </StackLayout>
-            </Border>
-        </FlexLayout>
+        <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+            <StackLayout Spacing="20" Padding="10">
+                <Label HorizontalOptions="Center" FontAttributes="Bold" Text="Авторизация"/>
+                <Entry WidthRequest="200" Text="{Binding Login}" x:Name="LoginEntry" Placeholder="Логин"/>
+                <HorizontalStackLayout WidthRequest="200">
+                    <Entry WidthRequest="160" Text="{Binding Password}" x:Name="PasswordEntry" Placeholder="Пароль" IsPassword="True"/>
+                    <ImageButton WidthRequest="20" MaximumWidthRequest="20" Source="password.png" Clicked="Button_Clicked"/>
+                    <ActivityIndicator x:Name="Activity" IsVisible="False" IsRunning="False"/>
+
+                </HorizontalStackLayout>
+                
+                <Button Text="Войти" Clicked="Authorization_Click" VerticalOptions="End"/>
+            </StackLayout>
+        </Border>
     </ScrollView>
 </ContentPage>

@@ -17,7 +17,7 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
 
         public void ResetClient()
         {
-            client.Login = ""; client.Rating = 0; client.Contact = ""; client.Name = "";
+            client.Login = ""; client.Rating = 0; client.Contact = ""; client.Name = ""; client.Type = "user";
             client.Email = ""; client.Password = ""; client.Patronymic = ""; client.Surname = "";
         }
 

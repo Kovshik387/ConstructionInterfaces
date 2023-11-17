@@ -3,6 +3,7 @@ using System;
 using ClientsProject.DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ClientsProject.DAL.Migrations
 {
     [DbContext(typeof(ClientAccountingContext))]
-    partial class ClientAccountingContextModelSnapshot : ModelSnapshot
+    [Migration("20231110151608_type")]
+    partial class type1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,10 +141,6 @@ namespace ClientsProject.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdProduct"));
 
-                    b.Property<string>("Branch")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int?>("Count")
                         .HasColumnType("integer")
                         .HasColumnName("count");
@@ -158,9 +157,6 @@ namespace ClientsProject.DAL.Migrations
                     b.Property<byte[]>("Photo")
                         .HasColumnType("bytea")
                         .HasColumnName("photo");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("integer");
 
                     b.HasKey("IdProduct")
                         .HasName("product_pkey");
