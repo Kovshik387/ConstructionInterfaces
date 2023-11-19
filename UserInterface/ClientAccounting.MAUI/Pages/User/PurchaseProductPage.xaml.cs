@@ -21,13 +21,17 @@ public partial class PurchaseProductPage : ContentPage
         this.BindingContext = _viewTuple;
 	}
 
-    protected override void OnAppearing()
-    {
-        _reviewVm.Review.Date = DateOnly.FromDateTime(DateTime.Now);
+	protected override void OnAppearing()
+	{
+		_reviewVm.Review.Date = DateOnly.FromDateTime(DateTime.Now);
 
-        if (_reviewVm.Message == null) this.ButtonReview.IsEnabled = true;
-		else this.ButtonReview.IsEnabled = false;
-        
+		if (_reviewVm.Message == null) this.ButtonReview.IsEnabled = true;
+		else
+		{
+			this.EntryRating.IsReadOnly = true;
+			this.EdtitorReview.IsReadOnly = true;
+			this.ButtonReview.IsEnabled = false;
+		}
 		base.OnAppearing();
     }
 

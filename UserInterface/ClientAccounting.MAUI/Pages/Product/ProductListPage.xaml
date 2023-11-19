@@ -25,7 +25,7 @@
                         
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Border HeightRequest="250" StrokeShape="RoundRectangle 20,20,20,20" Stroke="Black" Margin="20" >
+                                <Border HeightRequest="250" StrokeShape="RoundRectangle 20,20,20,20" Stroke="{StaticResource Primary}" Margin="20" >
                                     <Grid>
 
                                         <Grid.RowDefinitions>

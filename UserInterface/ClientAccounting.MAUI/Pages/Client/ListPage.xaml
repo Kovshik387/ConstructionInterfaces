@@ -30,8 +30,18 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Border StrokeShape="RoundRectangle 20,20,20,20" Stroke="Black" Margin="20" >
+                                <Border StrokeShape="RoundRectangle 20,20,20,20" Stroke="{StaticResource Primary}" Margin="20" >
                                     <StackLayout>
+
+                                        <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Номер: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding IdClient}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
                                         <Label FontSize = "20"  TextColor = "#006064"  Margin="10">
                                             <Label.FormattedText>
                                                 <FormattedString>

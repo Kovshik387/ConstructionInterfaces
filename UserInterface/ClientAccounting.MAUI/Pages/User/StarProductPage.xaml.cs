@@ -10,20 +10,31 @@ public partial class StarProductPage : ContentPage
 	{
 		InitializeComponent();
 		_starProductVm = starProduct;
-		
 	}
 
     protected override async void OnAppearing()
     {
-		var test = await _starProductVm.ProductDefition();
-
-		this.BindingContext = test;
+        this.BindingContext = await _starProductVm.ProductDefition(); ;
 
         base.OnAppearing();
     }
 
-	private void Purchase_Click(object sender, EventArgs e)
+	private async void Purchase_Click(object sender, EventArgs e)
 	{
+        await PurchaseButton.ScaleTo(1.05, 150);
+		await PurchaseButton.ScaleTo(1, 150);
 
-	}
+        if (!await this._starProductVm.Purchase())
+        {
+            await DisplayAlert("Ошибка", "Товара нет в наличии", "Ок");
+            return;
+        }
+
+        this.BindingContext = await _starProductVm.ProductDefition();
+
+        
+
+        await DisplayAlert("Сообщение", "Товар успешно куплен", "Ок");
+    }
+
 }

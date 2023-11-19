@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ClientAccounting.MAUI"
     xmlns:home="clr-namespace:ClientAccounting.MAUI.Pages.Hub"
+    Title="Accounting Client"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.Pages.User.PurchaseProductPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="PurchaseProductPage">
+             Title= "{Binding Item1.Name}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -70,12 +70,12 @@
                         <StackLayout Margin="5">
                             <Label Text="Отзыв" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
 
-                            <Editor  HeightRequest="200" Text="{Binding Item2.Message}" FontSize = "20" TextColor = "AliceBlue"/>
+                            <Editor x:Name="EdtitorReview" HeightRequest="300" Text="{Binding Item2.Message}" FontSize = "20" TextColor = "AliceBlue"/>
 
-                            <Label Text="Оценка" FontSize = "20" TextColor = "AliceBlue"/>
 
-                            <HorizontalStackLayout>
-                                <Entry HorizontalOptions="Start" WidthRequest="100" MaxLength="1" Text="{Binding Item2.Rating}" FontSize = "20" TextColor = "AliceBlue" />
+                            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                                <Label VerticalOptions="Center" Text="Оценка" FontSize = "20" TextColor = "AliceBlue"/>
+                                <Entry x:Name="EntryRating" HorizontalOptions="Start" WidthRequest="100" MaxLength="1" Text="{Binding Item2.Rating}" FontSize = "20" TextColor = "AliceBlue" />
                                 <Button HorizontalOptions="End" WidthRequest="200" x:Name="ButtonReview" Text="Оставить отзыв" Clicked="Review_Click"/>
                             </HorizontalStackLayout>
                             

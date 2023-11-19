@@ -20,7 +20,15 @@ namespace ClientsProject.DAL.Services
         {
             using (var factory = _databaseFactory.CreateDbContext())
             {
-                return new ObservableCollection<Client>(factory.Clients.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name, $"%{query}%") && name.Type != "admin").ToList());
+                if (Int32.TryParse(query,out var id))
+                {
+                    return new ObservableCollection<Client>(factory.Clients.Where(name =>
+                        Microsoft.EntityFrameworkCore.EF.Functions.Like(name.IdClient.ToString(), $"%{id}%") && name.Type != "admin").
+                        ToList());
+                }
+
+                return new ObservableCollection<Client>(factory.Clients.Where(name => 
+                        Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name, $"%{query}%") && name.Type != "admin").ToList());
             }
         }
 

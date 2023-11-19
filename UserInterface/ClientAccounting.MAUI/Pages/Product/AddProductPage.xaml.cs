@@ -14,6 +14,8 @@ public partial class AddProductPage : ContentPage
 
     private async void Button_Clicked(Object sender, EventArgs e)
     {
+        await ButtonCreate.ScaleTo(1.05, 150);
+        await ButtonCreate.ScaleTo(1, 150);
         try
         {
             var result = await FilePicker.Default.PickAsync(new PickOptions() { FileTypes = FilePickerFileType.Images, PickerTitle = "Âûבונטעו פאיכ" }) ;

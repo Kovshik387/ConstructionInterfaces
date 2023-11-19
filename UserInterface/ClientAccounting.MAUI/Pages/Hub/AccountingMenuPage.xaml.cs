@@ -19,15 +19,31 @@ public partial class AccountingMenuPage : ContentPage
         this._clientsView = clientsView; this._clientView = clientView; this._addClientView = addClientView;
         this._productsView = productsView; this._productView = productView;
     }
-    private void Button_Clicked(object sender, EventArgs e) =>
-        Navigation.PushAsync(new ListPage(_clientsView, _clientView, _addClientView));
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await this.ClientsButton.ScaleTo(1.05, 150);
+        await this.ClientsButton.ScaleTo(1, 150);
+        await Navigation.PushAsync(new ListPage(_clientsView, _clientView, _addClientView));
+    }
 
-    private async void AddClient_Clicked(object sender, EventArgs e) =>
+    private async void AddClient_Clicked(object sender, EventArgs e)
+    {
+        await this.AddButton.ScaleTo(1.05, 150);
+        await this.AddButton.ScaleTo(1, 150);
         await Shell.Current.GoToAsync("addclient", true);
+    }
 
-    private void Product_Clicked(object sender, EventArgs e) =>
-        Navigation.PushAsync(new ProductListPage(_productsView, _productView));
+    private async void Product_Clicked(object sender, EventArgs e)
+    {
+        await this.ListButton.ScaleTo(1.05, 150);
+        await this.ListButton.ScaleTo(1, 150);
+        await Navigation.PushAsync(new ProductListPage(_productsView, _productView));
+    }
 
-    private async void AddProduct_Clicked(object sender, EventArgs e) =>
+    private async void AddProduct_Clicked(object sender, EventArgs e)
+    {
+        await this.ProductButton.ScaleTo(1.05, 150);
+        await this.ProductButton.ScaleTo(1, 150);
         await Shell.Current.GoToAsync("addproduct", true);
+    }
 }

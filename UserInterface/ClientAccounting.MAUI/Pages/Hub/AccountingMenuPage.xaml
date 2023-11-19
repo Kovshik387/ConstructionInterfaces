@@ -5,28 +5,28 @@
              Title="AccountingMenu">
     <ScrollView>
         <FlexLayout Wrap="Wrap" Direction="Row" HorizontalOptions="Center" VerticalOptions="Center">
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+            <Border Stroke="{StaticResource Primary}" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
                 <StackLayout>
                     <Image Source="clients_new.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список клиентов" Clicked="Button_Clicked"/>
+                    <Button x:Name="ClientsButton" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список клиентов" Clicked="Button_Clicked"/>
                 </StackLayout>
             </Border>
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+            <Border Stroke="{StaticResource Primary}" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
                 <StackLayout>
                     <Image Source="add_client.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Добавить клиента" Clicked="AddClient_Clicked"/>
+                    <Button x:Name="AddButton" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Добавить клиента" Clicked="AddClient_Clicked"/>
                 </StackLayout>
             </Border>
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+            <Border Stroke="{StaticResource Primary}" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
                 <StackLayout>
                     <Image Source="product.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список продуктов" Clicked="Product_Clicked"/>
+                    <Button x:Name="ListButton" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Список продуктов" Clicked="Product_Clicked"/>
                 </StackLayout>
             </Border>
-            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
+            <Border Stroke="{StaticResource Primary}" StrokeThickness="1" StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="250" WidthRequest="250">
                 <StackLayout>
                     <Image Source="add_product.png" HeightRequest="200"/>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Добавить продукт" Clicked="AddProduct_Clicked"/>
+                    <Button x:Name="ProductButton" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Добавить продукт" Clicked="AddProduct_Clicked"/>
                 </StackLayout>
             </Border>
         </FlexLayout>

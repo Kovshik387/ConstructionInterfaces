@@ -68,7 +68,7 @@
                                             Flags="ValidateOnValueChanged"
                                             RegexPattern="^[0-9]*$"
                                             MinimumLength="1"
-                                            MaximumLength="1"
+                                            MaximumLength="5"
                                             x:Name="ValidCount"
                                         />
                                     </Entry.Behaviors>

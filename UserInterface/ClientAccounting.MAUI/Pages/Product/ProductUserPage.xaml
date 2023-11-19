@@ -2,8 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.Pages.Product.ProductUserPage"
-              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="ProductUserPage">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Товары">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Label HorizontalOptions="Start" FontAttributes="Bold" FontSize="Large" TextColor="White" Text="Товары"/>
+            <Label WidthRequest="25"/>
+            <ImageButton x:Name="Purchases" IsOpaque="True" CornerRadius="5" Aspect="AspectFill" WidthRequest="20" HeightRequest="20" Source="not_notification.png" Clicked="PurchaseProducts_Click"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -23,9 +31,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <HorizontalStackLayout>
-
+                    
                     <Border Grid.Column="0" Grid.Row="0" Margin="5" WidthRequest="300" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
-                        <Image Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+                        <Image x:Name="ImageGo" Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}"/>
                     </Border>
 
                     <StackLayout Grid.Column="1" Grid.Row="0" WidthRequest="300"  >
@@ -57,7 +65,7 @@
                             
                             <Label/>
 
-                            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
+                            <Border Stroke="Black" x:Name="PurchaseBorder" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
                                 <Button x:Name="PurchaseButton" TextColor="AliceBlue" Text="Купить" Clicked="Purchase_Click"/>
                             </Border>
 

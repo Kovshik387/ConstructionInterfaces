@@ -18,7 +18,7 @@ namespace ClientsProject.DAL.Interfaces
         public Task<List<Product>> GetProductsAsync(int id_client = 0);
         public List<Product> GetProducts(int id_client = 0);
         public Task<List<Product>> GetProductsByQuery(string query);
-        public Task<Product?> GetAnyProduct(string branch);
+        public Task<Product?> GetAnyProduct(string? branch);
         public Task SaveChangeAsync();
     }
 }

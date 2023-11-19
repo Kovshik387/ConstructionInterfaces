@@ -36,6 +36,7 @@ namespace ClientAccounting.MAUI
                 .AddTransient<ClientView>()
                 .AddTransient<ClientsView>()
                 .AddTransient<AddClientView>()
+                .AddTransient<AddClientPage>()
 
                 .AddTransient<ClientPage>()
                 .AddScoped<ListPage>()
@@ -51,6 +52,8 @@ namespace ClientAccounting.MAUI
 
                 .AddTransient<UserPurchaseView>()
                 .AddTransient<ReviewView>()
+
+                .AddTransient<UserHubView>()
 
                 .AddTransient<StarProductView>()
 

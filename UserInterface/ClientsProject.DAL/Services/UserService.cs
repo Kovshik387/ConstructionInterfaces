@@ -15,6 +15,12 @@ namespace ClientsProject.DAL.Services
                 return await factory.Clients.Where(u => u.IdClient == id).Include(f => f.Orders.Where(o => o.IdClient == id)).FirstOrDefaultAsync();
         }
 
+        public Client? GetClientById(int id)
+        {
+            using (var factory = _factory.CreateDbContext())
+                return factory.Clients.Where(u => u.IdClient == id).Include(f => f.Orders.Where(o => o.IdClient == id)).FirstOrDefault();
+        }
+
         public async Task<string?> GetProductForUser(int id_user)
         {
             using (var factory = await _factory.CreateDbContextAsync())

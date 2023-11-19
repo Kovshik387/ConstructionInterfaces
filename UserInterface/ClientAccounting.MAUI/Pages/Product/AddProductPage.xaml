@@ -20,7 +20,7 @@
             <StackLayout  BackgroundColor="{StaticResource Primary}" >
                 <StackLayout>
                     <Label Text="Добавление товара" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
-                    <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="800" Padding="10">
+                    <ScrollView  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="800" Padding="10">
                         <StackLayout>
                             <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                                 <Entry Text="{Binding Name}" TextColor="AliceBlue" Placeholder="Наименование" FontSize="16">
@@ -102,9 +102,9 @@
 
                             <Label></Label>
 
-                            <Button Text="Создать" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="ButtonAdd_Clicked"/>
+                            <Button x:Name="ButtonCreate" Text="Создать" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="ButtonAdd_Clicked"/>
                         </StackLayout>
-                    </StackLayout>
+                    </ScrollView>
                 </StackLayout>
             </StackLayout>
         </Border>

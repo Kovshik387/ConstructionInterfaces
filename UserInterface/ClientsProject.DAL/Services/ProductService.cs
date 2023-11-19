@@ -100,16 +100,29 @@ namespace ClientsProject.DAL.Services
                 return factory.Products.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name!, $"%{query}%")).ToList();
         }
 
-        public async Task<Product?> GetAnyProduct(string branch)
+        public async Task<Product?> GetAnyProduct(string? branch)
         {
             using (var factory = await _factory.CreateDbContextAsync())
             {
-                if (branch is null)  
-                    return await factory.Products.
-                        Where(i => i.IdProduct == new Random().Next(1, factory.Products.Count()) && i.Count > 0 ).
-                        FirstOrDefaultAsync();
+                if (branch is null)
+                {
+                    var rand_index = new Random().Next(1, factory.Products.Count());
+
+                    var item = await factory.Products.
+                        Where(i => i.IdProduct == rand_index && i.Count > 0).FirstOrDefaultAsync();
+
+                    while(item is null)
+                    {
+                        rand_index = new Random().Next(1, factory.Products.Count());
+                        item = await factory.Products.
+                        Where(i => i.IdProduct == rand_index && i.Count > 0).FirstOrDefaultAsync();
+                    }
+
+                    return item;
+                }
 
                 var products = await factory.Products.Where(i => i.Branch == branch && i.Count > 0).ToListAsync();
+                if (products.Count == 0) { return await factory.Products.Where(s => s.Count > 0).FirstOrDefaultAsync(); }
 
                 return products[new Random().Next(0,products.Count)];
             }

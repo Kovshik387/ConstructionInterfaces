@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.Pages.User.StarProductPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             BackgroundImageSource="star.png"
+             BackgroundImageSource="confetti.gif"
              Title="StarProduct">
 
     <ContentPage.Resources>
@@ -13,7 +13,7 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <Border Stroke="Black" WidthRequest="650" HeightRequest="400" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2" Background="{StaticResource Primary}">
+        <Border Stroke="Black" WidthRequest="650" HeightRequest="450" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2" Background="{StaticResource Primary}">
             <Grid VerticalOptions="Center">
 
                 <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
 
                     <StackLayout Grid.Column="1" Grid.Row="0" WidthRequest="300"  >
                         <Label Text="Продукт" TextColor="AliceBlue" TextDecorations="Underline" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Start" HorizontalOptions="Center"/>
-                        <Label Text="{Binding DateRelease}" TextColor="AliceBlue" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Daterelease}" TextColor="AliceBlue" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                         <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10" WidthRequest="300">
                             <Label Text="Название" FontSize="16" TextColor="AliceBlue" />
 
@@ -45,7 +45,7 @@
                                 <Label Padding="5" Text="{Binding Count}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
                             </Border>
 
-                            <Label Text="Цена" FontSize="16" TextColor="AliceBlue"/>
+                            <Label Text="Цена | скидка для Вас" FontSize="16" TextColor="AliceBlue"/>
 
                             <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="35">
                                 <Label Padding="5" Text="{Binding Price}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
@@ -58,8 +58,8 @@
 
                             <Label/>
 
-                            <Border Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
-                                <Button x:Name="PurchaseButton" TextColor="AliceBlue" Text="Купить" Clicked="Purchase_Click"/>
+                            <Border Stroke="Black" x:Name="PurchaseButton" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
+                                <Button TextColor="AliceBlue" Text="Купить"  Clicked="Purchase_Click"/>
                             </Border>
 
                         </StackLayout>
