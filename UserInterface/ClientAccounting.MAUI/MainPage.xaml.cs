@@ -17,12 +17,11 @@ namespace ClientAccounting.MAUI
         }
 
         private void Button_Clicked(object sender, EventArgs e) => 
-            this.PasswordEntry.IsPassword = this.PasswordEntry.IsPassword == false ?  true : false;
+            this.PasswordEntry.IsPassword = PasswordEntry.IsPassword == false;
 
         protected override async void OnAppearing()
         {
             this.Logo.IsVisible = true; this.Logo.IsEnabled = true;
-
             this.Logo.Opacity = 1;
 
             startBorder.IsEnabled = false; startBorder.IsVisible = false;

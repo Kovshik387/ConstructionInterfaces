@@ -12,7 +12,7 @@ namespace ClientAccounting.MAUI
             RegisterRoutes();
         }
 
-        private void RegisterRoutes()
+        private static void RegisterRoutes()
         {
             Routing.RegisterRoute("accountinghub", typeof(AccountingMenuPage));
             Routing.RegisterRoute("addproduct", typeof(AddProductPage));

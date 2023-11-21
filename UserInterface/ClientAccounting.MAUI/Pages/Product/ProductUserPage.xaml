@@ -9,7 +9,8 @@
         <HorizontalStackLayout>
             <Label HorizontalOptions="Start" FontAttributes="Bold" FontSize="Large" TextColor="White" Text="Товары"/>
             <Label WidthRequest="25"/>
-            <ImageButton x:Name="Purchases" IsOpaque="True" CornerRadius="5" Aspect="AspectFill" WidthRequest="20" HeightRequest="20" Source="not_notification.png" Clicked="PurchaseProducts_Click"/>
+            <ImageButton x:Name="Purchases" IsOpaque="True" CornerRadius="5" Aspect="AspectFill" WidthRequest="20" 
+                         HeightRequest="20" Source="not_notification.png" Clicked="PurchaseProducts_Click"/>
         </HorizontalStackLayout>
     </Shell.TitleView>
 

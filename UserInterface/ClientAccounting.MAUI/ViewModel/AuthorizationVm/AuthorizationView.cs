@@ -19,15 +19,7 @@ namespace ClientAccounting.MAUI.ViewModel.AuthorizationVm
         public string Login { get; set; } public string Password { get; set; }
 
         public AuthorizationView(IClientService service) => this._clientService = service;
-        public Client Authorize(string login, string password)
-        {
-            var client = _clientService.GetByLogin(login, password);
-
-            if (client is null) return null;
-
-            return client;
-        }
-
+        public Client Authorize(string login, string password) => _clientService.GetByLogin(login, password);
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

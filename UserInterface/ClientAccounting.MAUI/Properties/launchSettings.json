@@ -4,9 +4,6 @@
       "commandName": "MsixPackage",
       "nativeDebugging": false
     },
-    "Профиль 1": {
-      "commandName": "Executable"
-    },
     "WSL": {
       "commandName": "WSL2",
       "distributionName": ""
