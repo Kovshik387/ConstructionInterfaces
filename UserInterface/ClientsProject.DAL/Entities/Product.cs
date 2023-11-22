@@ -19,7 +19,11 @@ public partial class Product
 
     public string Branch { get; set; } = null!;
 
+    public DateOnly? Lastview { get; set; }
+
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+    public virtual ICollection<Viewclient> Viewclients { get; set; } = new List<Viewclient>();
 }

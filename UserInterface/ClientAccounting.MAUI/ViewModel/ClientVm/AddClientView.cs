@@ -23,10 +23,11 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
 
         public void AddClientAsync()
         {
+            client.Registrationdate = DateOnly.FromDateTime(DateTime.Now);
             _clientService.AddClient(client);
             ResetClient();
         }
-
+         
         [Required]
         [MinLength(1)]
         [MaxLength(20)]

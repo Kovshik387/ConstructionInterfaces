@@ -6,21 +6,22 @@ namespace ClientAccounting.MAUI.Pages;
 public partial class ListPage : ContentPage
 {
     public ClientsView _clientsView;
-    private ClientView _clientView;
-    private AddClientView _addClientView;
-    public ListPage(ClientsView clientsView, ClientView clientView, AddClientView addClientView)
+    public ListPage(ClientsView clientsView)
     {
         InitializeComponent();
 
-        this._clientsView = clientsView; this._clientView = clientView; this._addClientView = addClientView;
+        this._clientsView = clientsView;
         this.BindingContext = _clientsView;
     }
     private async void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is Client current)
-        {
-            _clientView.Client = current;
-            await Navigation.PushAsync(new ClientPage(_clientView));
+        if (e.CurrentSelection.FirstOrDefault() is Client current) {
+
+            var navParam = new Dictionary<String, object>(){
+                { "client",current }
+            };
+
+            await Shell.Current.GoToAsync("client", true, navParam);
         }
     }
     protected override void OnAppearing()
@@ -29,7 +30,7 @@ public partial class ListPage : ContentPage
         this.collectionView.ItemsSource = _clientsView.Clients;
         this.searchBar.Text = string.Empty;
     }
-    private void Button_Clicked(object sender, EventArgs e) => Navigation.PushAsync(new AddClientPage(_addClientView));
+    private async void Button_Clicked(object sender, EventArgs e) => await Shell.Current.GoToAsync("addproduct",true);
     private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         if (e.NewTextValue.Equals("")) _clientsView.GetAllClient();

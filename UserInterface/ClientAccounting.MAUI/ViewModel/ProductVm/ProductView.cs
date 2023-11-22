@@ -16,6 +16,7 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public Product Product { get; set; }
+        public Viewclient Views { get; set; }
 
         private readonly IProductService _productService;
         private readonly IUserService _userService;
@@ -121,6 +122,10 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
         }
 
         public void ChangeProduct() => this._productService.ChangeProductAsync(Product);
+        public async void ViewProduct() => await this._userService.UserView(
+            int.Parse(await SecureStorage.Default.GetAsync("id_user")), this.Product.IdProduct);
+
+        public void RefreshProduct() => this.Product = this._productService.GetProduct(this.Product.IdProduct);
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

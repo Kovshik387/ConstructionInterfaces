@@ -17,6 +17,7 @@ public partial class UserMenuPage : ContentPage, IQueryAttributable
     protected override void OnAppearing()
     {
         this._userHubVm.GetNameAsync(id); this.ShellTitle.Title = _userHubVm.Message;
+        this._userHubVm.SetLogin(id);
         base.OnAppearing();
     }
 

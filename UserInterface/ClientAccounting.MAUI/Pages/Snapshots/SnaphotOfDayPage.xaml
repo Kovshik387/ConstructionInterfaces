@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientAccounting.MAUI.Pages.Snapshots.SnaphotOfDayPage"
+             Title="{Binding CurrentTime}">
+
+
+    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="400" HeightRequest="300">
+            <ScrollView>
+                <StackLayout>
+                    <Label Padding="5" Text="Новые пользователи" FontSize="Medium"/>
+                    <CollectionView x:Name="NewUsers">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="5" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="{StaticResource Primary}">
+                                    <StackLayout Margin="5">
+                                        <HorizontalStackLayout>
+                                            <Label Text="Номер" FontAttributes="Bold"/>
+                                            <Label WidthRequest="5"/>
+                                            <Label Text="{Binding IdClient}"/>
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout>
+                                            <Label Text="Имя" FontAttributes="Bold"/>
+                                            <Label WidthRequest="5"/>
+                                            <Label Text="{Binding Name}"/>
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout>
+                                            <Label Text="Фамилия" FontAttributes="Bold"/>
+                                            <Label WidthRequest="5"/>
+                                            <Label Text="{Binding Surname}"/>
+                                        </HorizontalStackLayout>
+                                    </StackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </Border>
+
+
+        <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="1" WidthRequest="400" HeightRequest="300" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black">
+            <ScrollView>
+                <StackLayout>
+                    <Label Padding="5" Text="Новые продукты" FontSize="Medium"/>
+                    <CollectionView x:Name="NewProducts">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ScrollView>
+                                    <Border Margin="5" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="{StaticResource Primary}">
+                                        <StackLayout Margin="5">
+                                            <HorizontalStackLayout>
+                                                <Label Text="Номер" FontAttributes="Bold"/>
+                                                <Label WidthRequest="5"/>
+                                                <Label Text="{Binding IdProduct}"/>
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout>
+                                                <Label Text="Название" FontAttributes="Bold"/>
+                                                <Label WidthRequest="5"/>
+                                                <Label Text="{Binding Name}"/>
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout>
+                                                <Label Text="Район" FontAttributes="Bold"/>
+                                                <Label WidthRequest="5"/>
+                                                <Label Text="{Binding Branch}"/>
+                                            </HorizontalStackLayout>
+                                        </StackLayout>
+                                    </Border>
+                                </ScrollView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </Border>
+
+        <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="400" HeightRequest="300">
+            <ScrollView>
+                <StackLayout>
+                <Label Padding="5" Text="Совершённые покупки" FontSize="Medium"/>
+                    <CollectionView x:Name="NewPurchase">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="5" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="{StaticResource Primary}">
+                                    <StackLayout Margin="5">
+                                        <HorizontalStackLayout>
+                                            <Label Text="Номер" FontAttributes="Bold"/>
+                                            <Label WidthRequest="5"/>
+                                            <Label Text="{Binding IdProduct}"/>
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout>
+                                            <Label Text="Название" FontAttributes="Bold"/>
+                                            <Label WidthRequest="5"/>
+                                            <Label Text="{Binding Name}"/>
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout>
+                                            <Label Text="Район" FontAttributes="Bold"/>
+                                            <Label WidthRequest="5"/>
+                                            <Label Text="{Binding Branch}"/>
+                                        </HorizontalStackLayout>
+                                    </StackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </Border>
+
+        <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="400" HeightRequest="300">
+            <ScrollView>
+            <StackLayout>
+                <Label Padding="5" Text="Покупки в районах" FontSize="Medium"/>
+                    <CollectionView x:Name="RatingBranch">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="5" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="{StaticResource Primary}">
+                                    <StackLayout Margin="5">
+                                            <HorizontalStackLayout>
+                                                <Label Text="Название:" FontAttributes="Bold" FontSize="Medium"/>
+                                                <Label WidthRequest="5"/>
+                                                <Label Text="{Binding Name}" FontSize="Medium"/>
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout>
+                                                <Label Text="Количество заказов:" FontAttributes="Bold" FontSize="Medium"/>
+                                                <Label WidthRequest="5"/>
+                                                <Label Text="{Binding Count}" FontSize="Medium"/>
+                                            </HorizontalStackLayout>
+                                        </StackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </Border>
+    
+    </Grid>
+
+</ContentPage>

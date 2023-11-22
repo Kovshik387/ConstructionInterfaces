@@ -23,7 +23,7 @@ public partial class AccountingMenuPage : ContentPage
     {
         await this.ClientsButton.ScaleTo(1.05, 150);
         await this.ClientsButton.ScaleTo(1, 150);
-        await Navigation.PushAsync(new ListPage(_clientsView, _clientView, _addClientView));
+        await Shell.Current.GoToAsync("clientlist", true);//await Navigation.PushAsync(new ListPage(_clientsView, _clientView, _addClientView));
     }
 
     private async void AddClient_Clicked(object sender, EventArgs e)
@@ -37,7 +37,7 @@ public partial class AccountingMenuPage : ContentPage
     {
         await this.ListButton.ScaleTo(1.05, 150);
         await this.ListButton.ScaleTo(1, 150);
-        await Navigation.PushAsync(new ProductListPage(_productsView, _productView));
+        await Shell.Current.GoToAsync("product_list_user", true);//await Navigation.PushAsync(new ProductListPage(_productsView, _productView));
     }
 
     private async void AddProduct_Clicked(object sender, EventArgs e)
@@ -45,5 +45,12 @@ public partial class AccountingMenuPage : ContentPage
         await this.ProductButton.ScaleTo(1.05, 150);
         await this.ProductButton.ScaleTo(1, 150);
         await Shell.Current.GoToAsync("addproduct", true);
+    }
+
+    private async void Snapshot_Clicked(object sender, EventArgs e)
+    {
+        await this.SnapshotButton.ScaleTo(1.05, 150);
+        await this.SnapshotButton.ScaleTo(1, 150);
+        await Shell.Current.GoToAsync("snapshot", true);
     }
 }

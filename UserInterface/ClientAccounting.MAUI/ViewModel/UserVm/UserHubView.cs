@@ -14,5 +14,6 @@ namespace ClientAccounting.MAUI.ViewModel.UserVm
             this.Message = $"Привет, {name.Name}";
         }
 
+        public void SetLogin(int id) => this._userService.AuthoLogg(id);
     }
 }

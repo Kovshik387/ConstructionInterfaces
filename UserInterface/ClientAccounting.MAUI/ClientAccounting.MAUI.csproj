@@ -54,6 +54,7 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="FluentValidation" Version="11.7.1" />
+		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Plugin.ValidationRules" Version="1.5.0.1" />
 		<PackageReference Include="Syncfusion.Maui.Inputs" Version="23.1.43" />
@@ -75,6 +76,9 @@
 		</Compile>
 		<Compile Update="Pages\Hub\AccountingMenuPage.xaml.cs">
 		  <DependentUpon>AccountingMenuPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\Snapshots\SnaphotOfDayPage.xaml.cs">
+		  <DependentUpon>SnaphotOfDayPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Pages\User\StarProductPage.xaml.cs">
 		  <DependentUpon>StarProductPage.xaml</DependentUpon>
@@ -107,6 +111,9 @@
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Pages\Product\ProductUserPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Pages\Snapshots\SnaphotOfDayPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Pages\User\PurchaseProductPage.xaml">

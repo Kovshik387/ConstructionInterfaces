@@ -1,15 +1,19 @@
 ﻿using ClientAccounting.MAUI.Pages;
 using ClientAccounting.MAUI.Pages.Hub;
+using ClientAccounting.MAUI.Pages.Snapshots;
 using ClientAccounting.MAUI.Pages.User;
 using ClientAccounting.MAUI.ViewModel.AuthorizationVm;
 using ClientAccounting.MAUI.ViewModel.ClientVm;
 using ClientAccounting.MAUI.ViewModel.ProductVm;
 using ClientAccounting.MAUI.ViewModel.ReviewVm;
+using ClientAccounting.MAUI.ViewModel.SnapshotVm;
 using ClientAccounting.MAUI.ViewModel.UserVm;
 using ClientsProject.DAL.EF;
 using ClientsProject.DAL.Interfaces;
 using ClientsProject.DAL.Services;
 using CommunityToolkit.Maui;
+using Material.Components.Maui.Extensions;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
@@ -63,6 +67,9 @@ namespace ClientAccounting.MAUI
 
                 .AddTransient<StarProductPage>()
 
+                .AddTransient<SnapshotView>()
+                .AddTransient<SnaphotOfDayPage>()
+
                 .AddTransient<PurchasesPage>()
                 .AddTransient<PurchaseProductPage>()
 
@@ -70,7 +77,6 @@ namespace ClientAccounting.MAUI
                 .AddTransient<IUserService,UserService>()
                 .AddTransient<IClientService, ClientService>()
                 .AddTransient<IProductService,ProductService>();
-                
 
             builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 

@@ -16,28 +16,29 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <Grid>
-            <HorizontalStackLayout Padding="40" Spacing="60">
+        <FlexLayout Margin="40" Direction="Row" JustifyContent="SpaceAround">
             <Border x:Name="UserView" Stroke="Black" WidthRequest="500" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
                     <StackLayout  BackgroundColor="{StaticResource Primary}" WidthRequest="500" HeightRequest="600">
                         <Label Text="Клиент" TextDecorations="Underline" FontAttributes="Bold" TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
-                        <StackLayout  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="600" Padding="10">
-                            <StackLayout>
+                        <StackLayout x:Name="DetailClient"  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="600" Padding="10">
+
                                 <Label Text="Логин" TextColor="AliceBlue" FontSize="16" />
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                                     <Entry Text="{Binding Login}"  Placeholder="Логин" FontSize="16">
                                         <Entry.Behaviors>
                                             <toolkit:TextValidationBehavior 
-                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                ValidStyle="{StaticResource ValidEntryStyle}"
-                                                Flags="ValidateOnValueChanged"
-                                                MinimumLength="1"
-                                                MaximumLength="20"
-                                                x:Name="ValidLogin"
-                                                />
+                                                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                                        Flags="ValidateOnValueChanged"
+                                                        MinimumLength="1"
+                                                        MaximumLength="20"
+                                                        x:Name="ValidLogin"
+                                                        />
                                         </Entry.Behaviors>
                                     </Entry>
                                 </Border>
+
+                            
                                 <Label Text="Пароль" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                                     <Entry Text="{Binding Password}" Placeholder="Пароль" FontSize="16">
@@ -112,7 +113,7 @@
                                                 />
                                         </Entry.Behaviors>
                                     </Entry>
-                            </Border>
+                                </Border>
                                 <Label Text="Почта" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                                     <Entry Text="{Binding Email}" Placeholder="Почта" FontSize="16">
@@ -127,12 +128,12 @@
                                                 />
                                         </Entry.Behaviors>
                                     </Entry>
-                            </Border>
+                                </Border>
                                 <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                                     <Entry Text="{Binding Rating}" TextColor="AliceBlue" Placeholder="Рейтинг" FontSize="16">
                                         <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
+                                            <toolkit:TextValidationBehavior 
                                             InvalidStyle="{StaticResource InvalidEntryStyle}"
                                             ValidStyle="{StaticResource ValidEntryStyle}"
                                             Flags="ValidateOnValueChanged"
@@ -143,41 +144,70 @@
                                         </Entry.Behaviors>
                                     </Entry>
                                 </Border>
-                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </Border>
 
-            <Border x:Name="OrdersView" Stroke="Black" WidthRequest="300" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
-                <ScrollView>
-                    <StackLayout>
-                        <Label Text="Товары" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
-                        <StackLayout Padding="10">
-                            <CollectionView x:Name="collectionViewOrder" SelectionMode="Single">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <VerticalStackLayout Padding="5">
-                                            <Border Stroke="Black" StrokeShape="RoundRectangle 10,10,10,10" Padding="5">
-                                                <StackLayout>
-                                                    <Label Text="{Binding Daterelease}" FontSize = "20" TextColor = "AliceBlue"/>
-                                                    <Label Text="{Binding IdProductNavigation.Name}" FontSize = "20" TextColor = "AliceBlue"/>
-                                                </StackLayout>
-                                            </Border>
-                                        </VerticalStackLayout>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </StackLayout>
-                    </StackLayout>
-                </ScrollView>
-            </Border>
-
-            <Border x:Name="ReviewView" Stroke="Black" WidthRequest="500" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+            <StackLayout HeightRequest="600">
+                <Border x:Name="ClienJustView" Stroke="Black" WidthRequest="200" HeightRequest="600" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
                     <ScrollView>
                         <StackLayout>
-                            <Label Text="Отзывы" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                            <Label Text="{Binding CountView,StringFormat='Просмотрено: {0} товаров'}" x:Name="countViewDetail" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                            <StackLayout Padding="5">
+                                <CollectionView x:Name="collectionViewClient" SelectionMode="Single" SelectionChanged="collectionViewClient_SelectionChanged">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <VerticalStackLayout Padding="5">
+                                                <Border Stroke="Black" StrokeShape="RoundRectangle 10,10,10,10" Padding="5">
+                                                    <StackLayout>
+                                                        <Label Text="{Binding IdProductNavigation.Daterelease}" FontSize = "20" TextColor = "AliceBlue"/>
+                                                        <Label Text="{Binding IdProductNavigation.Name}" FontSize = "20" TextColor = "AliceBlue"/>
+                                                        <Label Text="{Binding Dateview}" FontSize = "20" TextColor = "AliceBlue"/>
+                                                    </StackLayout>
+                                                </Border>
+                                            </VerticalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </Border>
+            </StackLayout>
+            
+            <StackLayout HeightRequest="600">
+                <Border x:Name="OrdersView" Stroke="Black" WidthRequest="500" HeightRequest="200" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+                    <ScrollView>
+                        <StackLayout>
+                            <Label Text="{Binding CountPurchase, StringFormat='Купленные товары {0}'}" x:Name="CountBuyProducts" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                            <StackLayout Padding="5">
+                                <CollectionView x:Name="collectionViewOrder" SelectionMode="Single" SelectionChanged="collectionViewOrder_SelectionChanged">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <VerticalStackLayout Padding="5">
+                                                <Border Stroke="Black" StrokeShape="RoundRectangle 10,10,10,10" Padding="5">
+                                                    <StackLayout>
+                                                        <Label Text="{Binding Daterelease}" FontSize = "20" TextColor = "AliceBlue"/>
+                                                        <Label Text="{Binding IdProductNavigation.Name}" FontSize = "20" TextColor = "AliceBlue"/>
+                                                    </StackLayout>
+                                                </Border>
+                                            </VerticalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
+                </Border>
+
+                <Label/>
+
+                <Border x:Name="ReviewView" Stroke="Black" WidthRequest="500" HeightRequest="380" StrokeShape="RoundRectangle 35,35,35,35" BackgroundColor="#512BD4" StrokeThickness="2">
+                    <ScrollView>
+                        <StackLayout>
+                            <Label Text="{Binding CountReview ,StringFormat='Отзывы {0}'}" x:Name="ReviewCount" TextDecorations="Underline" FontAttributes="Bold"  TextColor="AliceBlue" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                             <StackLayout Padding="10">
-                                <CollectionView x:Name="collectionView" SelectionMode="Single">
+                                <CollectionView x:Name="collectionView" SelectionMode="Single" SelectionChanged="collectionView_SelectionChanged">
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <VerticalStackLayout Padding="5">
@@ -196,9 +226,9 @@
                         </StackLayout>
                     </ScrollView>
                 </Border>
+            </StackLayout>
+                
 
-        </HorizontalStackLayout>
-        <!--</FlexLayout>-->
-        </Grid>
+        </FlexLayout>
     </ScrollView>
 </ContentPage>

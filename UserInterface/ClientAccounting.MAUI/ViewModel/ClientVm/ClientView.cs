@@ -25,6 +25,10 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
         private readonly IClientService _clientService;
         public ObservableCollection<Review> Reviews { get; set; }
         public ObservableCollection<Order> Order { get; set; }
+        public IList<Viewclient> Views { get; set; }
+        public int CountView { get; set; } = default;
+        public int CountReview { get; set; } = default;
+        public int CountPurchase { get; set; } = default;
         public Client Client { get; set; } = new();
 
         public ClientView(IClientService clientService) => _clientService = clientService;
@@ -37,6 +41,10 @@ namespace ClientAccounting.MAUI.ViewModel.ClientVm
             Client = _clientService.GetInfo(Client); 
             Order = new ObservableCollection<Order>(Client.Orders);
             Reviews = new ObservableCollection<Review>(Client.Reviews);
+            Views = new List<Viewclient>(Client.Viewclients);
+            this.CountView = Views.Count;
+            this.CountReview = Reviews.Count;
+            this.CountPurchase = Client.Orders.Count; 
         }
 
         [Required]

@@ -20,32 +20,35 @@
     </ContentPage.Resources>
 
     <ScrollView>
-            <Border Stroke="Black" WidthRequest="650" HeightRequest="400" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2" Background="{StaticResource Primary}">
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout HeightRequest="120"/>
+            <HorizontalStackLayout>
+            <Border Stroke="Black" WidthRequest="650" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="440" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2" Background="{StaticResource Primary}">
                 <Grid VerticalOptions="Center">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <HorizontalStackLayout>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <HorizontalStackLayout>
 
-                    <Border Grid.Column="0" Grid.Row="0" Margin="5" WidthRequest="300" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
-                        <Image Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
-                    </Border>
+                        <Border Grid.Column="0" Grid.Row="0" Margin="5" WidthRequest="300" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
+                            <Image Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+                        </Border>
 
-                    <StackLayout Grid.Column="1" Grid.Row="0" WidthRequest="300"  >
-                        <Label Text="Продукт" TextColor="AliceBlue" TextDecorations="Underline" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Start" HorizontalOptions="Center"/>
-                        <Label Text="{Binding DateRelease}" TextColor="AliceBlue" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10" WidthRequest="300">
-                            <Label Text="Название" FontSize="16" TextColor="AliceBlue" />
+                        <StackLayout Grid.Column="1" Grid.Row="0" WidthRequest="300"  >
+                            <Label Text="Продукт" TextColor="AliceBlue" TextDecorations="Underline" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Start" HorizontalOptions="Center"/>
+                            <Label Text="{Binding DateRelease}" TextColor="AliceBlue" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="10" WidthRequest="300">
+                                <Label Text="Название" FontSize="16" TextColor="AliceBlue" />
 
-                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Name}" Placeholder="Название" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
+                                <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry Text="{Binding Name}" Placeholder="Название" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
                                                 InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                 ValidStyle="{StaticResource ValidEntryStyle}"
                                                 Flags="ValidateOnValueChanged"
@@ -53,16 +56,16 @@
                                                 MaximumLength="20"
                                                 x:Name="ValidName"
                                                 />
-                                    </Entry.Behaviors>
-                                </Entry>
-                            </Border>
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
 
-                            <Label Text="Количество" FontSize="16" TextColor="AliceBlue" />
+                                <Label Text="Количество" FontSize="16" TextColor="AliceBlue" />
 
-                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Count}" Placeholder="Количество" FontSize="16" Keyboard="Numeric">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior
+                                <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry Text="{Binding Count}" Placeholder="Количество" FontSize="16" Keyboard="Numeric">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior
                                             InvalidStyle="{StaticResource InvalidEntryStyle}"
                                             ValidStyle="{StaticResource ValidEntryStyle}"
                                             Flags="ValidateOnValueChanged"
@@ -71,16 +74,16 @@
                                             MaximumLength="5"
                                             x:Name="ValidCount"
                                         />
-                                    </Entry.Behaviors>
-                                </Entry>
-                            </Border>
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
 
-                            <Label Text="Цена" FontSize="16" TextColor="AliceBlue"/>
+                                <Label Text="Цена" FontSize="16" TextColor="AliceBlue"/>
 
-                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Price}" Placeholder="Цена" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
+                                <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry Text="{Binding Price}" Placeholder="Цена" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
                                     InvalidStyle="{StaticResource InvalidEntryStyle}"
                                     ValidStyle="{StaticResource ValidEntryStyle}"
                                     Flags="ValidateOnValueChanged"
@@ -88,15 +91,15 @@
                                     MinimumLength="1"
                                     MaximumLength="20"
                                     x:Name="ValidPrice"/>
-                                    </Entry.Behaviors>
-                                </Entry>
-                            </Border>
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
 
-                            <Label Text="Филиал" FontSize="16" TextColor="AliceBlue"/>
-                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <Entry Text="{Binding Branch}" Placeholder="Филиал" FontSize="16">
-                                    <Entry.Behaviors>
-                                        <toolkit:TextValidationBehavior 
+                                <Label Text="Филиал" FontSize="16" TextColor="AliceBlue"/>
+                                <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry Text="{Binding Branch}" Placeholder="Филиал" FontSize="16">
+                                        <Entry.Behaviors>
+                                            <toolkit:TextValidationBehavior 
                                                 InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                 ValidStyle="{StaticResource ValidEntryStyle}"
                                                 Flags="ValidateOnValueChanged"
@@ -104,15 +107,130 @@
                                                 MaximumLength="20"
                                                 x:Name="ValidBranch"
                                                 />
-                                    </Entry.Behaviors>
-                                </Entry>
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </HorizontalStackLayout>
+                </Grid>
+            </Border>
+
+            <Label WidthRequest="40"/>
+
+            <VerticalStackLayout>
+                <Border Stroke="Black" WidthRequest="350" HeightRequest="220" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2">
+                    <ScrollView>
+                        <StackLayout>
+                                <Label Text="Просмотрено" TextColor="Black" TextDecorations="Underline" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Start" HorizontalOptions="Center"/>
+                                <CollectionView x:Name="SeensView" SelectionMode="Single" SelectionChanged="SeensView_SelectionChanged">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="10" HorizontalItemSpacing="20"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                            <StackLayout>
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Имя:" FontAttributes="Bold"/>
+                                                    <Label WidthRequest="2"/>
+                                                    <Label Text="{Binding IdClientNavigation.Name}"/>
+                                                </HorizontalStackLayout>
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Фамилия:" FontAttributes="Bold"/>
+                                                    <Label WidthRequest="2"/>
+                                                    <Label Text="{Binding IdClientNavigation.Surname}"/>
+                                                </HorizontalStackLayout>
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Дата:" FontAttributes="Bold"/>
+                                                    <Label WidthRequest="2"/>
+                                                    <Label Text="{Binding Dateview}"/>
+                                                </HorizontalStackLayout>
+                                            </StackLayout>
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                    </StackLayout>
+                    </ScrollView>
+                </Border>
+                <Label HeightRequest="10"/>
+                <Border Stroke="Black" WidthRequest="350" HeightRequest="210" StrokeShape="RoundRectangle 35,35,35,35" StrokeThickness="2">
+                    <ScrollView>
+                    <StackLayout>
+                        <Label Text="Куплено" TextColor="Black" TextDecorations="Underline" FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Start" HorizontalOptions="Center"/>
+                            <CollectionView x:Name="BuyView" SelectionMode="Single"  SelectionChanged="ReviewView_SelectionChanged">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="10" HorizontalItemSpacing="20"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                                            <StackLayout>
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Имя:" FontAttributes="Bold"/>
+                                                    <Label WidthRequest="2"/>
+                                                    <Label Text="{Binding IdClientNavigation.Name}"/>
+                                                </HorizontalStackLayout>
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Фамилия:" FontAttributes="Bold"/>
+                                                    <Label WidthRequest="2"/>
+                                                    <Label Text="{Binding IdClientNavigation.Surname}"/>
+                                                </HorizontalStackLayout>
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Дата:" FontAttributes="Bold"/>
+                                                    <Label WidthRequest="2"/>
+                                                    <Label Text="{Binding Daterelease}"/>
+                                                </HorizontalStackLayout>
+                                            </StackLayout>
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                    </StackLayout>
+                </ScrollView>
+                </Border>
+            </VerticalStackLayout>
+
+        </HorizontalStackLayout>
+
+            <StackLayout HeightRequest="100"/>
+
+            <Label Text="Отзывы" FontSize="Header"/>
+            <CollectionView x:Name="ReviewView" SelectionMode="None" Margin="5" WidthRequest="1100">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout WidthRequest="1100">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding IdClientNavigation.Name}" FontAttributes="Bold"/>
+                                <Label WidthRequest="10"/>
+                                <Label Text="{Binding IdClientNavigation.Surname}" FontAttributes="Bold"/>
+                                <Label WidthRequest="10"/>
+                                <Label Text="{Binding IdClientNavigation.Patronymic}" FontAttributes="Bold"/>
+                            </HorizontalStackLayout>
+                            <Border Stroke="{StaticResource Primary}" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
+                            <StackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="Оценка" FontAttributes="Bold"/>
+                                    <Label WidthRequest="5"/>
+                                    <Label Text="{Binding Rating}"/>
+                                    <Label WidthRequest="5"/>
+                                    <Label Text="Дата покупки" FontAttributes="Bold"/>
+                                    <Label WidthRequest="5"/>
+                                    <Label Text="{Binding Date}"/>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Message}"/>
+                            </StackLayout>
                             </Border>
                         </StackLayout>
-                    </StackLayout>
-
-                </HorizontalStackLayout>
-            </Grid>
-        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>

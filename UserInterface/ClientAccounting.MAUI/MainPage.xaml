@@ -3,26 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.MainPage"
              Title="Главная страница"
+             BackgroundImageSource="start_back.jpg"
              >
-    <ScrollView>
-        <StackLayout>
-            <Border VerticalOptions="CenterAndExpand" x:Name="Logo" WidthRequest="500" HeightRequest="500" StrokeShape="RoundRectangle 35,35,35,35">
-                <Image x:Name="LogoImage" Source="logo.png"/>
-            </Border>
-            <Border VerticalOptions="CenterAndExpand" x:Name="startBorder" Stroke="Black" StrokeThickness="1" 
+
+    <StackLayout>
+        <Border VerticalOptions="CenterAndExpand" x:Name="Logo" WidthRequest="500" HeightRequest="500" StrokeShape="RoundRectangle 35,35,35,35">
+            <Image x:Name="LogoImage" Source="logo.png"/>
+        </Border>
+        <Border  Background="White" VerticalOptions="CenterAndExpand" x:Name="startBorder" Stroke="Black" StrokeThickness="1" 
                     StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="300" WidthRequest="250">
-                <StackLayout Spacing="20" Padding="10">
-                    <Label HorizontalOptions="Center" FontAttributes="Bold" Text="Авторизация"/>
-                    <Entry WidthRequest="200" Text="{Binding Login}" VerticalTextAlignment="Center" x:Name="LoginEntry" Placeholder="Логин"/>
-                    <HorizontalStackLayout WidthRequest="200">
-                        <Entry WidthRequest="160" Text="{Binding Password}"  VerticalTextAlignment="Center" x:Name="PasswordEntry" Placeholder="Пароль" IsPassword="True"/>
-                        <ImageButton WidthRequest="20" MaximumWidthRequest="20" Source="password.png" Clicked="Button_Clicked"/>
-                    </HorizontalStackLayout>
-                    <Button x:Name="ButtonAuth" Text="Войти" Clicked="Authorization_Click" VerticalOptions="End"/>
-                
-                    <ActivityIndicator x:Name="Activity" IsVisible="False" IsRunning="False"/>
-                </StackLayout>
-            </Border>
-        </StackLayout>
-    </ScrollView>
+            <StackLayout Spacing="20" Padding="10">
+                <Label HorizontalOptions="Center" FontAttributes="Bold" Text="Авторизация"/>
+                <Entry WidthRequest="200" Text="{Binding Login}" VerticalTextAlignment="Center" x:Name="LoginEntry" Placeholder="Логин"/>
+                <HorizontalStackLayout WidthRequest="200">
+                    <Entry WidthRequest="160" Text="{Binding Password}"  VerticalTextAlignment="Center" x:Name="PasswordEntry" Placeholder="Пароль" IsPassword="True"/>
+                    <ImageButton IsOpaque="False" WidthRequest="20" CornerRadius="5" MaximumWidthRequest="20" Source="password.png" Clicked="Button_Clicked"/>
+                </HorizontalStackLayout>
+                <Button x:Name="ButtonAuth" Text="Войти" Clicked="Authorization_Click" VerticalOptions="End"/>
+
+                <ActivityIndicator x:Name="Activity" IsVisible="False" IsRunning="False"/>
+            </StackLayout>
+        </Border>
+    </StackLayout>
+
 </ContentPage>

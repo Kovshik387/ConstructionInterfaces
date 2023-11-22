@@ -12,7 +12,7 @@ namespace ClientsProject.DAL.Interfaces
     {
         public Task AddProductAsync(Product order);
         public Task ChangeProductAsync(Product order);
-        public Task<Product?> GetProductAsync(Product order);
+        public Product? GetProduct(int id);
         public Task<List<Product>> GetUserProductAsync(int id);
         public List<Product> GetUserProduct(int id);
         public Task<List<Product>> GetProductsAsync(int id_client = 0);
@@ -20,5 +20,8 @@ namespace ClientsProject.DAL.Interfaces
         public Task<List<Product>> GetProductsByQuery(string query);
         public Task<Product?> GetAnyProduct(string? branch);
         public Task SaveChangeAsync();
+        public List<RatingQuery> GetHighBranch(DateOnly date);
+        public List<Product> GetProductByDate(DateOnly date);
+        public List<Order> GetOrderByDate(DateOnly date);
     }
 }

@@ -28,11 +28,19 @@ namespace ClientsProject.DAL.Services
             }
         }
 
-        public async Task<Product?> GetProductAsync(Product product)
+        public Product? GetProduct(int id)
         {
-            using (var factory = await _factory.CreateDbContextAsync())
+            using (var factory = _factory.CreateDbContext())
             {
-                return await factory.Products.Where(p => p == product).Include(p1 => p1.Reviews.Where(p2 => p2.IdProduct == product.IdProduct)).FirstOrDefaultAsync();
+                return factory.Products.
+                    Where(p => p.IdProduct == id).
+                    Include(p1 => p1.Reviews.Where(p2 => p2.IdProduct == id)).
+                    ThenInclude(s => s.IdClientNavigation).
+                    Include(i => i.Orders.Where(idp => idp.IdProduct == id)).
+                    ThenInclude(s => s.IdClientNavigation).
+                    Include(v => v.Viewclients.Where(s1 => s1.IdProduct == id)).
+                    ThenInclude(s => s.IdClientNavigation).
+                    FirstOrDefault();
             }
         }
 
@@ -40,8 +48,9 @@ namespace ClientsProject.DAL.Services
         {
             using (var factory = _factory.CreateDbContext())
             {
-               if (id_client == 0) return factory.Products.ToList();
-               else return factory.Products.Include(i => i.Orders.Where(id => id.IdClient == id_client)).ToList();
+               if (id_client == 0) return factory.Products.
+                        Include(i => i.Viewclients).ThenInclude(s => s.IdClientNavigation).ToList();
+                else return factory.Products.Include(i => i.Orders.Where(id => id.IdClient == id_client)).ToList();
             }
         }
 
@@ -97,7 +106,8 @@ namespace ClientsProject.DAL.Services
         public async Task<List<Product>> GetProductsByQuery(string query)
         {
             using (var factory = await _factory.CreateDbContextAsync())
-                return factory.Products.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name!, $"%{query}%")).ToList();
+                return factory.Products.Where(name => Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Name!, $"%{query}%") 
+                || Microsoft.EntityFrameworkCore.EF.Functions.Like(name.Branch!, $"%{query}%")).ToList();
         }
 
         public async Task<Product?> GetAnyProduct(string? branch)
@@ -132,6 +142,33 @@ namespace ClientsProject.DAL.Services
         {
             using (var factory = await _factory.CreateDbContextAsync())
                 await factory.SaveChangesAsync();
+        }
+
+        public List<Product> GetProductByDate(DateOnly date)
+        {
+            using var factory = _factory.CreateDbContext();
+            return factory.Products.Where(d => d.Daterelease == date).ToList();
+        }
+
+        public List<RatingQuery> GetHighBranch(DateOnly date)
+        {
+            using var factory = _factory.CreateDbContext();
+            var temp = factory.Orders.Where(d => d.Daterelease == date).
+                Include(p => p.IdProductNavigation).
+                GroupBy(x => x.IdProductNavigation.Branch).
+                Select(s => new { Name = s.Key, Count = s.Count() }).Where(s => s.Count > 0).ToList();
+
+            var temp_rating = new List<RatingQuery>();
+
+            foreach (var item in temp) { temp_rating.Add(new RatingQuery() { Name = item.Name, Count = item.Count}); }
+
+            return temp_rating;
+        }
+
+        public List<Order> GetOrderByDate(DateOnly date)
+        {
+            using var factory = _factory.CreateDbContext();
+            return factory.Orders.Where(d => d.Daterelease == date).Include(s => s.IdProductNavigation).ToList();
         }
     }
 }

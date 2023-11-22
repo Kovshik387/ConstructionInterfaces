@@ -44,7 +44,7 @@ namespace ClientsProject.DAL.Services
         {
             using (var factory = _databaseFactory.CreateDbContext())
                 return factory.Clients.Where(d_client => d_client == client).Include(r => r.Reviews).
-                    ThenInclude(p => p.IdProductNavigation).Include(o => o.Orders).ThenInclude(p => p.IdProductNavigation).First();
+                    ThenInclude(p => p.IdProductNavigation).Include(v => v.Viewclients.Where(id => id.IdClient == client.IdClient)).Include(o => o.Orders).ThenInclude(p => p.IdProductNavigation).First();
         }
 
         public async Task<Client?> GetClientByIdAsync(int id)

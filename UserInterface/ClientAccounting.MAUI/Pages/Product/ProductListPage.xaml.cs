@@ -21,11 +21,14 @@ public partial class ProductListPage : ContentPage
         
         _productVm.Product = current;
 
-        var test = await SecureStorage.GetAsync("id_user");
+        var navParam = new Dictionary<string, object>() 
+        {
+            {"product", current }
+        };
 
         if (await SecureStorage.GetAsync("role") == "user")
             await Navigation.PushAsync(new ProductUserPage(_productVm));
-        else await Navigation.PushAsync(new ProductPage(_productVm));
+        else await Shell.Current.GoToAsync("adminProduct", true, navParam);
     }
 
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -35,6 +38,7 @@ public partial class ProductListPage : ContentPage
 
         this.collectionView.ItemsSource = _productsVm.Products;
     }
+
 
     protected override void OnAppearing()
     {

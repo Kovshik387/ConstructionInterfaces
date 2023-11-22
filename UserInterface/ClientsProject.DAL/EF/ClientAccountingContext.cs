@@ -24,6 +24,8 @@ public partial class ClientAccountingContext : DbContext
 
     public virtual DbSet<Review> Reviews { get; set; }
 
+    public virtual DbSet<Viewclient> Viewclients { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ClientAccounting;Username=postgres;Password=123");
 
@@ -44,6 +46,7 @@ public partial class ClientAccountingContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(60)
                 .HasColumnName("email");
+            entity.Property(e => e.Lastvisit).HasColumnName("lastvisit");
             entity.Property(e => e.Login)
                 .HasMaxLength(50)
                 .HasColumnName("login");
@@ -57,9 +60,11 @@ public partial class ClientAccountingContext : DbContext
                 .HasMaxLength(20)
                 .HasColumnName("patronymic");
             entity.Property(e => e.Rating).HasColumnName("rating");
+            entity.Property(e => e.Registrationdate).HasColumnName("registrationdate");
             entity.Property(e => e.Surname)
                 .HasMaxLength(30)
                 .HasColumnName("surname");
+            entity.Property(e => e.Type).HasDefaultValueSql("''::text");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -67,6 +72,10 @@ public partial class ClientAccountingContext : DbContext
             entity.HasKey(e => e.Idorder).HasName("orders_pkey");
 
             entity.ToTable("orders");
+
+            entity.HasIndex(e => e.IdClient, "IX_orders_id_client");
+
+            entity.HasIndex(e => e.IdProduct, "IX_orders_id_product");
 
             entity.Property(e => e.Idorder).HasColumnName("idorder");
             entity.Property(e => e.Count).HasColumnName("count");
@@ -95,8 +104,10 @@ public partial class ClientAccountingContext : DbContext
             entity.ToTable("product");
 
             entity.Property(e => e.IdProduct).HasColumnName("id_product");
+            entity.Property(e => e.Branch).HasDefaultValueSql("''::text");
             entity.Property(e => e.Count).HasColumnName("count");
             entity.Property(e => e.Daterelease).HasColumnName("daterelease");
+            entity.Property(e => e.Lastview).HasColumnName("lastview");
             entity.Property(e => e.Name)
                 .HasMaxLength(40)
                 .HasColumnName("name");
@@ -108,6 +119,10 @@ public partial class ClientAccountingContext : DbContext
             entity.HasKey(e => e.IdReview).HasName("review_pkey");
 
             entity.ToTable("review");
+
+            entity.HasIndex(e => e.IdClient, "IX_review_id_client");
+
+            entity.HasIndex(e => e.IdProduct, "IX_review_id_product");
 
             entity.Property(e => e.IdReview).HasColumnName("id_review");
             entity.Property(e => e.Date).HasColumnName("date");
@@ -127,6 +142,27 @@ public partial class ClientAccountingContext : DbContext
                 .HasConstraintName("review_id_product_fkey");
         });
 
+        modelBuilder.Entity<Viewclient>(entity =>
+        {
+            entity.HasKey(e => e.IdView).HasName("viewclient_pkey");
+
+            entity.ToTable("viewclient");
+
+            entity.Property(e => e.IdView).HasColumnName("id_view");
+            entity.Property(e => e.Dateview).HasColumnName("dateview");
+            entity.Property(e => e.IdClient).HasColumnName("id_client");
+            entity.Property(e => e.IdProduct).HasColumnName("id_product");
+
+            entity.HasOne(d => d.IdClientNavigation).WithMany(p => p.Viewclients)
+                .HasForeignKey(d => d.IdClient)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("viewclient_id_client_fkey");
+
+            entity.HasOne(d => d.IdProductNavigation).WithMany(p => p.Viewclients)
+                .HasForeignKey(d => d.IdProduct)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("viewclient_id_product_fkey");
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }
