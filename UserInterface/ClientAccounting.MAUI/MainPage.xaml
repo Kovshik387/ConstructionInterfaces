@@ -7,9 +7,9 @@
              >
 
     <StackLayout>
-        <Border VerticalOptions="CenterAndExpand" x:Name="Logo" WidthRequest="500" HeightRequest="500" StrokeShape="RoundRectangle 35,35,35,35">
-            <Image x:Name="LogoImage" Source="logo.png"/>
-        </Border>
+        <!--<Border VerticalOptions="CenterAndExpand" x:Name="Logo" WidthRequest="500" HeightRequest="500" StrokeShape="RoundRectangle 35,35,35,35">-->
+            <Image x:Name="LogoImage" Source="logo.gif"/>
+        <!--</Border>-->
         <Border  Background="White" VerticalOptions="CenterAndExpand" x:Name="startBorder" Stroke="Black" StrokeThickness="1" 
                     StrokeShape="RoundRectangle 35,35,35,35" Margin="5" HeightRequest="300" WidthRequest="250">
             <StackLayout Spacing="20" Padding="10">

@@ -21,12 +21,12 @@ namespace ClientAccounting.MAUI
 
         protected override async void OnAppearing()
         {
-            this.Logo.IsVisible = true; this.Logo.IsEnabled = true;
-            this.Logo.Opacity = 1;
+            this.LogoImage.IsVisible = true; this.LogoImage.IsEnabled = true;
+            this.LogoImage.Opacity = 1;
 
             startBorder.IsEnabled = false; startBorder.IsVisible = false;
 
-            await this.Logo.FadeTo(0, 2500); this.Logo.IsVisible = false; this.Logo.IsEnabled = false;
+            await this.LogoImage.FadeTo(0, 2500); this.LogoImage.IsVisible = false; this.LogoImage.IsEnabled = false;
 
             this.startBorder.IsVisible = true; this.startBorder.IsEnabled = true;
 
