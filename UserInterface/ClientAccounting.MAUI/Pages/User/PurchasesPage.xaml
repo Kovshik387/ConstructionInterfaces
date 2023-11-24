@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.Pages.User.PurchasesPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Title="PurchasesPage">
+             Title="Покупки">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -13,6 +13,7 @@
 
     <ScrollView>
         <StackLayout>
+            <SearchBar Placeholder="Найти..." TextChanged="SearchBar_TextChanged"/>
             <ScrollView Margin="10">
                 <FlexLayout  Direction="Column" JustifyContent="Center" AlignContent="Center">
                     <CollectionView x:Name="collectionView" ItemsSource="{Binding Products}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
@@ -77,7 +78,7 @@
                                         <Label FontSize = "20" Grid.Column="1" Grid.Row="4"  TextColor = "#006064"  Margin="10">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Дата выпуска: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="Дата покупки: " FontAttributes="Bold" TextColor="Black"/>
                                                     <Span Text="{Binding Daterelease}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>

@@ -16,12 +16,12 @@ namespace ClientAccounting.MAUI.ViewModel.UserVm
         protected internal async void GetProductsAsync() => this.Products = new ObservableCollection<Product>
             (await _productService.GetUserProductAsync(int.Parse(await SecureStorage.Default.GetAsync("id_user"))));
 
-        protected internal async Task GetProducts()
+        protected internal async Task GetProducts(string query = "")
         {
             var id = int.Parse(await SecureStorage.GetAsync("id_user"));
 
             this.Products = new ObservableCollection<Product>
-            (_productService.GetUserProduct(id));
+            (_productService.GetUserProduct(id, query));
         }
     }
 }

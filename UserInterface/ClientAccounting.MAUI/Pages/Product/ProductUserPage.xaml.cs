@@ -18,7 +18,15 @@ public partial class ProductUserPage : ContentPage
 		await this.PurchaseBorder.ScaleTo(1.05, 150);
 		await this.PurchaseBorder.ScaleTo(1, 150);
 
-		if (!await this._productVm.Purchase())
+        int.TryParse(this.PurchaseCount.Text, out var count);
+
+		if (this._productVm.Count < count || this.PurchaseCount.Text == null || count == 0)
+		{
+			await DisplayAlert("Ошибка", "Введено некоректное количество","Ок");
+			return;
+		}
+
+		if (!await this._productVm.Purchase(count))
 		{
 			await DisplayAlert("Ошибка", "Товара нет в наличии", "Ок");
 			return;
@@ -30,7 +38,9 @@ public partial class ProductUserPage : ContentPage
 		this.Purchases.Source = "notification.png";
 		await this.Purchases.ScaleTo(1, 250);
 
-        await DisplayAlert("Сообщение", "Товар успешно куплен", "Ок");
+		var ask = await DisplayAlert
+			("Товар успешно куплен.","Перейти обратно?", "Остаться", "Перейти обратно");
+		if (!ask) await Shell.Current.Navigation.PopModalAsync();
 	}
 
     protected override bool OnBackButtonPressed()

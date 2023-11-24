@@ -84,7 +84,6 @@ namespace ClientAccounting.MAUI.ViewModel.UserVm
 
             var branch = await _userService.GetProductForUser(id_client);
 
-            //product new user
             Product = await _productService.GetAnyProduct(branch);
 
             price = Product.Price; sale_price = (int)(Product.Price * 0.85);
@@ -93,17 +92,17 @@ namespace ClientAccounting.MAUI.ViewModel.UserVm
             return Product;
         }
 
-        public async Task<bool> Purchase()
+        public async Task<bool> Purchase(int count)
         {
             if (this.Product.Count <= 0) return false;
 
             var user_id = int.Parse(await SecureStorage.Default.GetAsync("id_user"));
 
-            this.Product.Price = price; var temp_count = this.Product.Count - 1;
+            this.Product.Price = price; 
 
-            this.Product.Count -= 1; await _productService.ChangeProductAsync(Product);
-            OnPropertyChanged();
-            await _userService.PurchaseByIdAsync(user_id, this.Product.IdProduct);
+            this.Product.Count -= count; await _productService.ChangeProductAsync(Product); OnPropertyChanged();
+            
+            await _userService.PurchaseByIdAsync(user_id, this.Product.IdProduct,count, sale_price);
 
             return true;
         }

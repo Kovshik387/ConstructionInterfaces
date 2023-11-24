@@ -27,6 +27,7 @@ public partial class ClientAccountingContext : DbContext
     public virtual DbSet<Viewclient> Viewclients { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ClientAccounting;Username=postgres;Password=123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -85,6 +86,7 @@ public partial class ClientAccountingContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
+            entity.Property(e => e.Purchaseprice).HasColumnName("purchaseprice");
 
             entity.HasOne(d => d.IdClientNavigation).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.IdClient)
@@ -107,6 +109,7 @@ public partial class ClientAccountingContext : DbContext
             entity.Property(e => e.Branch).HasDefaultValueSql("''::text");
             entity.Property(e => e.Count).HasColumnName("count");
             entity.Property(e => e.Daterelease).HasColumnName("daterelease");
+            entity.Property(e => e.Ispurchased).HasColumnName("ispurchased");
             entity.Property(e => e.Lastview).HasColumnName("lastview");
             entity.Property(e => e.Name)
                 .HasMaxLength(40)
@@ -147,6 +150,10 @@ public partial class ClientAccountingContext : DbContext
             entity.HasKey(e => e.IdView).HasName("viewclient_pkey");
 
             entity.ToTable("viewclient");
+
+            entity.HasIndex(e => e.IdClient, "IX_viewclient_id_client");
+
+            entity.HasIndex(e => e.IdProduct, "IX_viewclient_id_product");
 
             entity.Property(e => e.IdView).HasColumnName("id_view");
             entity.Property(e => e.Dateview).HasColumnName("dateview");

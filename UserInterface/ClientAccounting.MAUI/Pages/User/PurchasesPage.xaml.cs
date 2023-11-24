@@ -38,4 +38,9 @@ public partial class PurchasesPage : ContentPage
         await Navigation.PushAsync(new PurchaseProductPage(_productVm,_reviewVm));
     }
 
+    private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        await this._userPurchaseVm.GetProducts(e.NewTextValue); _reviewVm.ResetView();
+        this.collectionView.ItemsSource = this._userPurchaseVm.Products;
+    }
 }

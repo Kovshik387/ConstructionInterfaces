@@ -14,7 +14,16 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
+    
+    
     <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
         <ResourceDictionary>
             <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
         </ResourceDictionary>
@@ -66,10 +75,29 @@
                             
                             <Label/>
 
-                            <Border Stroke="Black" x:Name="PurchaseBorder" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
-                                <Button x:Name="PurchaseButton" TextColor="AliceBlue" Text="Купить" Clicked="Purchase_Click"/>
-                            </Border>
+                            <HorizontalStackLayout>
+                                <Border Stroke="Black" WidthRequest="100" HorizontalOptions="Start" x:Name="PurchaseBorder" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Button x:Name="PurchaseButton" TextColor="AliceBlue" Text="Купить" Clicked="Purchase_Click"/>
+                                </Border>
 
+                                <Label WidthRequest="10"/>
+                                
+                                <Border HorizontalOptions="EndAndExpand" WidthRequest="100" Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry Placeholder="Количество" x:Name="PurchaseCount">
+                                        <Entry.Behaviors>
+                                            <toolkit:NumericValidationBehavior
+                                                Flags="ValidateOnValueChanged"
+                                                MaximumValue="{Binding Count}"
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+                            </HorizontalStackLayout>
+                            
+
+                            
                         </StackLayout>
                     </StackLayout>
 

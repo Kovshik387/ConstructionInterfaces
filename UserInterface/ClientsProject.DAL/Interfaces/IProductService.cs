@@ -14,14 +14,14 @@ namespace ClientsProject.DAL.Interfaces
         public Task ChangeProductAsync(Product order);
         public Product? GetProduct(int id);
         public Task<List<Product>> GetUserProductAsync(int id);
-        public List<Product> GetUserProduct(int id);
+        public List<Product> GetUserProduct(int id, string query = "");
         public Task<List<Product>> GetProductsAsync(int id_client = 0);
         public List<Product> GetProducts(int id_client = 0);
         public Task<List<Product>> GetProductsByQuery(string query);
         public Task<Product?> GetAnyProduct(string? branch);
         public Task SaveChangeAsync();
-        public List<RatingQuery> GetHighBranch(DateOnly date);
-        public List<Product> GetProductByDate(DateOnly date);
-        public List<Order> GetOrderByDate(DateOnly date);
+        public List<RatingQuery> GetHighBranch(DateOnly dateStart, DateOnly dateEnd);
+        public List<Product> GetProductByDate(DateOnly dateStart, DateOnly dateEnd);
+        public List<Order> GetOrderByDate(DateOnly dateStart, DateOnly dateEnd);
     }
 }

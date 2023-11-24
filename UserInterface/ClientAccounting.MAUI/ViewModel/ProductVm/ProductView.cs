@@ -108,15 +108,15 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
             }
         }
 
-        public async Task<bool> Purchase()
+        public async Task<bool> Purchase(int count)
         {
             if (this.Count <= 0) return false;
 
             var user_id = int.Parse(await SecureStorage.Default.GetAsync("id_user"));
 
-            this.Count -= 1; await _productService.ChangeProductAsync(Product);
+            this.Count -= count; await _productService.ChangeProductAsync(Product);
 
-            await _userService.PurchaseByIdAsync(user_id, this.Product.IdProduct);
+            await _userService.PurchaseByIdAsync(user_id, this.Product.IdProduct, count, Product.Price);
             
             return true;
         }

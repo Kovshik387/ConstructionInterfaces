@@ -11,10 +11,10 @@ namespace ClientsProject.DAL.Interfaces
     {
         public Task<Client?> GetClientByIdAsync(int id);
         public Client? GetClientById(int id);
-        public Task PurchaseByIdAsync(int id_user, int id_product);
+        public Task PurchaseByIdAsync(int id_user, int id_product, int count, int price);
         public Task<string?> GetProductForUser(int id_user);
         public Task UserView(int id_user, int id_product);
         public Task AuthoLogg(int id);
-        public List<Client> GetClients(DateOnly date);
+        public List<Client> GetClients(DateOnly dateStart, DateOnly dateEnd);
     }
 }

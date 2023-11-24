@@ -2,8 +2,6 @@
 using ClientsProject.DAL.Entities;
 using ClientsProject.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.ObjectModel;
-using System.Net.Sockets;
 
 namespace ClientsProject.DAL.Services
 {
@@ -67,38 +65,57 @@ namespace ClientsProject.DAL.Services
             using (var factory = await _factory.CreateDbContextAsync())
             {
                 var orders = factory.Orders.Include(p => p.IdProductNavigation).Where(i => i.IdClient == id).ToList();
-
-                var products = new List<Product>();
-
-                foreach (var order in orders)
-                {
-                    var item = order.IdProductNavigation;
-
-                    item.Count = order.Count;
-
-                    products.Add(item);
-                }
-
-                return products;
+                return orders.Select(x => x.IdProductNavigation).ToList();
             }
         }
 
-        public List<Product> GetUserProduct(int id)
+        public List<Product> GetUserProduct(int id, string query = "")
         {
             using (var factory = _factory.CreateDbContext())
             {
-                var orders = factory.Orders.Include(p => p.IdProductNavigation).Where(i => i.IdClient == id).ToList();
+                var orders = new List<Order>();
+                var orders_quarable = factory.Orders.Include(p => p.IdProductNavigation).
+                    ThenInclude(r => r.Reviews).
+                    Where(i => i.IdClient == id);
+
+                switch (query)
+                {
+                    case "":
+                        orders = orders_quarable.ToList();
+                        break;
+                    default:
+                        if (DateOnly.TryParse(query, out var date))
+                        {
+                            orders = orders_quarable.Where(q => q.Daterelease == date).ToList();
+                        }
+                        else orders = orders_quarable.Where(
+                            q => Microsoft.EntityFrameworkCore.EF.Functions.Like(q.IdProductNavigation.Name!, $"%{query}%") ||
+                            Microsoft.EntityFrameworkCore.EF.Functions.Like(q.IdProductNavigation.Branch!, $"%{query}%")).ToList();
+                        break;
+                };
 
                 var products = new List<Product>();
 
                 foreach (var order in orders)
                 {
-                    var item = order.IdProductNavigation;
-
-                    item.Count = order.Count;
-
+                    Product item = new()
+                    {
+                        Count = order.Count, Branch = order.IdProductNavigation.Branch,
+                        Daterelease = order.Daterelease,
+                        Name = order.IdProductNavigation.Name,
+                        Price = (int)order.Purchaseprice!,
+                        IdProduct = order.IdProduct,
+                        Photo = order.IdProductNavigation.Photo,
+                        Viewclients = order.IdProductNavigation.Viewclients,
+                        Reviews = order.IdProductNavigation.Reviews,
+                        Orders = order.IdProductNavigation.Orders,
+                        Lastview = order.IdProductNavigation.Lastview,
+                        Ispurchased = order.IdProductNavigation.Ispurchased,
+                        
+                    };
                     products.Add(item);
                 }
+
                 return products;
             }
         }
@@ -132,7 +149,6 @@ namespace ClientsProject.DAL.Services
                 }
 
                 var products = await factory.Products.Where(i => i.Branch == branch && i.Count > 0).ToListAsync();
-                if (products.Count == 0) { return await factory.Products.Where(s => s.Count > 0).FirstOrDefaultAsync(); }
 
                 return products[new Random().Next(0,products.Count)];
             }
@@ -144,31 +160,35 @@ namespace ClientsProject.DAL.Services
                 await factory.SaveChangesAsync();
         }
 
-        public List<Product> GetProductByDate(DateOnly date)
+        public List<Product> GetProductByDate(DateOnly dateStart, DateOnly dateEnd)
         {
             using var factory = _factory.CreateDbContext();
-            return factory.Products.Where(d => d.Daterelease == date).ToList();
+            return factory.Products.
+                Where(d => d.Daterelease >= dateStart && d.Daterelease <= dateEnd).ToList();
         }
 
-        public List<RatingQuery> GetHighBranch(DateOnly date)
+        public List<RatingQuery> GetHighBranch(DateOnly dateStart, DateOnly dateEnd)
         {
             using var factory = _factory.CreateDbContext();
-            var temp = factory.Orders.Where(d => d.Daterelease == date).
+            var temp = factory.Orders.Where(d => d.Daterelease >= dateStart && d.Daterelease <= dateEnd).
                 Include(p => p.IdProductNavigation).
                 GroupBy(x => x.IdProductNavigation.Branch).
                 Select(s => new { Name = s.Key, Count = s.Count() }).Where(s => s.Count > 0).ToList();
 
             var temp_rating = new List<RatingQuery>();
 
-            foreach (var item in temp) { temp_rating.Add(new RatingQuery() { Name = item.Name, Count = item.Count}); }
+            foreach (var item in temp) { temp_rating.Add(new RatingQuery() { Name = item.Name!, Count = item.Count}); }
 
             return temp_rating;
         }
 
-        public List<Order> GetOrderByDate(DateOnly date)
+        public List<Order> GetOrderByDate(DateOnly dateStart, DateOnly dateEnd)
         {
             using var factory = _factory.CreateDbContext();
-            return factory.Orders.Where(d => d.Daterelease == date).Include(s => s.IdProductNavigation).ToList();
+            return factory.Orders.
+                Where(d => d.Daterelease >= dateStart && d.Daterelease <= dateEnd).
+                Include(s => s.IdProductNavigation).
+                ToList();
         }
     }
 }

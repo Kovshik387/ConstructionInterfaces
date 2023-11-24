@@ -17,9 +17,11 @@ public partial class Product
 
     public int Price { get; set; }
 
-    public string Branch { get; set; } = null!;
+    public string? Branch { get; set; }
 
     public DateOnly? Lastview { get; set; }
+
+    public bool? Ispurchased { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 

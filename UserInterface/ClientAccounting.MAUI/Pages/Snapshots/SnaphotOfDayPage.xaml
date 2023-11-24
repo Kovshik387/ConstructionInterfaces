@@ -2,22 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientAccounting.MAUI.Pages.Snapshots.SnaphotOfDayPage"
-             Title="{Binding CurrentTime}">
+             Title="Статистика">
 
+    <HorizontalStackLayout Margin="5">
+        <Border StrokeThickness="1" Margin="10" HeightRequest="200" VerticalOptions="Start" StrokeShape="RoundRectangle 5,5,5,5" Stroke="{StaticResource Primary}">
+            <StackLayout Padding="2">
+                <Label Text="Первая дата"/>
+                <DatePicker Date="{Binding DateStart}" WidthRequest="150"/>
+                <Label Text="Вторая дата"/>
+                <DatePicker Date="{Binding DateEnd}"  WidthRequest="150"/>
+                <Button VerticalOptions="EndAndExpand" x:Name="SeachByDate" Clicked="SeachByDate_Clicked" Text="Сформировать" WidthRequest="150"/>
+            </StackLayout>
+        </Border>
 
-    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+        <Label WidthRequest="200"/>
+
+        <Grid x:Name="GridDate" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-
-        <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="400" HeightRequest="300">
+        <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="350" HeightRequest="300">
             <ScrollView>
                 <StackLayout>
                     <Label Padding="5" Text="Новые пользователи" FontSize="Medium"/>
@@ -51,7 +62,7 @@
         </Border>
 
 
-        <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="1" WidthRequest="400" HeightRequest="300" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black">
+        <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="1" WidthRequest="350" HeightRequest="300" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black">
             <ScrollView>
                 <StackLayout>
                     <Label Padding="5" Text="Новые продукты" FontSize="Medium"/>
@@ -86,7 +97,7 @@
             </ScrollView>
         </Border>
 
-        <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="400" HeightRequest="300">
+        <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="350" HeightRequest="300">
             <ScrollView>
                 <StackLayout>
                 <Label Padding="5" Text="Совершённые покупки" FontSize="Medium"/>
@@ -108,7 +119,7 @@
                                         <HorizontalStackLayout>
                                             <Label Text="Район" FontAttributes="Bold"/>
                                             <Label WidthRequest="5"/>
-                                            <Label Text="{Binding Branch}"/>
+                                            <Label Text="{Binding IdProductNavigation.Branch}"/>
                                         </HorizontalStackLayout>
                                     </StackLayout>
                                 </Border>
@@ -119,7 +130,7 @@
             </ScrollView>
         </Border>
 
-        <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="400" HeightRequest="300">
+        <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="350" HeightRequest="300">
             <ScrollView>
             <StackLayout>
                 <Label Padding="5" Text="Покупки в районах" FontSize="Medium"/>
@@ -148,5 +159,5 @@
         </Border>
     
     </Grid>
-
+    </HorizontalStackLayout>
 </ContentPage>

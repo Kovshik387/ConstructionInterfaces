@@ -86,13 +86,7 @@
                             </Border>
 
                             <Label/>
-                            <Label Text="Дата выпуска" TextColor="AliceBlue" FontSize="16"/>
 
-                            <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                <DatePicker Format="d" Date="{Binding Daterelease}" DateSelected="DatePicker_DateSelected" TextColor="AliceBlue"/>
-                            </Border>
-
-                            <Label></Label>
                             <Button Text="Добавить фото" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="Button_Clicked"/>
                             <Label></Label>
 

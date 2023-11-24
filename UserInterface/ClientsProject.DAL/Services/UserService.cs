@@ -21,10 +21,10 @@ namespace ClientsProject.DAL.Services
             return factory.Clients.Where(u => u.IdClient == id).Include(f => f.Orders.Where(o => o.IdClient == id)).FirstOrDefault();
         }
 
-        public List<Client> GetClients(DateOnly date)
+        public List<Client> GetClients(DateOnly dateStart, DateOnly dateEnd)
         {
             using var factory = _factory.CreateDbContext();
-            return factory.Clients.Where(d => d.Registrationdate == date).ToList();
+            return factory.Clients.Where(d => d.Registrationdate >= dateStart && d.Registrationdate <= dateEnd).ToList();
         }
 
         public async Task<string?> GetProductForUser(int id_user)
@@ -41,24 +41,18 @@ namespace ClientsProject.DAL.Services
             else return query.Name;
         }
 
-        public async Task PurchaseByIdAsync(int id_user, int id_product)
+        public async Task PurchaseByIdAsync(int id_user, int id_product, int count, int price)
         {
             using var factory = await _factory.CreateDbContextAsync();
-            var repeats = factory.Orders.Where(i => i.IdProduct == id_product && i.IdClient == id_user).FirstOrDefault();
-            if (repeats is not null)
-            {
-                repeats.Count++;
-                factory.Update(repeats); await factory.SaveChangesAsync();
-                return;
-            }
-
+            
             var order = new Order()
             {
-                Count = 1,
+                Count = count,
                 Name = factory.Products.Where(i => i.IdProduct == id_product).FirstOrDefault()!.Name,
                 Daterelease = DateOnly.FromDateTime(DateTime.Now),
                 IdClient = id_user,
-                IdProduct = id_product
+                IdProduct = id_product,
+                Purchaseprice = price
             };
 
             await factory.AddAsync(order); await factory.SaveChangesAsync();

@@ -7,6 +7,13 @@
              Title="StarProduct">
 
     <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
         <ResourceDictionary>
             <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
         </ResourceDictionary>
@@ -45,7 +52,7 @@
                                 <Label Padding="5" Text="{Binding Count}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
                             </Border>
 
-                            <Label Text="Цена | скидка для Вас" FontSize="16" TextColor="AliceBlue"/>
+                            <Label Text="Цена с персональной скидкой" FontSize="16" TextColor="AliceBlue"/>
 
                             <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="35">
                                 <Label Padding="5" Text="{Binding Price}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
@@ -58,9 +65,28 @@
 
                             <Label/>
 
-                            <Border Stroke="Black" x:Name="PurchaseButton" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
-                                <Button TextColor="AliceBlue" Text="Купить"  Clicked="Purchase_Click"/>
-                            </Border>
+                            <HorizontalStackLayout>
+                                
+                                <Border HorizontalOptions="Start" WidthRequest="100" Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Entry  Placeholder="Количество" x:Name="PurchaseCount">
+                                        <Entry.Behaviors>
+                                            <toolkit:NumericValidationBehavior
+                                                Flags="ValidateOnValueChanged"
+                                                MaximumValue="{Binding Count}"
+                                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                ValidStyle="{StaticResource ValidEntryStyle}"
+                                                />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </Border>
+
+                                <Label WidthRequest="10"/>
+
+                                <Border HorizontalOptions="End" Stroke="Black" x:Name="PurchaseButton" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Button TextColor="AliceBlue" Text="Купить"  Clicked="Purchase_Click"/>
+                                </Border>
+                                
+                            </HorizontalStackLayout>
 
                         </StackLayout>
                     </StackLayout>
