@@ -54,7 +54,7 @@
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="Количество: " FontAttributes="Bold" TextColor="Black"/>
-                                                    <Span Text="{Binding Count}"/>
+                                                    <Span Text="{Binding Count, StringFormat='{0} шт.'}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>

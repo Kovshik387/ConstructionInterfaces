@@ -44,7 +44,7 @@
                                     <Label Text="Количество" FontSize="16" TextColor="AliceBlue" />
 
                                     <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5" HeightRequest="35">
-                                        <Label Padding="5" Text="{Binding Item1.Count}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
+                                        <Label Padding="5" Text="{Binding Item1.Count, StringFormat='{0} шт.'}" TextColor="AliceBlue" FontSize="16" VerticalTextAlignment="Center" />
                                     </Border>
 
                                     <Label Text="Цена" FontSize="16" TextColor="AliceBlue"/>
