@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ClientsProject.DAL.Entities;
+﻿using ClientsProject.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClientsProject.DAL.EF;
@@ -115,6 +113,7 @@ public partial class ClientAccountingContext : DbContext
                 .HasMaxLength(40)
                 .HasColumnName("name");
             entity.Property(e => e.Photo).HasColumnName("photo");
+            entity.Property(e => e.Rating).HasColumnName("rating");
         });
 
         modelBuilder.Entity<Review>(entity =>

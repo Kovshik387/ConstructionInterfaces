@@ -25,10 +25,11 @@
                         
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Border HeightRequest="250" StrokeShape="RoundRectangle 20,20,20,20" Stroke="{StaticResource Primary}" Margin="20" >
+                                <Border HeightRequest="270" StrokeShape="RoundRectangle 20,20,20,20" Stroke="{StaticResource Primary}" Margin="20" >
                                     <Grid>
 
                                         <Grid.RowDefinitions>
+                                            <RowDefinition/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                             <RowDefinition/>
@@ -85,7 +86,17 @@
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
-                                        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Margin="5" HorizontalOptions="Start" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
+
+                                        <Label FontSize = "20" Grid.Column="1" Grid.Row="5"  TextColor = "#006064"  Margin="10">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Рейтинг: " FontAttributes="Bold" TextColor="Black"/>
+                                                    <Span Text="{Binding Rating}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" Margin="5" HorizontalOptions="Start" StrokeThickness="0" StrokeShape="RoundRectangle 20,20,20,20">
                                             <Image Aspect="AspectFill" Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
                                         </Border>
                                     </Grid>

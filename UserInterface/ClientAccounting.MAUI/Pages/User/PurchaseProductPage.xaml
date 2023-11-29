@@ -75,7 +75,9 @@
 
                             <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="EndAndExpand">
                                 <Label VerticalOptions="Center" Text="Оценка" FontSize = "20" TextColor = "AliceBlue"/>
-                                <Entry x:Name="EntryRating" HorizontalOptions="Start" WidthRequest="100" MaxLength="1" Text="{Binding Item2.Rating}" FontSize = "20" TextColor = "AliceBlue" />
+                                <Entry x:Name="EntryRating" HorizontalOptions="Start" WidthRequest="100"
+                                       MaxLength="1" Text="{Binding Item2.Rating}" FontSize = "20" TextColor = "AliceBlue"
+                                       />
                                 <Button HorizontalOptions="End" WidthRequest="200" x:Name="ButtonReview" Text="Оставить отзыв" Clicked="Review_Click"/>
                             </HorizontalStackLayout>
                             

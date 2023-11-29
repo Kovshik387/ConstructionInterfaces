@@ -30,7 +30,7 @@ public partial class ClientPage : ContentPage, IQueryAttributable
 
     protected override bool OnBackButtonPressed()
     {
-        if (this.validEmail.IsNotValid || this.ValidContact.IsNotValid || this.ValidLogin.IsNotValid || this.ValidRating.IsNotValid ||
+        if (this.validEmail.IsNotValid || this.ValidContact.IsNotValid || this.ValidLogin.IsNotValid ||
             this.ValidName.IsNotValid || this.ValidPatr.IsNotValid || this.ValidSurname.IsNotValid || ValidPassword.IsNotValid)
         {
             DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");

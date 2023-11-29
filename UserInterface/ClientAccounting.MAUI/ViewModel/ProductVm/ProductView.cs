@@ -25,6 +25,8 @@ namespace ClientAccounting.MAUI.ViewModel.ProductVm
             this._productService = productService; this._userService = userService;
         }
 
+        public double? Rating {  get => Product.Rating;}
+
         public string Name
         {
             get => Product.Name; set

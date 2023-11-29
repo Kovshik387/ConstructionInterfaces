@@ -97,13 +97,14 @@
                         </Border>
                         <Label Text="Контактные" TextColor="AliceBlue" FontSize="16"/>
                         <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                            <Entry MaxLength="13" Text="{Binding Contact}" Placeholder="Контактные" FontSize="16">
+                            <Entry MaxLength="12" Text="{Binding Contact}" Placeholder="Контактные" FontSize="16">
                                 <Entry.Behaviors>
                                     <toolkit:TextValidationBehavior 
                                     InvalidStyle="{StaticResource InvalidEntryStyle}"
                                     ValidStyle="{StaticResource ValidEntryStyle}"
                                     Flags="ValidateOnValueChanged"
                                     MinimumLength="1"
+                                    RegexPattern="^[+]\d{11}"
                                     MaximumLength="12"
                                     x:Name="ValidContact"
                                     />
@@ -126,7 +127,7 @@
                             </Entry>
                         </Border>
                         
-                        <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
+                        <!--<Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
                         <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                             <Entry Text="{Binding Rating}" Keyboard="Numeric" Placeholder="Рейтинг" MaxLength="1" FontSize="16">
                                 <Entry.Behaviors>
@@ -140,7 +141,7 @@
                                         x:Name="ValidRating"/>
                                 </Entry.Behaviors>
                             </Entry>
-                        </Border>
+                        </Border>-->
                         <Label></Label>
                         <Button Text="Создать" HeightRequest="25" BackgroundColor="#2B0B98" Clicked="Button_Clicked"/>
                     </StackLayout>

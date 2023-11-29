@@ -16,7 +16,14 @@ namespace ClientsProject.DAL.Services
         public async Task AddReview(Review review) 
         {
             using var factorty = await _databaseFactory.CreateDbContextAsync();
-            factorty.Reviews.Add(review); factorty.SaveChanges();
+            var review_temp = factorty.Reviews.Add(review); factorty.SaveChanges();
+
+            var product = await factorty.Products.Where(s => s.IdProduct == review_temp.Entity.IdProduct).FirstOrDefaultAsync();
+            var countViewRatingClient = factorty.Reviews.Where(s => s.IdProduct == product!.IdProduct).Select(x => x.Rating).ToList();
+            var rating = 0;
+            foreach(var item in countViewRatingClient) { rating += item; }
+            product!.Rating = (double)rating / countViewRatingClient.Count;
+            factorty.Products.Update(product); factorty.SaveChanges();
         }
 
         public async Task<Review?> GetReview(int id_product, int id_user)

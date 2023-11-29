@@ -35,7 +35,7 @@ public partial class AddClientPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        if (this.validEmail.IsNotValid || this.ValidContact.IsNotValid || this.ValidLogin.IsNotValid || ValidRating.IsNotValid ||
+        if (this.validEmail.IsNotValid || this.ValidContact.IsNotValid || this.ValidLogin.IsNotValid ||
         this.ValidName.IsNotValid || this.ValidPatr.IsNotValid || this.ValidSurname.IsNotValid || ValidPassword.IsNotValid)
         {
             await DisplayAlert("Ошибка", "Данные не были сохранены", "Ок");

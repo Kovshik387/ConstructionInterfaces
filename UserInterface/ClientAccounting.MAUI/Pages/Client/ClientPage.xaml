@@ -129,7 +129,7 @@
                                         </Entry.Behaviors>
                                     </Entry>
                                 </Border>
-                                <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
+                                <!--<Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
                                     <Entry Text="{Binding Rating}" TextColor="AliceBlue" Placeholder="Рейтинг" FontSize="16">
                                         <Entry.Behaviors>
@@ -143,7 +143,7 @@
                                             x:Name="ValidRating"/>
                                         </Entry.Behaviors>
                                     </Entry>
-                                </Border>
+                                </Border>-->
                         </StackLayout>
                     </StackLayout>
                 </Border>

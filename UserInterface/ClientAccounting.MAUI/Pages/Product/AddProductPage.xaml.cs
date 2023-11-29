@@ -47,7 +47,7 @@ public partial class AddProductPage : ContentPage
     {
         _addProductView.Product = new();
         this._addProductView.DateRelease = DateOnly.FromDateTime(DateTime.Now);
-        this._addProductView.Price = 0;
+        this._addProductView.Price = 0; this._addProductView.Product.Rating = 0;
         base.OnAppearing();
     }
 

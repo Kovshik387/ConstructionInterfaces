@@ -63,7 +63,7 @@
                                 <Label Text="Количество" FontSize="16" TextColor="AliceBlue" />
 
                                 <Border Stroke="Black" StrokeThickness="1"  StrokeShape="RoundRectangle 5,5,5,5">
-                                    <Entry Text="{Binding Count}" Placeholder="Количество" FontSize="16" Keyboard="Numeric">
+                                    <Entry Text="{Binding Count}" Placeholder="Количество, шт." FontSize="16" Keyboard="Numeric">
                                         <Entry.Behaviors>
                                             <toolkit:TextValidationBehavior
                                             InvalidStyle="{StaticResource InvalidEntryStyle}"
@@ -110,7 +110,14 @@
                                         </Entry.Behaviors>
                                     </Entry>
                                 </Border>
-                            </StackLayout>
+                                
+                                <Label Text="Рейтинг" TextColor="AliceBlue" FontSize="16"/>
+                                
+                                <Border HeightRequest="40" Stroke="Black" StrokeThickness="1" StrokeShape="RoundRectangle 5,5,5,5">
+                                    <Label Margin="10,0,0,0" VerticalOptions="Center" TextColor="AliceBlue" Text="{Binding Rating}" FontSize="16"/>
+                                </Border>
+
+                                </StackLayout>
                         </StackLayout>
 
                     </HorizontalStackLayout>
