@@ -20,6 +20,32 @@ public partial class SnaphotOfDayPage : ContentPage
 	private void FetchData()
 	{
         _snapshotVm.GetData();
+
+        if (_snapshotVm.NewProducts.Count != 0)
+        {
+            this.TextProducts.Text = "Новые продукты";
+        }
+        else this.TextProducts.Text = "Нет новых продуктов";
+
+        if (_snapshotVm.NewOrders.Count != 0)
+        {
+            this.TextPurchase.Text = "Новые заказы";
+        }
+        else this.TextPurchase.Text = "Нет новых заказов";
+
+        if (_snapshotVm.NewClients.Count != 0)
+        {
+            this.TextUsers.Text = "Новые пользователи";
+        }
+        else this.TextUsers.Text = "Нет новых пользователей";
+
+        if (_snapshotVm.RatingBranch.Count != 0)
+        {
+            this.TextRating.Text = "Покупки в филиалах";
+        }
+        else this.TextRating.Text = "Нет новых заказов";
+
+
         this.NewProducts.ItemsSource = _snapshotVm.NewProducts;
         this.NewPurchase.ItemsSource = _snapshotVm.NewOrders;
         this.NewUsers.ItemsSource = _snapshotVm.NewClients;

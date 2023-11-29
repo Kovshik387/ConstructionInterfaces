@@ -31,7 +31,7 @@
         <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="350" HeightRequest="300">
             <ScrollView>
                 <StackLayout>
-                    <Label Padding="5" Text="Новые пользователи" FontSize="Medium"/>
+                    <Label Padding="5" x:Name="TextUsers" Text="Новые пользователи" FontSize="Medium"/>
                     <CollectionView x:Name="NewUsers">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -65,7 +65,7 @@
         <Border Margin="10" StrokeThickness="1" Grid.Column="0" Grid.Row="1" WidthRequest="350" HeightRequest="300" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black">
             <ScrollView>
                 <StackLayout>
-                    <Label Padding="5" Text="Новые продукты" FontSize="Medium"/>
+                    <Label Padding="5" x:Name="TextProducts" Text="Новые продукты" FontSize="Medium"/>
                     <CollectionView x:Name="NewProducts">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -100,7 +100,7 @@
         <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="0" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="350" HeightRequest="300">
             <ScrollView>
                 <StackLayout>
-                <Label Padding="5" Text="Совершённые покупки" FontSize="Medium"/>
+                <Label Padding="5" x:Name="TextPurchase" Text="Совершённые покупки" FontSize="Medium"/>
                     <CollectionView x:Name="NewPurchase">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -133,7 +133,7 @@
         <Border Margin="10" StrokeThickness="1" Grid.Column="1" Grid.Row="1" StrokeShape="RoundRectangle 5,5,5,5" Stroke="Black" WidthRequest="350" HeightRequest="300">
             <ScrollView>
             <StackLayout>
-                <Label Padding="5" Text="Покупки в районах" FontSize="Medium"/>
+                <Label x:Name="TextRating" Padding="5" Text="Покупки в районах" FontSize="Medium"/>
                     <CollectionView x:Name="RatingBranch">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
